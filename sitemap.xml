@@ -1,0 +1,70 @@
+hub<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main Page -->
+  <url>
+    <loc>https://ulutfyad48-debug.github.io/Islamic-library/</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ulutfyad48-debug.github.io/Islamic-library/" />
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf</image:loc>
+      <image:title>اسلامک ڈیجیٹل لائبریری</image:title>
+    </image:image>
+  </url>
+
+  <!-- Quran Audio - Urdu Translation -->
+  <url>
+    <loc>https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" />
+  </url>
+
+  <!-- Quran Audio - Recitation -->
+  <url>
+    <loc>https://ulutfyad48-debug.github.io/Quran-MP3/</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ulutfyad48-debug.github.io/Quran-MP3/" />
+  </url>
+
+  <!-- DIT Course -->
+  <url>
+    <loc>https://ulutfyad48-debug.github.io/DIT-course/</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ulutfyad48-debug.github.io/DIT-course/" />
+  </url>
+
+  <!-- Quran PDF Section -->
+  <url>
+    <loc>https://ulutfyad48-debug.github.io/Islamic-library/#quran-pdf-heading</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Islamic Books Section -->
+  <url>
+    <loc>https://ulutfyad48-debug.github.io/Islamic-library/#books-heading</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Audio Section -->
+  <url>
+    <loc>https://ulutfyad48-debug.github.io/Islamic-library/#audio-heading</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

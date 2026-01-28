@@ -1,0 +1,21 @@
+{
+  "name": "اسلامک لائبریری",
+  "short_name": "IslamicLib",
+  "description": "ایک بہترین اسلامی کتب اور مواد کی لائبریری",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#004D40",
+  "theme_color": "#004D40",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

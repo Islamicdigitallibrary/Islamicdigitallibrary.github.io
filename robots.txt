@@ -1,0 +1,41 @@
+# Islamic Digital Library - Robots.txt
+# https://ulutfyad48-debug.github.io/Islamic-library/
+
+User-agent: *
+Allow: /
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Disallow specific files if needed
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /api/
+
+# Crawl-delay (optional, adjust if needed)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://ulutfyad48-debug.github.io/Islamic-library/sitemap.xml
+
+# Additional sitemap (if you create one for images)
+Sitemap: https://ulutfyad48-debug.github.io/Islamic-library/sitemap-images.xml
