@@ -5,49 +5,195 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ہمارے بارے میں | اسلامک ڈیجیٹل لائبریری</title>
   <meta name="description" content="اسلامک ڈیجیٹل لائبریری کے بارے میں معلومات، مقصد، اور ویب سائٹ بنانے والے کا تعارف">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --deep-navy: #020617;
+      --card-bg: #0f172a;
+      --gold: #fbbf24;
+      --gold-dark: #b48811;
+      --text-white: #f8fafc;
+      --text-gray: #94a3b8;
+      --glass-border: rgba(251, 191, 36, 0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
+      background-color: var(--deep-navy);
+      color: var(--text-white);
+      line-height: 2.2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* پریمیم بیک گراؤنڈ ایفیکٹ */
+    body::before {
+      content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(2, 6, 23, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+      z-index: -1;
+    }
+
+    .about-container {
+      max-width: 850px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 40px;
+      padding: 60px 45px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* ڈیکوریٹو آئیکون */
+    .about-icon {
+      font-size: 4rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+      filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.3));
+    }
+
+    h1 {
+      color: var(--gold);
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 20%;
+      right: 20%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .bio-box {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .highlight-gold {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .mission-item {
+      padding: 20px;
+      background: rgba(251, 191, 36, 0.05);
+      border-radius: 15px;
+      border: 1px dashed var(--glass-border);
+    }
+
+    .contact-footer {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .email-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.3rem;
+      direction: ltr;
+      display: inline-block;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    .email-link:hover {
+      letter-spacing: 1px;
+      text-shadow: 0 0 15px var(--gold);
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1px solid var(--glass-border);
+      padding: 8px 25px;
+      border-radius: 50px;
+      transition: 0.3s;
+    }
+
+    .back-home:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+
+    @media (max-width: 600px) {
+      .about-container { padding: 40px 20px; }
+      h1 { font-size: 2.2rem; }
+    }
+  </style>
 </head>
-<body style="font-family: 'Noto Nastaliq Urdu', serif; line-height: 2; background:#0f172a; color:#fff; padding:20px;">
+<body>
 
-  <h1 style="color:#ffd700;">ہمارے بارے میں</h1>
+  <div class="about-container">
+    <span class="about-icon">🕌</span>
+    <h1>ہمارے بارے میں</h1>
 
-  <p>
-    میرا نام <strong>ید اللہ</strong> ہے۔ میں ایک طالب علم ہوں اور اس ویب سائٹ
-    <strong>اسلامک ڈیجیٹل لائبریری</strong> کو بنانے کا مقصد
-    <strong>صدقۂ جاریہ</strong> ہے تاکہ زیادہ سے زیادہ لوگ
-    مستند اسلامی مواد سے فائدہ اٹھا سکیں۔
-  </p>
+    <div class="bio-box">
+      <p>
+        السلام علیکم! میرا نام <span class="highlight-gold">ید اللہ</span> ہے۔ 
+        میں ایک طالب علم ہوں اور اس پلیٹ فارم کو تخلیق کرنے کا واحد مقصد <span class="highlight-gold">صدقۂ جاریہ</span> ہے۔ 
+        میرا خواب ہے کہ ہر مسلمان کے پاس مستند اسلامی علم تک آسان اور مفت رسائی ہو۔
+      </p>
+    </div>
 
-  <p>
-    اس ویب سائٹ پر قرآنِ مجید (PDF اور آڈیو)، اسلامی کتب،
-    اور تعلیمی مواد بالکل <strong>مفت</strong> فراہم کیا جاتا ہے۔
-    ہمارا مقصد کسی بھی قسم کا مالی فائدہ نہیں بلکہ علم کی ترویج ہے۔
-  </p>
+    <div class="mission-grid">
+      <div class="mission-item">
+        <h3 style="color:var(--gold)">مقصد</h3>
+        <p style="font-size: 0.9rem;">علمِ دین کی مفت اور آسان ترویج کرنا۔</p>
+      </div>
+      <div class="mission-item">
+        <h3 style="color:var(--gold)">مواد</h3>
+        <p style="font-size: 0.9rem;">قرآن مجید، احادیث اور مستند کتب کا ذخیرہ۔</p>
+      </div>
+      <div class="mission-item">
+        <h3 style="color:var(--gold)">اصلاح</h3>
+        <p style="font-size: 0.9rem;">غلطی کی نشاندہی پر بروقت تصحیح کا عزم۔</p>
+      </div>
+    </div>
 
-  <p>
-    ہم پوری کوشش کرتے ہیں کہ فراہم کیا گیا مواد مستند،
-    مفید اور آسان ہو۔ اگر کہیں کوئی غلطی یا کمی ہو تو
-    آپ ہمیں مطلع کر سکتے ہیں تاکہ اصلاح کی جا سکے۔
-  </p>
+    <div style="text-align: justify; color: var(--text-gray); font-size: 1rem; margin-bottom: 20px;">
+      <p>
+        یہ ویب سائٹ مکمل طور پر غیر تجارتی ہے۔ ہمارا مقصد کسی بھی قسم کا مالی فائدہ حاصل کرنا نہیں، بلکہ اسے ایک ایسی ڈیجیٹل لائبریری بنانا ہے جو آنے والی نسلوں کے لیے مشعلِ راہ ثابت ہو۔ تمام فراہم کردہ مواد عوامی استفادہ کے لیے ہے اور ہم پوری کوشش کرتے ہیں کہ اس سے کسی کے جذبات کو ٹھیس نہ پہنچے۔
+      </p>
+    </div>
 
-  <p>
-    یہ ویب سائٹ تعلیمی اور معلوماتی مقصد کے لیے بنائی گئی ہے۔
-    تمام مواد عام استفادہ کے لیے ہے اور کسی کے مذہبی جذبات
-    کو ٹھیس پہنچانا مقصد نہیں۔
-  </p>
+    <div class="contact-footer">
+      <p>سوال، مشورہ یا شکایت کے لیے رابطہ کریں:</p>
+      <a href="mailto:ullahyad199@gmail.com" class="email-link">ullahyad199@gmail.com</a>
+    </div>
 
-  <hr style="margin:30px 0; border-color:#ffd700;">
-
-  <p>
-    اگر آپ کے پاس کوئی سوال، مشورہ یا شکایت ہو تو
-    براہِ کرم ہم سے رابطہ کریں۔
-  </p>
-
-  <p>
-    <strong>ای میل:</strong>  
-    <a href="mailto:ullahyad199@gmail.com" style="color:#ffd700;">
-      ullahyad199@gmail.com
-    </a>
-  </p>
+    <a href="index.html" class="back-home">← واپس ہوم پیج</a>
+  </div>
 
 </body>
 </html>
