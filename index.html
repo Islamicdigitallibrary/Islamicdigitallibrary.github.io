@@ -150,6 +150,16 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
   </div>
 
   <section>
+    <h2 class="section-head"><span>📚</span> قرآن مجید (PDF)</h2>
+    <div id="quranGrid" class="grid"></div>
+  </section>
+
+  <section>
+    <h2 class="section-head"><span>📖</span> اسلامی کتب</h2>
+    <div id="booksGrid" class="grid"></div>
+  </section>
+
+  <section>
     <h2 class="section-head"><span>🎧</span> آڈیو ذخیرہ</h2>
     <div class="grid">
       <div class="card">
@@ -168,24 +178,14 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
       </div>
     </div>
   </section>
-  
-  <section>
-    <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت (منتخب)</h2>
-    <div id="youtubeGrid" class="grid"></div>
-  </section>
 
   <div class="ad-container">
       <div id="container-e8f48cab7075cad1a9bfb6eb3b02f264"></div>
   </div>
 
   <section>
-    <h2 class="section-head"><span>📚</span> قرآن مجید (PDF)</h2>
-    <div id="quranGrid" class="grid"></div>
-  </section>
-
-  <section>
-    <h2 class="section-head"><span>📖</span> اسلامی کتب</h2>
-    <div id="booksGrid" class="grid"></div>
+    <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت (منتخب)</h2>
+    <div id="youtubeGrid" class="grid"></div>
   </section>
 
   <section>
@@ -213,20 +213,15 @@ const CONFIG = {
   API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
   QURAN_FOLDER: '12Z5rw7X1VMEkch2X9e-JyeOO5FmJYVkT',
   BOOKS_FOLDER: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC',
-  YOUTUBE_FILE: 'youtube.json' // آپ کی فائل کا نام
+  YOUTUBE_FILE: 'youtube.json'
 };
 
-// --- یوٹیوب ویڈیوز لوڈ کرنے کا فنکشن (External File سے) ---
+// --- یوٹیوب ویڈیوز لوڈ کرنے کا فنکشن ---
 async function loadYoutubeVideos() {
   const container = document.getElementById('youtubeGrid');
   try {
-    // یہ فنکشن youtube.json فائل کو پڑھے گا
     const response = await fetch(CONFIG.YOUTUBE_FILE);
-    
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
+    if (!response.ok) throw new Error(`Status: ${response.status}`);
     const videos = await response.json();
 
     container.innerHTML = videos.map(video => `
@@ -244,7 +239,7 @@ async function loadYoutubeVideos() {
     `).join('');
   } catch (e) {
     console.error("Youtube Load Error:", e);
-    container.innerHTML = `<p style="color:red; text-align:center;">ویڈیوز لوڈ کرنے میں مسئلہ: براہ کرم یقینی بنائیں کہ ${CONFIG.YOUTUBE_FILE} فائل موجود ہے۔</p>`;
+    container.innerHTML = `<p style="color:red; text-align:center;">ویڈیوز لوڈ کرنے میں مسئلہ...</p>`;
   }
 }
 
@@ -273,7 +268,7 @@ async function fetchLibrary(folderId, targetId) {
 
 // --- پیج لوڈ ہونے پر ایگزیکیوشن ---
 document.addEventListener('DOMContentLoaded', () => {
-  loadYoutubeVideos(); // یہ اب youtube.json کو کال کرے گا
+  loadYoutubeVideos();
   fetchLibrary(CONFIG.QURAN_FOLDER, 'quranGrid');
   fetchLibrary(CONFIG.BOOKS_FOLDER, 'booksGrid');
 });
