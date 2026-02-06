@@ -37,7 +37,6 @@ body {
   overflow-x: hidden;
 }
 
-/* بیک گراؤنڈ آرٹ */
 body::before {
   content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: radial-gradient(circle at 10% 20%, rgba(251, 191, 36, 0.05) 0%, transparent 40%),
@@ -45,7 +44,6 @@ body::before {
   z-index: -1;
 }
 
-/* پریمیم نیویگیشن */
 .navbar {
   position: sticky; top: 0; z-index: 1000;
   background: rgba(2, 6, 23, 0.9);
@@ -58,7 +56,6 @@ body::before {
 }
 .logo { font-size: 1.8rem; color: var(--gold); font-weight: bold; text-shadow: 0 2px 15px rgba(251, 191, 36, 0.4); }
 
-/* ہیرو ڈیزائن */
 .hero { text-align: center; padding: 100px 20px 60px; }
 .profile-pic {
   width: 160px; height: 160px; border-radius: 50%;
@@ -67,32 +64,42 @@ body::before {
 }
 .hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--gold); margin-bottom: 15px; }
 
-/* کارڈز اور لسٹ ویو */
 .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 .section-head { font-size: 1.8rem; color: var(--gold); margin: 50px 0 30px; display: flex; align-items: center; gap: 15px; }
 .section-head::after { content: ''; flex: 1; height: 1px; background: var(--glass-border); }
 
 .grid { display: grid; gap: 20px; }
 
-/* PC پر گرڈ اور موبائل پر لسٹ */
 @media (min-width: 992px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 991px) { 
   .grid { grid-template-columns: 1fr; } 
-  .card { flex-direction: row; align-items: center; text-align: right; }
-  .card-icon { font-size: 2rem !important; margin-left: 20px; margin-bottom: 0 !important; }
+  .card { flex-direction: column; align-items: center; text-align: center; }
 }
 
 .card {
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
-  border-radius: 24px; padding: 30px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 24px; padding: 20px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex; flex-direction: column;
 }
 .card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 15px 45px rgba(0,0,0,0.6); }
-.card-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+.card-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
 
-.btn-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+/* ویڈیو فریم اسٹائلنگ */
+.video-frame {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid var(--glass-border);
+  aspect-ratio: 16/9;
+  margin-bottom: 15px;
+}
+
+.card h3 { margin-bottom: 10px; font-size: 1.1rem; line-height: 1.6; }
+.channel-name { font-size: 0.85rem; color: var(--gold); margin-bottom: 10px; display: block; }
+
+.btn-group { display: flex; gap: 10px; margin-top: auto; width: 100%; justify-content: center; }
 .btn {
-  flex: 1; text-align: center; padding: 12px; border-radius: 12px;
+  flex: 1; text-align: center; padding: 10px; border-radius: 12px;
   text-decoration: none; font-weight: bold; font-size: 0.9rem;
   transition: 0.3s; border: 1px solid var(--gold);
 }
@@ -100,7 +107,6 @@ body::before {
 .btn-fill { background: var(--gold); color: #000; }
 .btn:hover { filter: brightness(1.2); transform: scale(1.02); }
 
-/* پریمیم پیجز لنکس (About, Contact etc) */
 .page-links-section {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px; margin: 60px 0;
@@ -115,10 +121,8 @@ body::before {
 .page-link-card:hover h4 { color: #000; }
 .page-link-card h4 { color: var(--gold); font-size: 1.4rem; }
 
-/* فوٹر */
 footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--glass-border); background: #01040a; }
-.ad-container { margin: 30px 0; min-height: 100px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 15px; }
-
+.ad-container { margin: 30px 0; min-height: 100px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 15px; overflow: hidden; }
 </style>
 </head>
 
@@ -148,14 +152,14 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
   <section>
     <h2 class="section-head"><span>🎧</span> آڈیو ذخیرہ</h2>
     <div class="grid">
-      <div class="card" style="text-align: center;">
+      <div class="card">
           <span class="card-icon">📖</span>
           <h3>قرآن مجید اردو ترجمہ</h3>
           <div class="btn-group">
               <a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں (MP3)</a>
           </div>
       </div>
-      <div class="card" style="text-align: center;">
+      <div class="card">
           <span class="card-icon">🕌</span>
           <h3>تلاوتِ قرآنِ پاک</h3>
           <div class="btn-group">
@@ -163,6 +167,11 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
           </div>
       </div>
     </div>
+  </section>
+  
+  <section>
+    <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت (منتخب)</h2>
+    <div id="youtubeGrid" class="grid"></div>
   </section>
 
   <div class="ad-container">
@@ -199,12 +208,47 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
 </footer>
 
 <script>
+// --- کنفگریشن ---
 const CONFIG = {
   API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
   QURAN_FOLDER: '12Z5rw7X1VMEkch2X9e-JyeOO5FmJYVkT',
   BOOKS_FOLDER: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC',
+  YOUTUBE_FILE: 'youtube.json' // آپ کی فائل کا نام
 };
 
+// --- یوٹیوب ویڈیوز لوڈ کرنے کا فنکشن (External File سے) ---
+async function loadYoutubeVideos() {
+  const container = document.getElementById('youtubeGrid');
+  try {
+    // یہ فنکشن youtube.json فائل کو پڑھے گا
+    const response = await fetch(CONFIG.YOUTUBE_FILE);
+    
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const videos = await response.json();
+
+    container.innerHTML = videos.map(video => `
+      <article class="card">
+        <iframe class="video-frame" 
+                src="${video.url}" 
+                title="${video.title}" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+        </iframe>
+        <span class="channel-name">${video.channel}</span>
+        <h3>${video.title}</h3>
+      </article>
+    `).join('');
+  } catch (e) {
+    console.error("Youtube Load Error:", e);
+    container.innerHTML = `<p style="color:red; text-align:center;">ویڈیوز لوڈ کرنے میں مسئلہ: براہ کرم یقینی بنائیں کہ ${CONFIG.YOUTUBE_FILE} فائل موجود ہے۔</p>`;
+  }
+}
+
+// --- گوگل ڈرائیو فائلز لوڈ کرنے کا فنکشن ---
 async function fetchLibrary(folderId, targetId) {
   const grid = document.getElementById(targetId);
   try {
@@ -213,10 +257,10 @@ async function fetchLibrary(folderId, targetId) {
     const files = data.files || [];
     
     grid.innerHTML = files.filter(f => f.mimeType.includes('pdf')).map(file => `
-      <article class="card">
-        <span class="card-icon" style="font-size:2rem">📄</span>
-        <div style="flex:1">
-            <h3 style="font-size:1.1rem; margin-bottom:10px;">${file.name.replace('.pdf', '')}</h3>
+      <article class="card" style="text-align:right;">
+        <span class="card-icon" style="font-size:2rem; margin-bottom:10px;">📄</span>
+        <div style="flex:1; width:100%;">
+            <h3 style="font-size:1.1rem; margin-bottom:15px;">${file.name.replace('.pdf', '')}</h3>
             <div class="btn-group">
                 <a class="btn btn-outline" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">مطالعہ</a>
                 <a class="btn btn-fill" href="https://drive.google.com/uc?export=download&id=${file.id}">ڈاؤن لوڈ</a>
@@ -227,13 +271,13 @@ async function fetchLibrary(folderId, targetId) {
   } catch (e) { grid.innerHTML = "<p>لوڈ کرنے میں ناکامی...</p>"; }
 }
 
+// --- پیج لوڈ ہونے پر ایگزیکیوشن ---
 document.addEventListener('DOMContentLoaded', () => {
+  loadYoutubeVideos(); // یہ اب youtube.json کو کال کرے گا
   fetchLibrary(CONFIG.QURAN_FOLDER, 'quranGrid');
   fetchLibrary(CONFIG.BOOKS_FOLDER, 'booksGrid');
 });
 
-// Help Logic (اگر ضرورت ہو)
-function openHelp() { window.location.href = "contact.html"; }
 </script>
 
 <script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
