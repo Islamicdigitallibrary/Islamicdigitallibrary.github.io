@@ -273,11 +273,6 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
     <input type="text" id="searchInput" class="search-box" placeholder="یہاں کتاب یا آڈیو کا نام لکھ کر تلاش کریں...">
   </div>
   
-  <div id="audioListSection">
-      <div id="loadingMsg" style="text-align:center; color:var(--gold); margin-bottom:20px;">فائلیں لوڈ ہو رہی ہیں...</div>
-      <div id="surahContainer"></div>
-  </div>
-
   <hr style="border:0; border-top:1px solid var(--glass-border); margin:40px 0;">
 
   <section>
@@ -375,62 +370,6 @@ const CONFIG = {
   YOUTUBE_FILE: 'youtube.json'
 };
 
-// --- 1. Load Searchable Audio List (From Code A) ---
-let allAudioFiles = [];
-
-async function loadAudioList() {
-    try {
-        const res = await fetch(`https://www.googleapis.com/drive/v3/files?q='${CONFIG.AUDIO_LIST_FOLDER}'+in+parents&pageSize=200&fields=files(id,name)&key=${CONFIG.API_KEY}`);
-        const data = await res.json();
-        if (data.files) {
-            allAudioFiles = data.files.map(f => ({
-                id: f.id,
-                name: f.name.replace('.mp3', '').replace(/_/g, ' '),
-                num: parseInt(f.name.match(/\d+/)) || 0
-            })).sort((a,b) => a.num - b.num);
-            document.getElementById('loadingMsg').style.display = 'none';
-            renderAudioList(allAudioFiles);
-        }
-    } catch (err) {
-        console.error(err);
-        document.getElementById('loadingMsg').innerHTML = "فائلیں لوڈ کرنے میں مسئلہ ہے۔";
-    }
-}
-
-function renderAudioList(list) {
-    const container = document.getElementById('surahContainer');
-    if (list.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:10px; color:#888;">کوئی مماثلت نہیں ملی۔</div>';
-        return;
-    }
-    
-    // Limit to first 10 items initially to save space, or show all if searched
-    const displayList = document.getElementById('searchInput').value === '' ? list.slice(0, 5) : list;
-    
-    container.innerHTML = displayList.map(item => `
-        <div class="surah-item">
-            <span>${item.name}</span>
-            <a href="https://docs.google.com/uc?export=download&id=${item.id}" class="download-link" target="_blank">
-                <i class="fas fa-download"></i> ڈاؤن لوڈ
-            </a>
-        </div>
-    `).join('');
-    
-    if(document.getElementById('searchInput').value === '' && list.length > 5) {
-        container.innerHTML += '<div style="text-align:center; padding:10px; color:#aaa; font-size:0.9rem;">مزید فائلز کے لیے اوپر سرچ کریں...</div>';
-    }
-}
-
-document.getElementById('searchInput').addEventListener('input', (e) => {
-    const term = e.target.value.trim().toLowerCase();
-    if (term === '') {
-        renderAudioList(allAudioFiles);
-    } else {
-        const filtered = allAudioFiles.filter(f => f.name.toLowerCase().includes(term));
-        renderAudioList(filtered);
-    }
-});
-
 // --- 2. Load YouTube Videos ---
 async function loadYoutubeVideos() {
   const container = document.getElementById('youtubeGrid');
@@ -482,7 +421,7 @@ async function fetchLibrary(folderId, targetId) {
 
 // --- Execution ---
 document.addEventListener('DOMContentLoaded', () => {
-  loadAudioList();     // New Audio List
+  // loadAudioList();  <-- یہ لائن ہٹا دی گئی ہے تاکہ غلط کتابیں لوڈ نہ ہوں۔
   loadYoutubeVideos(); // YouTube
   fetchLibrary(CONFIG.QURAN_FOLDER, 'quranGrid'); // Quran PDFs
   fetchLibrary(CONFIG.BOOKS_FOLDER, 'booksGrid'); // Islamic Books PDFs
