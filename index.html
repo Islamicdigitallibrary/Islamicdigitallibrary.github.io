@@ -14,8 +14,10 @@
 
 <title>اسلامک ڈیجیٹل لائبریری | پروفیشنل معاون</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+/* --- Code B Design Variables --- */
 :root {
   --deep-navy: #020617;
   --card-bg: #0f172a;
@@ -44,9 +46,10 @@ body::before {
   z-index: -1;
 }
 
+/* --- Navigation --- */
 .navbar {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(2, 6, 23, 0.9);
+  background: rgba(2, 6, 23, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 2px solid var(--gold-dark);
   padding: 15px 0;
@@ -56,7 +59,17 @@ body::before {
 }
 .logo { font-size: 1.8rem; color: var(--gold); font-weight: bold; text-shadow: 0 2px 15px rgba(251, 191, 36, 0.4); }
 
-.hero { text-align: center; padding: 100px 20px 60px; }
+.help-btn {
+    background: #dc2626; color: white;
+    padding: 8px 15px; border-radius: 8px; border: none;
+    font-family: 'Amiri', serif; font-weight: bold;
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+    transition: 0.3s;
+}
+.help-btn:hover { background: #b91c1c; transform: scale(1.05); }
+
+/* --- Hero Section --- */
+.hero { text-align: center; padding: 60px 20px 20px; }
 .profile-pic {
   width: 160px; height: 160px; border-radius: 50%;
   border: 4px solid var(--gold); padding: 5px; background: var(--card-bg);
@@ -64,18 +77,19 @@ body::before {
 }
 .hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--gold); margin-bottom: 15px; }
 
+/* --- General Layout --- */
 .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 .section-head { font-size: 1.8rem; color: var(--gold); margin: 50px 0 30px; display: flex; align-items: center; gap: 15px; }
 .section-head::after { content: ''; flex: 1; height: 1px; background: var(--glass-border); }
 
 .grid { display: grid; gap: 20px; }
-
 @media (min-width: 992px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 991px) { 
   .grid { grid-template-columns: 1fr; } 
   .card { flex-direction: column; align-items: center; text-align: center; }
 }
 
+/* --- Cards --- */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
@@ -85,13 +99,9 @@ body::before {
 .card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 15px 45px rgba(0,0,0,0.6); }
 .card-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
 
-/* ویڈیو فریم اسٹائلنگ */
 .video-frame {
-  width: 100%;
-  border-radius: 15px;
-  border: 1px solid var(--glass-border);
-  aspect-ratio: 16/9;
-  margin-bottom: 15px;
+  width: 100%; border-radius: 15px; border: 1px solid var(--glass-border);
+  aspect-ratio: 16/9; margin-bottom: 15px;
 }
 
 .card h3 { margin-bottom: 10px; font-size: 1.1rem; line-height: 1.6; }
@@ -107,6 +117,38 @@ body::before {
 .btn-fill { background: var(--gold); color: #000; }
 .btn:hover { filter: brightness(1.2); transform: scale(1.02); }
 
+/* --- Search Bar & Audio List (New Feature) --- */
+.search-container {
+    text-align: center; margin-bottom: 30px;
+}
+.search-box {
+    width: 90%; max-width: 600px; padding: 15px 25px;
+    border-radius: 50px; border: 2px solid var(--gold);
+    background: var(--card-bg); color: #fff;
+    font-size: 1.1rem; font-family: 'Amiri', serif;
+    text-align: right; box-shadow: 0 0 20px rgba(251, 191, 36, 0.1);
+    transition: 0.3s;
+}
+.search-box:focus { outline: none; box-shadow: 0 0 30px rgba(251, 191, 36, 0.3); }
+
+.surah-item {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    margin: 10px auto; padding: 15px 20px;
+    width: 100%; border-radius: 15px;
+    display: flex; justify-content: space-between; align-items: center;
+    border: 1px solid var(--glass-border);
+    transition: 0.3s;
+}
+.surah-item:hover { transform: translateX(-5px); border-color: var(--gold); }
+.download-link {
+    background: var(--gold); color: #000;
+    padding: 8px 15px; border-radius: 8px;
+    text-decoration: none; font-weight: bold; font-size: 0.85rem;
+    display: flex; align-items: center; gap: 8px;
+}
+.download-link:hover { background: #e6c200; }
+
+/* --- Footer & Pages --- */
 .page-links-section {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px; margin: 60px 0;
@@ -123,15 +165,97 @@ body::before {
 
 footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--glass-border); background: #01040a; }
 .ad-container { margin: 30px 0; min-height: 100px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 15px; overflow: hidden; }
+
+/* --- Help Modal Styles --- */
+#helpModal {
+    display: none; position: fixed; top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: rgba(2, 6, 23, 0.98); z-index: 2000;
+    justify-content: center; align-items: center;
+    flex-direction: column; padding: 20px;
+}
+.help-content { 
+    position: relative; width: 95%; max-width: 450px; 
+    background: var(--card-bg); padding: 20px;
+    border-radius: 15px; border: 2px solid var(--gold);
+    box-shadow: 0 0 50px rgba(251, 191, 36, 0.2);
+}
+.img-container {
+    width: 100%; min-height: 250px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 15px 0;
+}
+.step-img { 
+    width: 100%; display: none; border-radius: 10px; 
+    max-height: 50vh; object-fit: contain;
+    border: 1px solid var(--glass-border);
+}
+.step-img.active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.slider-nav { margin-top: 20px; display: flex; justify-content: space-between; width: 100%; gap: 10px; }
+.slider-btn {
+    background: var(--gold); color: #000; border: none;
+    padding: 10px; border-radius: 8px; font-weight: bold;
+    cursor: pointer; font-family: 'Amiri', serif; flex: 1;
+}
+.close-btn {
+    position: absolute; top: -40px; right: 0;
+    color: white; font-size: 2.5rem; cursor: pointer;
+}
+.step-dots { margin-top: 15px; text-align: center; }
+.dot { 
+    height: 10px; width: 10px; background: #555; 
+    display: inline-block; border-radius: 50%; 
+    margin: 0 5px; cursor: pointer;
+}
+.dot.active { background: var(--gold); transform: scale(1.3); }
+#stepTitle { color: var(--gold); margin-bottom: 15px; font-size: 1.4rem; text-align: center; }
+
 </style>
 </head>
 
 <body>
 
+<div id="helpModal">
+    <div class="help-content">
+        <span class="close-btn" onclick="closeHelp()">×</span>
+        <h3 id="stepTitle">Step 1</h3>
+        <div class="img-container">
+            <img class="step-img active" src="https://lh3.googleusercontent.com/d/1NGc3oF-PzK3NifCLEGAE6QIHDiIq7mFD" alt="Step 1">
+            <img class="step-img" src="https://lh3.googleusercontent.com/d/1JgSUzgotDffPiD1fAJzv3Gn_9gm0VJxI" alt="Step 2">
+            <img class="step-img" src="https://lh3.googleusercontent.com/d/1UHHQc664AFyrhDb3nTcl1hEde8hfCzeQ" alt="Step 3">
+            <img class="step-img" src="https://lh3.googleusercontent.com/d/15ntHYxh4QYja8-FYfqiAacgVu65ooabD" alt="Step 4">
+            <img class="step-img" src="https://lh3.googleusercontent.com/d/1QLyCqZt-h4hoXXBz0lT-4cGhDEcKgYUg" alt="Step 5">
+        </div>
+        <div class="step-dots">
+            <span class="dot active" onclick="goToStep(0)"></span>
+            <span class="dot" onclick="goToStep(1)"></span>
+            <span class="dot" onclick="goToStep(2)"></span>
+            <span class="dot" onclick="goToStep(3)"></span>
+            <span class="dot" onclick="goToStep(4)"></span>
+        </div>
+        <div class="slider-nav">
+            <button class="slider-btn" onclick="changeStep(-1)">
+                <i class="fas fa-arrow-right"></i> پیچھے
+            </button>
+            <button class="slider-btn" onclick="changeStep(1)">
+                اگلا مرحلہ <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+        <p style="margin-top:15px; font-size: 0.9rem; color: #ccc; text-align: center;">
+            تصاویر کو دیکھ کر ڈاؤن لوڈ کرنے کا طریقہ سمجھیں۔
+        </p>
+    </div>
+</div>
+
 <nav class="navbar">
   <div class="nav-container">
     <div class="logo">Islamic Library</div>
-    <div style="display:flex; gap:15px;">
+    <div style="display:flex; gap:15px; align-items:center;">
+        <button class="help-btn" onclick="openHelp()">
+            <i class="fas fa-info-circle"></i> ہیلپ (مدد)
+        </button>
         <a href="contact.html" style="color:var(--gold); text-decoration:none; font-weight:bold;">رابطہ پیج</a>
     </div>
   </div>
@@ -145,22 +269,19 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
 
 <main class="container">
 
-  <div class="ad-container">
-    <script> /* ایڈ اسکرپٹ یہاں خودکار لوڈ ہوگی */ </script>
+  <div class="search-container">
+    <input type="text" id="searchInput" class="search-box" placeholder="یہاں کتاب یا آڈیو کا نام لکھ کر تلاش کریں...">
+  </div>
+  
+  <div id="audioListSection">
+      <div id="loadingMsg" style="text-align:center; color:var(--gold); margin-bottom:20px;">فائلیں لوڈ ہو رہی ہیں...</div>
+      <div id="surahContainer"></div>
   </div>
 
-  <section>
-    <h2 class="section-head"><span>📚</span> قرآن مجید (PDF)</h2>
-    <div id="quranGrid" class="grid"></div>
-  </section>
+  <hr style="border:0; border-top:1px solid var(--glass-border); margin:40px 0;">
 
   <section>
-    <h2 class="section-head"><span>📖</span> اسلامی کتب</h2>
-    <div id="booksGrid" class="grid"></div>
-  </section>
-
-  <section>
-    <h2 class="section-head"><span>🎧</span> آڈیو ذخیرہ</h2>
+    <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
     <div class="grid">
       <div class="card">
           <span class="card-icon">📖</span>
@@ -177,6 +298,16 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
           </div>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2 class="section-head"><span>📚</span> قرآن مجید (PDF)</h2>
+    <div id="quranGrid" class="grid"></div>
+  </section>
+
+  <section>
+    <h2 class="section-head"><span>📖</span> اسلامی کتب</h2>
+    <div id="booksGrid" class="grid"></div>
   </section>
 
   <div class="ad-container">
@@ -208,15 +339,99 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
 </footer>
 
 <script>
-// --- کنفگریشن ---
+// --- Help Modal Logic ---
+let currentStep = 0;
+const steps = document.querySelectorAll('.step-img');
+const dots = document.querySelectorAll('.dot');
+const stepTitle = document.getElementById('stepTitle');
+
+function openHelp() { document.getElementById('helpModal').style.display = 'flex'; }
+function closeHelp() { document.getElementById('helpModal').style.display = 'none'; }
+
+function goToStep(stepIndex) {
+    steps[currentStep].classList.remove('active');
+    dots[currentStep].classList.remove('active');
+    currentStep = stepIndex;
+    steps[currentStep].classList.add('active');
+    dots[currentStep].classList.add('active');
+    stepTitle.innerText = "Step " + (currentStep + 1);
+}
+
+function changeStep(n) {
+    steps[currentStep].classList.remove('active');
+    dots[currentStep].classList.remove('active');
+    currentStep = (currentStep + n + steps.length) % steps.length;
+    steps[currentStep].classList.add('active');
+    dots[currentStep].classList.add('active');
+    stepTitle.innerText = "Step " + (currentStep + 1);
+}
+
+// --- CONFIGURATION ---
 const CONFIG = {
   API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
   QURAN_FOLDER: '12Z5rw7X1VMEkch2X9e-JyeOO5FmJYVkT',
   BOOKS_FOLDER: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC',
+  AUDIO_LIST_FOLDER: '17T0eFokXFnh-ejunDuQIsN8qx9k9D2_y', // For the search list
   YOUTUBE_FILE: 'youtube.json'
 };
 
-// --- یوٹیوب ویڈیوز لوڈ کرنے کا فنکشن ---
+// --- 1. Load Searchable Audio List (From Code A) ---
+let allAudioFiles = [];
+
+async function loadAudioList() {
+    try {
+        const res = await fetch(`https://www.googleapis.com/drive/v3/files?q='${CONFIG.AUDIO_LIST_FOLDER}'+in+parents&pageSize=200&fields=files(id,name)&key=${CONFIG.API_KEY}`);
+        const data = await res.json();
+        if (data.files) {
+            allAudioFiles = data.files.map(f => ({
+                id: f.id,
+                name: f.name.replace('.mp3', '').replace(/_/g, ' '),
+                num: parseInt(f.name.match(/\d+/)) || 0
+            })).sort((a,b) => a.num - b.num);
+            document.getElementById('loadingMsg').style.display = 'none';
+            renderAudioList(allAudioFiles);
+        }
+    } catch (err) {
+        console.error(err);
+        document.getElementById('loadingMsg').innerHTML = "فائلیں لوڈ کرنے میں مسئلہ ہے۔";
+    }
+}
+
+function renderAudioList(list) {
+    const container = document.getElementById('surahContainer');
+    if (list.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:10px; color:#888;">کوئی مماثلت نہیں ملی۔</div>';
+        return;
+    }
+    
+    // Limit to first 10 items initially to save space, or show all if searched
+    const displayList = document.getElementById('searchInput').value === '' ? list.slice(0, 5) : list;
+    
+    container.innerHTML = displayList.map(item => `
+        <div class="surah-item">
+            <span>${item.name}</span>
+            <a href="https://docs.google.com/uc?export=download&id=${item.id}" class="download-link" target="_blank">
+                <i class="fas fa-download"></i> ڈاؤن لوڈ
+            </a>
+        </div>
+    `).join('');
+    
+    if(document.getElementById('searchInput').value === '' && list.length > 5) {
+        container.innerHTML += '<div style="text-align:center; padding:10px; color:#aaa; font-size:0.9rem;">مزید فائلز کے لیے اوپر سرچ کریں...</div>';
+    }
+}
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const term = e.target.value.trim().toLowerCase();
+    if (term === '') {
+        renderAudioList(allAudioFiles);
+    } else {
+        const filtered = allAudioFiles.filter(f => f.name.toLowerCase().includes(term));
+        renderAudioList(filtered);
+    }
+});
+
+// --- 2. Load YouTube Videos ---
 async function loadYoutubeVideos() {
   const container = document.getElementById('youtubeGrid');
   try {
@@ -238,12 +453,11 @@ async function loadYoutubeVideos() {
       </article>
     `).join('');
   } catch (e) {
-    console.error("Youtube Load Error:", e);
     container.innerHTML = `<p style="color:red; text-align:center;">ویڈیوز لوڈ کرنے میں مسئلہ...</p>`;
   }
 }
 
-// --- گوگل ڈرائیو فائلز لوڈ کرنے کا فنکشن ---
+// --- 3. Load PDF Books/Quran ---
 async function fetchLibrary(folderId, targetId) {
   const grid = document.getElementById(targetId);
   try {
@@ -266,11 +480,12 @@ async function fetchLibrary(folderId, targetId) {
   } catch (e) { grid.innerHTML = "<p>لوڈ کرنے میں ناکامی...</p>"; }
 }
 
-// --- پیج لوڈ ہونے پر ایگزیکیوشن ---
+// --- Execution ---
 document.addEventListener('DOMContentLoaded', () => {
-  loadYoutubeVideos();
-  fetchLibrary(CONFIG.QURAN_FOLDER, 'quranGrid');
-  fetchLibrary(CONFIG.BOOKS_FOLDER, 'booksGrid');
+  loadAudioList();     // New Audio List
+  loadYoutubeVideos(); // YouTube
+  fetchLibrary(CONFIG.QURAN_FOLDER, 'quranGrid'); // Quran PDFs
+  fetchLibrary(CONFIG.BOOKS_FOLDER, 'booksGrid'); // Islamic Books PDFs
 });
 
 </script>
