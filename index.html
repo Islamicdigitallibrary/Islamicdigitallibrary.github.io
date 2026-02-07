@@ -5,6 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="yandex-verification" content="7a058aaf8b3219ca" />
 <meta name="google-adsense-account" content="ca-pub-1417987183063486">
+<script>
+  // یہاں تاریخ یا کوئی بھی نمبر لکھ دیں، جب بھی ویب سائٹ اپ ڈیٹ کریں تو یہ نمبر بدل دیں
+  const SITE_VERSION = "2026-02-07-v1"; 
+
+  async function forceUpdate() {
+    const savedVersion = localStorage.getItem('site_version');
+
+    // اگر محفوظ ورژن اور موجودہ ورژن الگ ہیں تو کیشے صاف کریں
+    if (savedVersion !== SITE_VERSION) {
+      if ('caches' in window) {
+        const names = await caches.keys();
+        await Promise.all(names.map(name => caches.delete(name)));
+      }
+      
+      // نیا ورژن محفوظ کریں اور پیج ری فریش کریں
+      localStorage.setItem('site_version', SITE_VERSION);
+      
+      // براؤزر کو مجبور کرنا کہ وہ سرور سے نیا ڈیٹا لائے
+      window.location.reload(true);
+    }
+  }
+
+  forceUpdate();
+</script>
+
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1417987183063486" crossorigin="anonymous"></script>
 <script>
