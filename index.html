@@ -17,201 +17,273 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* --- Code B Design Variables --- */
+/* --- Modern Islamic Digital Theme (2026 Design) --- */
 :root {
-  --deep-navy: #020617;
-  --card-bg: #0f172a;
-  --gold: #fbbf24;
-  --gold-dark: #b48811;
-  --text-white: #f8fafc;
-  --text-gray: #94a3b8;
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(251, 191, 36, 0.2);
+  --bg-dark: #050a14;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #1a2c4e 0%, #050a14 60%);
+  --primary-gold: #d4af37;
+  --primary-glow: rgba(212, 175, 55, 0.4);
+  --glass-surface: rgba(20, 30, 48, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
+  --card-hover: rgba(30, 41, 59, 0.8);
+  --neon-accent: #00e6e6; /* ہلکا نیین ٹچ جدیدیت کے لیے */
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 
 body {
   font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
-  background-color: var(--deep-navy);
-  color: var(--text-white);
-  line-height: 1.8;
+  background-color: var(--bg-dark);
+  background-image: var(--bg-gradient);
+  color: var(--text-main);
+  line-height: 2;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
+/* Islamic Geometry Pattern Overlay */
 body::before {
-  content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle at 10% 20%, rgba(251, 191, 36, 0.05) 0%, transparent 40%),
-              radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
+  content: '';
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    radial-gradient(var(--glass-border) 1px, transparent 1px),
+    radial-gradient(var(--glass-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.1;
   z-index: -1;
+  pointer-events: none;
 }
 
-/* --- Navigation --- */
+/* --- Navigation Bar --- */
 .navbar {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(2, 6, 23, 0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 2px solid var(--gold-dark);
+  background: rgba(5, 10, 20, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   padding: 15px 0;
+  transition: all 0.3s ease;
 }
+
 .nav-container {
-  max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
+  max-width: 1200px; margin: 0 auto; display: flex; 
+  justify-content: space-between; align-items: center; padding: 0 25px;
 }
-.logo { font-size: 1.8rem; color: var(--gold); font-weight: bold; text-shadow: 0 2px 15px rgba(251, 191, 36, 0.4); }
+
+.logo { 
+  font-size: 1.8rem; color: var(--primary-gold); 
+  font-weight: 700; letter-spacing: 1px;
+  text-shadow: 0 0 15px var(--primary-glow);
+}
 
 .help-btn {
-    background: #dc2626; color: white;
-    padding: 8px 15px; border-radius: 8px; border: none;
-    font-family: 'Amiri', serif; font-weight: bold;
+    background: linear-gradient(135deg, #ef4444, #b91c1c); 
+    color: white; padding: 10px 20px; border-radius: 50px; 
+    border: none; font-family: 'Amiri', serif; font-weight: bold;
     cursor: pointer; display: flex; align-items: center; gap: 8px;
-    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
-.help-btn:hover { background: #b91c1c; transform: scale(1.05); }
+.help-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5); }
 
 /* --- Hero Section --- */
-.hero { text-align: center; padding: 60px 20px 20px; }
+.hero { 
+    text-align: center; padding: 80px 20px 40px; 
+    position: relative;
+}
 .profile-pic {
-  width: 160px; height: 160px; border-radius: 50%;
-  border: 4px solid var(--gold); padding: 5px; background: var(--card-bg);
-  box-shadow: 0 0 40px rgba(251, 191, 36, 0.2); margin-bottom: 25px;
+  width: 150px; height: 150px; border-radius: 50%;
+  border: 3px solid var(--primary-gold); 
+  padding: 4px; background: var(--bg-dark);
+  object-fit: cover;
+  box-shadow: 0 0 40px var(--primary-glow);
+  animation: float 6s ease-in-out infinite;
 }
-.hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--gold); margin-bottom: 15px; }
 
-/* --- General Layout --- */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero h1 { 
+    font-size: clamp(2.5rem, 5vw, 4rem); 
+    color: transparent;
+    background: linear-gradient(to bottom, #fff, #d4af37);
+    -webkit-background-clip: text;
+    margin-bottom: 15px; 
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+}
+
+/* --- Search Bar --- */
+.search-container { text-align: center; margin-bottom: 50px; position: relative; z-index: 2; }
+.search-box {
+    width: 90%; max-width: 650px; padding: 18px 30px;
+    border-radius: 50px; border: 1px solid var(--primary-gold);
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(10px); color: #fff;
+    font-size: 1.2rem; font-family: 'Amiri', serif;
+    text-align: right; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+}
+.search-box:focus { 
+    outline: none; background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px var(--primary-glow);
+    border-color: #fff;
+}
+
+/* --- Layout & Grid --- */
 .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-.section-head { font-size: 1.8rem; color: var(--gold); margin: 50px 0 30px; display: flex; align-items: center; gap: 15px; }
-.section-head::after { content: ''; flex: 1; height: 1px; background: var(--glass-border); }
-
-.grid { display: grid; gap: 20px; }
-@media (min-width: 992px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 991px) { 
-  .grid { grid-template-columns: 1fr; } 
-  .card { flex-direction: column; align-items: center; text-align: center; }
+.section-head { 
+    font-size: 2rem; color: var(--primary-gold); 
+    margin: 60px 0 30px; display: flex; align-items: center; gap: 15px;
+    position: relative;
+}
+.section-head span { filter: drop-shadow(0 0 8px var(--primary-gold)); }
+.section-head::after { 
+    content: ''; flex: 1; height: 2px; 
+    background: linear-gradient(to left, transparent, var(--primary-gold), transparent);
+    opacity: 0.5;
 }
 
-/* --- Cards --- */
+.grid { 
+    display: grid; gap: 25px; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* --- Ultra Modern Cards --- */
 .card {
-  background: var(--card-bg);
+  background: var(--glass-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  border-radius: 24px; padding: 20px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 20px; padding: 25px; 
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
-.card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 15px 45px rgba(0,0,0,0.6); }
-.card-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+
+/* Card Hover Glow Effect */
+.card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+    transform: translateX(-100%); transition: 0.6s; z-index: 0;
+}
+.card:hover::before { transform: translateX(100%); }
+
+.card:hover { 
+    transform: translateY(-8px) scale(1.01); 
+    border-color: var(--primary-gold); 
+    box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4), 0 0 15px var(--primary-glow); 
+}
+
+.card-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+.card h3 { margin-bottom: 12px; font-size: 1.25rem; z-index: 1; color: #fff; font-weight: 700; }
+.channel-name { font-size: 0.9rem; color: var(--primary-gold); margin-bottom: 10px; display: block; z-index: 1; }
 
 .video-frame {
-  width: 100%; border-radius: 15px; border: 1px solid var(--glass-border);
+  width: 100%; border-radius: 12px; border: none;
   aspect-ratio: 16/9; margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 1;
 }
 
-.card h3 { margin-bottom: 10px; font-size: 1.1rem; line-height: 1.6; }
-.channel-name { font-size: 0.85rem; color: var(--gold); margin-bottom: 10px; display: block; }
-
-.btn-group { display: flex; gap: 10px; margin-top: auto; width: 100%; justify-content: center; }
+/* --- Buttons --- */
+.btn-group { display: flex; gap: 10px; margin-top: auto; width: 100%; z-index: 1; }
 .btn {
-  flex: 1; text-align: center; padding: 10px; border-radius: 12px;
-  text-decoration: none; font-weight: bold; font-size: 0.9rem;
-  transition: 0.3s; border: 1px solid var(--gold);
+  flex: 1; text-align: center; padding: 12px; border-radius: 12px;
+  text-decoration: none; font-weight: bold; font-size: 0.95rem;
+  transition: 0.3s; position: relative; overflow: hidden;
+  font-family: 'Amiri', sans-serif;
 }
-.btn-outline { color: var(--gold); background: transparent; }
-.btn-fill { background: var(--gold); color: #000; }
-.btn:hover { filter: brightness(1.2); transform: scale(1.02); }
 
-/* --- Search Bar & Audio List (New Feature) --- */
-.search-container {
-    text-align: center; margin-bottom: 30px;
+.btn-fill { 
+    background: linear-gradient(135deg, var(--primary-gold), #b48811); 
+    color: #000; border: none;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
-.search-box {
-    width: 90%; max-width: 600px; padding: 15px 25px;
-    border-radius: 50px; border: 2px solid var(--gold);
-    background: var(--card-bg); color: #fff;
-    font-size: 1.1rem; font-family: 'Amiri', serif;
-    text-align: right; box-shadow: 0 0 20px rgba(251, 191, 36, 0.1);
-    transition: 0.3s;
+.btn-outline { 
+    background: transparent; color: var(--primary-gold); 
+    border: 1px solid var(--primary-gold); 
 }
-.search-box:focus { outline: none; box-shadow: 0 0 30px rgba(251, 191, 36, 0.3); }
+.btn:hover { 
+    transform: translateY(-2px); 
+    filter: brightness(1.15); 
+}
+.btn-fill:hover { box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
 
-.surah-item {
-    background: linear-gradient(145deg, #1e293b, #0f172a);
-    margin: 10px auto; padding: 15px 20px;
-    width: 100%; border-radius: 15px;
-    display: flex; justify-content: space-between; align-items: center;
-    border: 1px solid var(--glass-border);
-    transition: 0.3s;
-}
-.surah-item:hover { transform: translateX(-5px); border-color: var(--gold); }
-.download-link {
-    background: var(--gold); color: #000;
-    padding: 8px 15px; border-radius: 8px;
-    text-decoration: none; font-weight: bold; font-size: 0.85rem;
-    display: flex; align-items: center; gap: 8px;
-}
-.download-link:hover { background: #e6c200; }
-
-/* --- Footer & Pages --- */
+/* --- Footer & Page Links --- */
 .page-links-section {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px; margin: 60px 0;
+  display: flex; flex-wrap: wrap; gap: 15px; margin: 80px 0; justify-content: center;
 }
 .page-link-card {
-  background: linear-gradient(145deg, #0f172a, #020617);
-  padding: 25px; border-radius: 20px; text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 20px 40px; border-radius: 15px; text-align: center;
   text-decoration: none; border: 1px solid var(--glass-border);
-  transition: 0.3s;
+  transition: 0.3s; flex: 1 1 200px; max-width: 300px;
 }
-.page-link-card:hover { border-color: var(--gold); background: var(--gold-dark); }
-.page-link-card:hover h4 { color: #000; }
-.page-link-card h4 { color: var(--gold); font-size: 1.4rem; }
+.page-link-card h4 { color: var(--text-muted); font-size: 1.2rem; transition: 0.3s; margin:0;}
+.page-link-card:hover { 
+    border-color: var(--primary-gold); 
+    background: rgba(212, 175, 55, 0.1); 
+    transform: translateY(-5px);
+}
+.page-link-card:hover h4 { color: var(--primary-gold); }
 
-footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--glass-border); background: #01040a; }
-.ad-container { margin: 30px 0; min-height: 100px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 15px; overflow: hidden; }
+footer { 
+    text-align: center; padding: 40px 20px; 
+    border-top: 1px solid var(--glass-border); 
+    background: #020408; font-size: 0.9rem;
+}
 
-/* --- Help Modal Styles --- */
+/* --- Help Modal (Redesigned) --- */
 #helpModal {
     display: none; position: fixed; top: 0; left: 0; 
     width: 100%; height: 100%;
-    background: rgba(2, 6, 23, 0.98); z-index: 2000;
+    background: rgba(0, 0, 0, 0.9); z-index: 2000;
+    backdrop-filter: blur(8px);
     justify-content: center; align-items: center;
     flex-direction: column; padding: 20px;
 }
 .help-content { 
-    position: relative; width: 95%; max-width: 450px; 
-    background: var(--card-bg); padding: 20px;
-    border-radius: 15px; border: 2px solid var(--gold);
-    box-shadow: 0 0 50px rgba(251, 191, 36, 0.2);
-}
-.img-container {
-    width: 100%; min-height: 250px;
-    display: flex; align-items: center; justify-content: center;
-    margin: 15px 0;
-}
-.step-img { 
-    width: 100%; display: none; border-radius: 10px; 
-    max-height: 50vh; object-fit: contain;
-    border: 1px solid var(--glass-border);
-}
-.step-img.active { display: block; animation: fadeIn 0.5s ease; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.slider-nav { margin-top: 20px; display: flex; justify-content: space-between; width: 100%; gap: 10px; }
-.slider-btn {
-    background: var(--gold); color: #000; border: none;
-    padding: 10px; border-radius: 8px; font-weight: bold;
-    cursor: pointer; font-family: 'Amiri', serif; flex: 1;
+    position: relative; width: 95%; max-width: 500px; 
+    background: #1e293b; padding: 30px;
+    border-radius: 24px; border: 1px solid var(--primary-gold);
+    box-shadow: 0 0 60px rgba(212, 175, 55, 0.15);
 }
 .close-btn {
-    position: absolute; top: -40px; right: 0;
-    color: white; font-size: 2.5rem; cursor: pointer;
+    position: absolute; top: 15px; right: 20px;
+    color: var(--text-muted); font-size: 2rem; cursor: pointer;
+    transition: 0.3s;
 }
-.step-dots { margin-top: 15px; text-align: center; }
-.dot { 
-    height: 10px; width: 10px; background: #555; 
-    display: inline-block; border-radius: 50%; 
-    margin: 0 5px; cursor: pointer;
-}
-.dot.active { background: var(--gold); transform: scale(1.3); }
-#stepTitle { color: var(--gold); margin-bottom: 15px; font-size: 1.4rem; text-align: center; }
+.close-btn:hover { color: #fff; transform: rotate(90deg); }
 
+.step-dots { margin-top: 20px; display: flex; justify-content: center; gap: 8px; }
+.dot { 
+    height: 8px; width: 8px; background: #475569; 
+    border-radius: 50%; transition: 0.3s;
+}
+.dot.active { background: var(--primary-gold); transform: scale(1.5); box-shadow: 0 0 10px var(--primary-gold); }
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #050a14; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-gold); }
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.2rem; }
+    .grid { grid-template-columns: 1fr; } 
+    .navbar { padding: 10px 0; }
+    .search-box { width: 95%; padding: 15px; }
+}
 </style>
 </head>
 
@@ -220,7 +292,7 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
 <div id="helpModal">
     <div class="help-content">
         <span class="close-btn" onclick="closeHelp()">×</span>
-        <h3 id="stepTitle">Step 1</h3>
+        <h3 id="stepTitle" style="text-align:center; color:var(--primary-gold); margin-bottom:20px;">Step 1</h3>
         <div class="img-container">
             <img class="step-img active" src="https://lh3.googleusercontent.com/d/1NGc3oF-PzK3NifCLEGAE6QIHDiIq7mFD" alt="Step 1">
             <img class="step-img" src="https://lh3.googleusercontent.com/d/1JgSUzgotDffPiD1fAJzv3Gn_9gm0VJxI" alt="Step 2">
@@ -235,15 +307,15 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
             <span class="dot" onclick="goToStep(3)"></span>
             <span class="dot" onclick="goToStep(4)"></span>
         </div>
-        <div class="slider-nav">
-            <button class="slider-btn" onclick="changeStep(-1)">
+        <div class="slider-nav" style="margin-top:25px;">
+            <button class="slider-btn btn btn-outline" style="background:transparent; color:#fff;" onclick="changeStep(-1)">
                 <i class="fas fa-arrow-right"></i> پیچھے
             </button>
-            <button class="slider-btn" onclick="changeStep(1)">
+            <button class="slider-btn btn btn-fill" onclick="changeStep(1)">
                 اگلا مرحلہ <i class="fas fa-arrow-left"></i>
             </button>
         </div>
-        <p style="margin-top:15px; font-size: 0.9rem; color: #ccc; text-align: center;">
+        <p style="margin-top:15px; font-size: 0.9rem; color: #94a3b8; text-align: center;">
             تصاویر کو دیکھ کر ڈاؤن لوڈ کرنے کا طریقہ سمجھیں۔
         </p>
     </div>
@@ -251,12 +323,12 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
 
 <nav class="navbar">
   <div class="nav-container">
-    <div class="logo">Islamic Library</div>
+    <div class="logo"><i class="fas fa-book-quran"></i> Islamic Library</div>
     <div style="display:flex; gap:15px; align-items:center;">
         <button class="help-btn" onclick="openHelp()">
             <i class="fas fa-info-circle"></i> ہیلپ (مدد)
         </button>
-        <a href="contact.html" style="color:var(--gold); text-decoration:none; font-weight:bold;">رابطہ پیج</a>
+        <a href="contact.html" style="color:var(--primary-gold); text-decoration:none; font-weight:bold; font-size:0.9rem; transition:0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d4af37'">رابطہ پیج</a>
     </div>
   </div>
 </nav>
@@ -264,7 +336,7 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
 <header class="hero">
   <img src="https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf" alt="Profile" class="profile-pic">
   <h1>اسلامک ڈیجیٹل لائبریری</h1>
-  <p style="color: var(--text-gray); font-size: 1.2rem;">آپ کا مستند علمی اور ڈیجیٹل معاون</p>
+  <p style="color: var(--text-muted); font-size: 1.3rem; max-width:600px; margin:0 auto;">آپ کا مستند علمی اور ڈیجیٹل معاون، جدید ٹیکنالوجی کے سنگ</p>
 </header>
 
 <main class="container">
@@ -273,7 +345,7 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
     <input type="text" id="searchInput" class="search-box" placeholder="یہاں کتاب یا آڈیو کا نام لکھ کر تلاش کریں...">
   </div>
   
-  <hr style="border:0; border-top:1px solid var(--glass-border); margin:40px 0;">
+  <div style="height: 1px; background: linear-gradient(to right, transparent, var(--glass-border), transparent); margin: 50px 0;"></div>
 
   <section>
     <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
@@ -305,7 +377,7 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
     <div id="booksGrid" class="grid"></div>
   </section>
 
-  <div class="ad-container">
+  <div class="ad-container" style="margin: 40px 0; border-radius:15px; overflow:hidden; border:1px solid var(--glass-border);">
       <div id="container-e8f48cab7075cad1a9bfb6eb3b02f264"></div>
   </div>
 
@@ -327,7 +399,7 @@ footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--gla
 </main>
 
 <footer>
-  <p style="color: var(--text-gray);">© 2026 اسلامک ڈیجیٹل لائبریری | جملہ حقوق محفوظ ہیں</p>
+  <p style="color: var(--text-muted);">© 2026 اسلامک ڈیجیٹل لائبریری | جملہ حقوق محفوظ ہیں</p>
   <div class="ad-container">
     <script async="async" data-cfasync="false" src="https://lozengehelped.com/e8f48cab7075cad1a9bfb6eb3b02f264/invoke.js"></script>
   </div>
@@ -421,7 +493,7 @@ async function fetchLibrary(folderId, targetId) {
 
 // --- Execution ---
 document.addEventListener('DOMContentLoaded', () => {
-  // loadAudioList();  <-- یہ لائن ہٹا دی گئی ہے تاکہ غلط کتابیں لوڈ نہ ہوں۔
+  // loadAudioList(); 
   loadYoutubeVideos(); // YouTube
   fetchLibrary(CONFIG.QURAN_FOLDER, 'quranGrid'); // Quran PDFs
   fetchLibrary(CONFIG.BOOKS_FOLDER, 'booksGrid'); // Islamic Books PDFs
