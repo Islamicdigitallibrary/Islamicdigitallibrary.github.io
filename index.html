@@ -267,7 +267,7 @@ footer {
     background: #020408; font-size: 0.9rem;
 }
 
-/* --- Help Modal (Redesigned) --- */
+/* --- Help Modal (Redesigned & FIXED) --- */
 #helpModal {
     display: none; position: fixed; top: 0; left: 0; 
     width: 100%; height: 100%;
@@ -289,6 +289,38 @@ footer {
 }
 .close-btn:hover { color: #fff; transform: rotate(90deg); }
 
+/* --- FIXED IMAGES CSS (یہ حصہ شامل کیا گیا ہے) --- */
+.img-container {
+    width: 100%;
+    height: 300px; /* تصویر کا سائز فکسڈ کیا تاکہ لے آؤٹ نہ ٹوٹے */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3); /* تصویر کے پیچھے ہلکا سا گہرا بیک گراؤنڈ */
+    border-radius: 12px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.step-img {
+    display: none; /* تمام تصاویر کو پہلے چھپائیں */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* تصویر کو کنٹینر کے اندر پورا دکھائے */
+    border-radius: 8px;
+}
+
+.step-img.active {
+    display: block; /* صرف ایکٹیو تصویر دکھائیں */
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* ------------------------------------------- */
+
 .step-dots { margin-top: 20px; display: flex; justify-content: center; gap: 8px; }
 .dot { 
     height: 8px; width: 8px; background: #475569; 
@@ -308,6 +340,10 @@ footer {
     .grid { grid-template-columns: 1fr; } 
     .navbar { padding: 10px 0; }
     .search-box { width: 95%; padding: 15px; }
+    
+    /* موبائل پر موڈل کی ایڈجسٹمنٹ */
+    .help-content { padding: 20px; }
+    .img-container { height: 250px; } 
 }
 </style>
 </head>
@@ -318,6 +354,7 @@ footer {
     <div class="help-content">
         <span class="close-btn" onclick="closeHelp()">×</span>
         <h3 id="stepTitle" style="text-align:center; color:var(--primary-gold); margin-bottom:20px;">Step 1</h3>
+        
         <div class="img-container">
             <img class="step-img active" src="https://lh3.googleusercontent.com/d/1NGc3oF-PzK3NifCLEGAE6QIHDiIq7mFD" alt="Step 1">
             <img class="step-img" src="https://lh3.googleusercontent.com/d/1JgSUzgotDffPiD1fAJzv3Gn_9gm0VJxI" alt="Step 2">
@@ -325,6 +362,7 @@ footer {
             <img class="step-img" src="https://lh3.googleusercontent.com/d/15ntHYxh4QYja8-FYfqiAacgVu65ooabD" alt="Step 4">
             <img class="step-img" src="https://lh3.googleusercontent.com/d/1QLyCqZt-h4hoXXBz0lT-4cGhDEcKgYUg" alt="Step 5">
         </div>
+        
         <div class="step-dots">
             <span class="dot active" onclick="goToStep(0)"></span>
             <span class="dot" onclick="goToStep(1)"></span>
