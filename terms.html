@@ -1,50 +1,162 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>شرائط و ضوابط</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرائط و ضوابط | اسلامک ڈیجیٹل لائبریری</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body{
-            background:#0b0f14;
-            color:#eaeaea;
-            font-family: system-ui, sans-serif;
-            line-height:1.9;
-            padding:20px;
+        :root {
+            --primary-color: #d4af37; /* Gold */
+            --bg-color: #0f172a;      /* Deep Navy */
+            --card-bg: #1e293b;       /* Lighter Navy */
+            --text-color: #e2e8f0;    /* Off-white */
+            --border-color: rgba(212, 175, 55, 0.2);
+            --hover-bg: rgba(255, 255, 255, 0.05);
         }
-        h1{
-            color:#f5c16c;
-            text-align:center;
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .box{
-            max-width:800px;
-            margin:auto;
-            background:#111823;
-            padding:20px;
-            border-radius:12px;
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+            color: var(--text-color);
+            font-family: 'Noto Nastaliq Urdu', serif;
+            line-height: 2.2;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative top line */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 12px;
+            border-right: 4px solid var(--primary-color); /* Strong right border */
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateX(-5px);
+            background: var(--hover-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        p {
+            margin-bottom: 0;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 25px; }
+            h1 { font-size: 1.8rem; }
+            p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="box">
-<h1>شرائط و ضوابط</h1>
+<div class="container">
+    <div style="text-align: center;">
+        <span class="badge">قوانین و ضوابط</span>
+    </div>
 
-<p>
-اس ویب سائٹ پر موجود تمام مواد صرف تعلیمی اور دینی مقصد کے لیے ہے۔
-</p>
+    <h1>شرائط و ضوابط</h1>
 
-<p>
-کسی بھی مواد کو کمرشل استعمال کے لیے ذمہ داری صارف کی اپنی ہوگی۔
-</p>
+    <div class="section">
+        <p>
+            اس ویب سائٹ پر موجود تمام مواد خالصتاً <span class="highlight">تعلیمی اور دینی مقصد</span> کے لیے پیش کیا گیا ہے۔ اس کا مقصد صرف علم کا فروغ ہے۔
+        </p>
+    </div>
 
-<p>
-ویب سائٹ پر موجود بیرونی لنکس (YouTube وغیرہ) ان کی اپنی پالیسی کے تحت ہیں۔
-</p>
+    <div class="section">
+        <p>
+            یہاں فراہم کردہ مواد کے کسی بھی قسم کے <span class="highlight">کمرشل (تجارتی) استعمال</span> کی مکمل ذمہ داری صارف پر عائد ہوگی۔ انتظامیہ اس کی ذمہ دار نہ ہوگی۔
+        </p>
+    </div>
 
-<p>
-اس ویب سائٹ کے استعمال سے آپ ان شرائط سے اتفاق کرتے ہیں۔
-</p>
+    <div class="section">
+        <p>
+            ویب سائٹ پر موجود <span class="highlight">بیرونی لنکس</span> (مثلاً YouTube، Archive وغیرہ) فریقِ ثالث (Third Party) کے ہیں۔ یہ لنکس ان کی اپنی پرائیویسی پالیسی اور شرائط کے تابع ہیں۔
+        </p>
+    </div>
+
+    <div class="section" style="border-right-color: #22c55e;"> <p>
+            اس ویب سائٹ تک رسائی حاصل کر کے اور اسے استعمال کر کے، آپ اوپر درج کردہ تمام <span class="highlight">شرائط و ضوابط سے اتفاق</span> کرتے ہیں۔
+        </p>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 اسلامک ڈیجیٹل لائبریری۔ جملہ حقوق محفوظ ہیں۔</p>
+    </div>
 </div>
 
 </body>
