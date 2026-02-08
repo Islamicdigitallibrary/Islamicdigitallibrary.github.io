@@ -9,7 +9,7 @@
   /**
    * پروفیشنل آٹو اپڈیٹ سسٹم (2026)
    */
-  const CURRENT_VERSION = "v_3.3.3"; 
+  const CURRENT_VERSION = "v_3.4_no_search"; 
 
   async function updateSiteAssets() {
     const savedVersion = localStorage.getItem('site_version');
@@ -136,6 +136,7 @@ body::before {
     filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
 }
 
+/* سرچ باکس کا سی ایس ایس موجود ہے مگر استعمال نہیں ہوگا */
 .search-container { text-align: center; margin-bottom: 50px; position: relative; z-index: 2; }
 .search-box {
     width: 90%; max-width: 650px; padding: 18px 30px;
@@ -146,18 +147,6 @@ body::before {
     text-align: right; 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     transition: 0.4s;
-}
-.search-box:focus { 
-    outline: none; background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 30px var(--primary-glow);
-    border-color: #fff;
-}
-/* جب سرچ بند ہو تو اس کا اسٹائل */
-.search-box:disabled {
-    background: rgba(255, 255, 255, 0.1);
-    opacity: 0.6;
-    cursor: wait;
-    border-color: #555;
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
@@ -354,22 +343,18 @@ footer {
     </header>
 
     <main class="container">
-      <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" disabled placeholder="فائلز لوڈ ہو رہی ہیں، براہ کرم انتظار کریں...">
-      </div>
-      
       <div id="original-sections">
           <section id="audio-sec">
             <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
             <div class="grid">
-              <div class="card search-item" data-title="quran majeed audio quran قرآن مجید اردو ترجمہ">
+              <div class="card" data-title="quran majeed audio quran قرآن مجید اردو ترجمہ">
                   <span class="card-icon">📖</span>
                   <h3>قرآن مجید اردو ترجمہ</h3>
                   <div class="btn-group">
                       <a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں (MP3)</a>
                   </div>
               </div>
-              <div class="card search-item" data-title="tilawat quran audio تلاوت قرآن پاک">
+              <div class="card" data-title="tilawat quran audio تلاوت قرآن پاک">
                   <span class="card-icon">🕌</span>
                   <h3>تلاوتِ قرآنِ پاک</h3>
                   <div class="btn-group">
@@ -395,10 +380,6 @@ footer {
           </section>
       </div>
 
-      <div id="searchResultsSection" style="display:none;">
-          <h2 class="section-head"><span>🔍</span> تلاش کے نتائج</h2>
-          <div id="searchResultsGrid" class="grid"></div>
-      </div>
     </main>
 </div>
 
@@ -438,7 +419,7 @@ footer {
 </footer>
 
 <script>
-// --- Help Modal Logic (جیسا آپ کا تھا) ---
+// --- Help Modal Logic ---
 let currentStep = 0;
 const steps = document.querySelectorAll('.step-img');
 const dots = document.querySelectorAll('.dot');
@@ -474,31 +455,6 @@ const CONFIG = {
 };
 
 const navHistory = [];
-// تمام فائلوں کا ڈیٹا یہاں محفوظ ہوگا (Client Side Search کے لیے)
-let allFilesData = []; 
-
-// --- ISLAMIC DICTIONARY (انگلش ٹو اردو میپنگ - اسلامی کتب کے لیے) ---
-const islamicDictionary = {
-    'quran': 'قرآن', 'kuran': 'قرآن', 'koran': 'قرآن',
-    'majeed': 'مجید', 'kareem': 'کریم',
-    'tafsir': 'تفسیر', 'tafseer': 'تفسیر',
-    'bukhari': 'بخاری', 'sahih': 'صحیح',
-    'muslim': 'مسلم',
-    'tirmidhi': 'ترمذی', 'tirmizi': 'ترمذی',
-    'abu dawood': 'ابو داؤد',
-    'ibn majah': 'ابن ماجہ',
-    'nasai': 'نسائی',
-    'hadees': 'حدیث', 'hadith': 'حدیث', 'ahadees': 'احادیث',
-    'seerat': 'سیرت', 'sirat': 'سیرت',
-    'nabi': 'نبی', 'rasool': 'رسول', 'prophet': 'پیغمبر',
-    'fiqh': 'فقہ', 'masail': 'مسائل',
-    'jannat': 'جنت', 'jannah': 'جنت',
-    'dozakh': 'دوزخ', 'jahannam': 'جہنم',
-    'namaz': 'نماز', 'salah': 'صلوۃ',
-    'zakat': 'زکوٰۃ', 'hajj': 'حج', 'roza': 'روزہ',
-    'history': 'تاریخ', 'tarikh': 'تاریخ',
-    'islam': 'اسلام', 'islamic': 'اسلامی'
-};
 
 // --- Folder & Content Logic ---
 async function fetchLibrary(folderId, gridId, folderName = "فولڈر") {
@@ -512,12 +468,6 @@ async function fetchLibrary(folderId, gridId, folderName = "فولڈر") {
         const response = await fetch(url);
         const data = await response.json();
         const files = data.files || [];
-
-        // اگر یہ مین پیج لوڈنگ ہے تو ڈیٹا گلوبل لسٹ میں ڈال دیں سرچ کے لیے
-        if (gridId === 'quranGrid' || gridId === 'booksGrid') {
-            allFilesData = [...allFilesData, ...files];
-            checkSearchReady(); // چیک کریں کہ کیا سب لوڈ ہو گیا ہے؟
-        }
 
         grid.innerHTML = '';
         if (files.length === 0) {
@@ -538,7 +488,7 @@ async function fetchLibrary(folderId, gridId, folderName = "فولڈر") {
     }
 }
 
-// کارڈ بنانے کا فنکشن (تاکہ کوڈ بار بار نہ لکھنا پڑے)
+// کارڈ بنانے کا فنکشن
 function createCardHTML(file, isFolder) {
     const card = document.createElement('article');
     card.className = 'card search-item';
@@ -564,20 +514,6 @@ function createCardHTML(file, isFolder) {
             ${actionButtons}
         </div>`;
     return card;
-}
-
-// چیک کریں کہ کیا سرچ انیبل کرنی ہے؟
-let loadedSectionsCount = 0;
-function checkSearchReady() {
-    loadedSectionsCount++;
-    // چونکہ ہم دو مین فولڈر (قرآن اور کتب) لوڈ کر رہے ہیں
-    if (loadedSectionsCount >= 2) {
-        const searchInput = document.getElementById('searchInput');
-        searchInput.disabled = false;
-        searchInput.placeholder = "پوری ویب سائٹ میں تلاش کریں (انگلش یا اردو)...";
-        searchInput.style.opacity = "1";
-        searchInput.style.cursor = "text";
-    }
 }
 
 // پروفیشنل فولڈر اوپن فنکشن
@@ -614,64 +550,13 @@ function goToHome() {
     navHistory.length = 0;
     document.getElementById('main-content-wrapper').style.display = 'block';
     document.getElementById('folder-view-wrapper').style.display = 'none';
-    document.getElementById('searchResultsSection').style.display = 'none';
     document.getElementById('original-sections').style.display = 'block';
-    document.getElementById('searchInput').value = '';
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-// --- FAST CLIENT-SIDE SEARCH LOGIC ---
-function localSearch(query) {
-    const searchGrid = document.getElementById('searchResultsGrid');
-    const searchSection = document.getElementById('searchResultsSection');
-    const originalSections = document.getElementById('original-sections');
-
-    if (query.length < 2) {
-        searchSection.style.display = 'none';
-        originalSections.style.display = 'block';
-        return;
-    }
-
-    originalSections.style.display = 'none';
-    searchSection.style.display = 'block';
-    searchGrid.innerHTML = '';
-
-    // 1. انگلش سے اردو میپنگ کریں
-    let mappedQuery = query.toLowerCase();
-    for (const [eng, urdu] of Object.entries(islamicDictionary)) {
-        if (mappedQuery.includes(eng)) {
-            // اگر انگلش لفظ ملے تو اسے بھی تلاش کے لیے استعمال کریں
-            mappedQuery = urdu; 
-            break;
-        }
-    }
-
-    // 2. پہلے سے لوڈ شدہ ڈیٹا میں سے فلٹر کریں (کوئی API کال نہیں ہوگی)
-    const results = allFilesData.filter(file => {
-        const fName = file.name.toLowerCase();
-        // انگلش نام یا اردو میپنگ والا نام میچ کرے
-        return fName.includes(query.toLowerCase()) || fName.includes(mappedQuery);
-    });
-
-    if (results.length === 0) {
-        searchGrid.innerHTML = '<p style="color:var(--text-muted); text-align:center; grid-column:1/-1;">کوئی نتیجہ نہیں ملا۔</p>';
-        return;
-    }
-
-    results.forEach(file => {
-        const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
-        searchGrid.appendChild(createCardHTML(file, isFolder));
-    });
-}
-
-// Search Input Listener
-document.getElementById('searchInput').addEventListener('input', (e) => {
-    localSearch(e.target.value);
-});
-
 // --- Execution ---
 document.addEventListener('DOMContentLoaded', () => {
-  // Load initial grids (یہاں سے ڈیٹا خودبخود سرچ لسٹ میں بھی جائے گا)
+  // Load initial grids
   fetchLibrary(CONFIG.QURAN_FOLDER, 'quranGrid'); 
   fetchLibrary(CONFIG.BOOKS_FOLDER, 'booksGrid');
   
