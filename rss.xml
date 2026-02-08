@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>اسلامک ڈیجیٹل لائبریری</title>
+  <link>https://islamicdigitallibrary.github.io/</link>
+  <description>قرآن، احادیث اور اسلامی کتب کا مستند مجموعہ - ورژن v_3.4</description>
+  <language>ur</language>
+  <atom:link href="https://islamicdigitallibrary.github.io/rss.xml" rel="self" type="application/rss+xml" />
+
+  <item>
+    <title>اسلامک ڈیجیٹل لائبریری - ورژن v_3.4 اپڈیٹ</title>
+    <link>https://islamicdigitallibrary.github.io/?update=v3.4</link>
+    <description>ہم نے اپنی لائبریری کو اپڈیٹ کیا ہے جس میں نئے فیچرز اور بہتر انٹرفیس شامل ہے۔ ابھی وزٹ کریں۔</description>
+    <pubDate>Mon, 09 Feb 2026 10:00:00 GMT</pubDate>
+    <dc:creator>Admin</dc:creator>
+    <guid isPermaLink="false">idl-update-v3.4</guid>
+  </item>
+
+  <item>
+    <title>قرآن مجید ایم پی تھری (MP3) تلاوت</title>
+    <link>https://ulutfyad48-debug.github.io/Quran-MP3/</link>
+    <description>خوبصورت تلاوتِ قرآن پاک ایم پی تھری فارمیٹ میں سماعت فرمائیں۔</description>
+    <pubDate>Sun, 08 Feb 2026 21:00:00 GMT</pubDate>
+    <guid isPermaLink="false">idl-quran-mp3-link</guid>
+  </item>
+
+  <item>
+    <title>قرآن مجید بمعہ اردو ترجمہ آڈیو</title>
+    <link>https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/</link>
+    <description>قرآن مجید کی تلاوت بمعہ اردو ترجمہ آڈیو فائلز اب لائبریری میں دستیاب ہیں۔</description>
+    <pubDate>Sun, 08 Feb 2026 21:10:00 GMT</pubDate>
+    <guid isPermaLink="false">idl-quran-urdu-audio-link</guid>
+  </item>
+
+</channel>
+</rss>
