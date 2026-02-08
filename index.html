@@ -9,7 +9,7 @@
   /**
    * پروفیشنل آٹو اپڈیٹ سسٹم (2026)
    */
-  const CURRENT_VERSION = "v_3.2"; 
+  const CURRENT_VERSION = "v_3.3"; 
 
   async function updateSiteAssets() {
     const savedVersion = localStorage.getItem('site_version');
@@ -275,6 +275,8 @@ footer {
 .back-btn-wrapper {
     grid-column: 1 / -1;
     margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
 }
 
 ::-webkit-scrollbar { width: 10px; }
@@ -337,71 +339,89 @@ footer {
   </div>
 </nav>
 
-<header class="hero">
-  <img src="https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf" alt="Profile" class="profile-pic">
-  <h1>اسلامک ڈیجیٹل لائبریری</h1>
-  <p style="color: var(--text-muted); font-size: 1.3rem; max-width:600px; margin:0 auto;">آپ کا مستند علمی اور ڈیجیٹل معاون، جدید ٹیکنالوجی کے سنگ</p>
-</header>
+<div id="main-content-wrapper">
+    <header class="hero">
+      <img src="https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf" alt="Profile" class="profile-pic">
+      <h1>اسلامک ڈیجیٹل لائبریری</h1>
+      <p style="color: var(--text-muted); font-size: 1.3rem; max-width:600px; margin:0 auto;">آپ کا مستند علمی اور ڈیجیٹل معاون، جدید ٹیکنالوجی کے سنگ</p>
+    </header>
 
-<main class="container">
-
-  <div class="search-container">
-    <input type="text" id="searchInput" class="search-box" placeholder="یہاں کتاب، فولڈر یا آڈیو کا نام لکھ کر تلاش کریں...">
-  </div>
-  
-  <div style="height: 1px; background: linear-gradient(to right, transparent, var(--glass-border), transparent); margin: 50px 0;"></div>
-
-  <section>
-    <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
-    <div class="grid">
-      <div class="card search-item" data-title="quran majeed audio quran">
-          <span class="card-icon">📖</span>
-          <h3>قرآن مجید اردو ترجمہ</h3>
-          <div class="btn-group">
-              <a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں (MP3)</a>
-          </div>
+    <main class="container">
+      <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="پوری ویب سائٹ میں تلاش کریں (مثلاً: صحیح البخاری، تفسیر)...">
       </div>
-      <div class="card search-item" data-title="tilawat quran audio">
-          <span class="card-icon">🕌</span>
-          <h3>تلاوتِ قرآنِ پاک</h3>
-          <div class="btn-group">
-              <a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill">مکمل پلے لسٹ</a>
-          </div>
+      
+      <div id="original-sections">
+          <section id="audio-sec">
+            <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
+            <div class="grid">
+              <div class="card search-item" data-title="quran majeed audio quran قرآن مجید اردو ترجمہ">
+                  <span class="card-icon">📖</span>
+                  <h3>قرآن مجید اردو ترجمہ</h3>
+                  <div class="btn-group">
+                      <a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں (MP3)</a>
+                  </div>
+              </div>
+              <div class="card search-item" data-title="tilawat quran audio تلاوت قرآن پاک">
+                  <span class="card-icon">🕌</span>
+                  <h3>تلاوتِ قرآنِ پاک</h3>
+                  <div class="btn-group">
+                      <a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill">مکمل پلے لسٹ</a>
+                  </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="quran-sec">
+            <h2 class="section-head"><span>📚</span> قرآن مجید (PDF)</h2>
+            <div id="quranGrid" class="grid"></div>
+          </section>
+
+          <section id="books-sec">
+            <h2 class="section-head"><span>📖</span> اسلامی کتب</h2>
+            <div id="booksGrid" class="grid"></div>
+          </section>
+
+          <section id="youtube-sec">
+            <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت (منتخب)</h2>
+            <div id="youtubeGrid" class="grid"></div>
+          </section>
       </div>
+
+      <div id="searchResultsSection" style="display:none;">
+          <h2 class="section-head"><span>🔍</span> تلاش کے نتائج</h2>
+          <div id="searchResultsGrid" class="grid"></div>
+      </div>
+    </main>
+</div>
+
+<div id="folder-view-wrapper" class="container" style="display:none; padding-top:40px;">
+    <div class="back-btn-wrapper">
+        <button onclick="goToHome()" class="btn btn-fill" style="width:auto; padding:10px 25px;">
+            <i class="fas fa-home"></i> ہوم اسکرین پر جائیں
+        </button>
+        <button id="folderBackBtn" class="btn btn-outline" style="width:auto; padding:10px 25px;">
+            <i class="fas fa-arrow-right"></i> پچھلے فولڈر میں
+        </button>
     </div>
-  </section>
+    <h2 id="currentFolderName" class="section-head"><span>📂</span> فولڈر کا نام</h2>
+    <div id="folderGrid" class="grid"></div>
+</div>
 
-  <section>
-    <h2 class="section-head"><span>📚</span> قرآن مجید (PDF)</h2>
-    <div id="quranGrid" class="grid"></div>
-  </section>
-
-  <section>
-    <h2 class="section-head"><span>📖</span> اسلامی کتب</h2>
-    <div id="booksGrid" class="grid"></div>
-  </section>
-
-  
-  <section>
-    <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت (منتخب)</h2>
-    <div id="youtubeGrid" class="grid"></div>
-  </section>
-
-  <section>
-    <h2 class="section-head"><span>🔗</span> ضروری صفحات</h2>
-    <div class="page-links-section">
-      <a href="about.html" class="page-link-card"><h4>ہمارے بارے میں</h4></a>
-      <a href="contact.html" class="page-link-card"><h4>رابطہ پیج</h4></a>
-      <a href="privacy-policy.html" class="page-link-card"><h4>پرائیویسی پالیسی</h4></a>
-      <a href="terms.html" class="page-link-card"><h4>شرائط و ضوابط</h4></a>
-    </div>
-<div class="ad-container" style="margin: 40px 0; border-radius:15px; overflow:hidden; border:1px solid var(--glass-border);">
-      <div id="container-e8f48cab7075cad1a9bfb6eb3b02f264"></div>
-  </div>
-
-  </section>
-
-</main>
+<div class="container">
+    <section>
+        <h2 class="section-head"><span>🔗</span> ضروری صفحات</h2>
+        <div class="page-links-section">
+          <a href="about.html" class="page-link-card"><h4>ہمارے بارے میں</h4></a>
+          <a href="contact.html" class="page-link-card"><h4>رابطہ پیج</h4></a>
+          <a href="privacy-policy.html" class="page-link-card"><h4>پرائیویسی پالیسی</h4></a>
+          <a href="terms.html" class="page-link-card"><h4>شرائط و ضوابط</h4></a>
+        </div>
+        <div class="ad-container" style="margin: 40px 0; border-radius:15px; overflow:hidden; border:1px solid var(--glass-border);">
+          <div id="container-e8f48cab7075cad1a9bfb6eb3b02f264"></div>
+        </div>
+    </section>
+</div>
 
 <footer>
   <p style="color: var(--text-muted);">© 2026 اسلامک ڈیجیٹل لائبریری | جملہ حقوق محفوظ ہیں</p>
@@ -446,42 +466,14 @@ const CONFIG = {
   YOUTUBE_FILE: 'youtube.json'
 };
 
-// --- YouTube Logic ---
-async function loadYoutubeVideos() {
-  const container = document.getElementById('youtubeGrid');
-  try {
-    const response = await fetch(CONFIG.YOUTUBE_FILE);
-    if (!response.ok) throw new Error(`Status: ${response.status}`);
-    const videos = await response.json();
+const navHistory = [];
 
-    container.innerHTML = videos.map(video => `
-      <article class="card search-item" data-title="${video.title.toLowerCase()}">
-        <iframe class="video-frame" src="${video.url}" title="${video.title}" frameborder="0" allowfullscreen></iframe>
-        <span class="channel-name">${video.channel}</span>
-        <h3>${video.title}</h3>
-      </article>
-    `).join('');
-  } catch (e) {
-    container.innerHTML = `<p style="color:red; text-align:center;">ویڈیوز لوڈ کرنے میں مسئلہ...</p>`;
-  }
-}
-
-// --- FOLDER & FILES LOGIC (WITH SUB-FOLDER SUPPORT) ---
-
-// History for Back Button (Separate for each grid)
-const navHistory = {
-    'quranGrid': [],
-    'booksGrid': []
-};
-
-async function fetchLibrary(folderId, gridId, isNavigate = false) {
+// --- Folder & Content Logic ---
+async function fetchLibrary(folderId, gridId, folderName = "فولڈر") {
     const grid = document.getElementById(gridId);
-    
-    // لوڈنگ انڈیکیٹر
     grid.innerHTML = '<p style="color:white; text-align:center; grid-column:1/-1;">لوڈ ہو رہا ہے...</p>';
 
     try {
-        // یہ کوئری صرف اسی فولڈر کے اندر کا ڈیٹا لائے گی (فائلز اور فولڈرز دونوں)
         const query = `'${folderId}'+in+parents+and+trashed=false`;
         const url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name,mimeType,size)&key=${CONFIG.API_KEY}`;
         
@@ -489,110 +481,175 @@ async function fetchLibrary(folderId, gridId, isNavigate = false) {
         const data = await response.json();
         const files = data.files || [];
 
-        grid.innerHTML = ''; // لوڈنگ صاف کریں
-
-        // اگر ہم سب-فولڈر میں ہیں، تو "واپس" بٹن دکھائیں
-        if (navHistory[gridId].length > 0) {
-            const backBtn = document.createElement('div');
-            backBtn.className = 'back-btn-wrapper';
-            backBtn.innerHTML = `
-                <button onclick="goBack('${gridId}')" class="btn btn-outline" style="width:auto; padding:10px 30px;">
-                    <i class="fas fa-arrow-right"></i> واپس پچھلے فولڈر میں (Back)
-                </button>`;
-            grid.appendChild(backBtn);
-        }
-
+        grid.innerHTML = '';
         if (files.length === 0) {
-            grid.innerHTML += `<p style="color:var(--text-muted); text-align:center; grid-column:1/-1;">یہ فولڈر خالی ہے۔</p>`;
+            grid.innerHTML = `<p style="color:var(--text-muted); text-align:center; grid-column:1/-1;">یہ فولڈر خالی ہے۔</p>`;
             return;
         }
 
         files.forEach(file => {
             const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
             const isPdf = file.mimeType.includes('pdf');
-
-            // صرف فولڈر اور PDF دکھائیں
             if (!isFolder && !isPdf) return;
 
             const card = document.createElement('article');
-            card.className = 'card search-item'; // For Search functionality
+            card.className = 'card search-item';
             card.setAttribute('data-title', file.name.toLowerCase());
             card.style.textAlign = 'right';
 
             let icon = isFolder ? '📂' : '📄';
-            let actionButtons = '';
-
-            if (isFolder) {
-                // اگر فولڈر ہے تو اسے کلک کرنے پر اسی گرڈ میں لوڈ کریں
-                actionButtons = `
+            let actionButtons = isFolder ? `
                 <div class="btn-group">
-                    <button class="btn btn-fill" onclick="openFolder('${file.id}', '${gridId}', '${folderId}')">
+                    <button class="btn btn-fill" onclick="openProfessionalFolder('${file.id}', '${file.name}')">
                         فولڈر کھولیں <i class="fas fa-folder-open"></i>
                     </button>
-                </div>`;
-            } else {
-                // اگر PDF ہے
-                actionButtons = `
+                </div>` : `
                 <div class="btn-group">
                     <a class="btn btn-outline" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">مطالعہ</a>
                     <a class="btn btn-fill" href="https://drive.google.com/uc?export=download&id=${file.id}">ڈاؤن لوڈ</a>
                 </div>`;
-            }
 
             card.innerHTML = `
                 <span class="card-icon" style="color:${isFolder ? '#d4af37' : 'white'}">${icon}</span>
                 <div style="flex:1; width:100%;">
                     <h3 style="font-size:1.1rem; margin-bottom:15px;">${file.name.replace('.pdf', '')}</h3>
                     ${actionButtons}
-                </div>
-            `;
+                </div>`;
             grid.appendChild(card);
         });
-
     } catch (e) {
-        console.error(e);
         grid.innerHTML = '<p style="color:red; text-align:center;">ڈیٹا لوڈ کرنے میں ایرر۔</p>';
     }
 }
 
-// فولڈر کھولنے کا فنکشن (History Save کرتا ہے)
-function openFolder(newFolderId, gridId, currentFolderId) {
-    navHistory[gridId].push(currentFolderId); // موجودہ فولڈر کو ہسٹری میں ڈالیں
-    fetchLibrary(newFolderId, gridId, true); // نیا فولڈر لوڈ کریں
+// پروفیشنل فولڈر اوپن فنکشن (Focus Mode)
+function openProfessionalFolder(folderId, folderName) {
+    const currentView = {
+        id: navHistory.length > 0 ? navHistory[navHistory.length-1].id : null,
+        name: navHistory.length > 0 ? navHistory[navHistory.length-1].name : null
+    };
+    
+    // موجودہ ویو کو ہسٹری میں محفوظ کریں اگر وہ نیا ہے
+    navHistory.push({id: folderId, name: folderName});
+
+    // UI اپڈیٹ
+    document.getElementById('main-content-wrapper').style.display = 'none';
+    document.getElementById('folder-view-wrapper').style.display = 'block';
+    document.getElementById('currentFolderName').innerHTML = `<span>📂</span> ${folderName}`;
+    
+    // بیک بٹن لاجک
+    const backBtn = document.getElementById('folderBackBtn');
+    if (navHistory.length > 1) {
+        backBtn.style.display = 'block';
+        backBtn.onclick = () => {
+            navHistory.pop(); // موجودہ نکالو
+            const prev = navHistory[navHistory.length - 1];
+            openProfessionalFolder(prev.id, prev.name);
+            navHistory.pop(); // دوبارہ ایڈ ہونے سے بچنے کے لیے
+        };
+    } else {
+        backBtn.style.display = 'none';
+    }
+
+    fetchLibrary(folderId, 'folderGrid', folderName);
+    window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-// واپس جانے کا فنکشن
-function goBack(gridId) {
-    const prevFolderId = navHistory[gridId].pop(); // ہسٹری سے پچھلا فولڈر نکالیں
-    if (prevFolderId) {
-        fetchLibrary(prevFolderId, gridId, true);
+function goToHome() {
+    navHistory.length = 0;
+    document.getElementById('main-content-wrapper').style.display = 'block';
+    document.getElementById('folder-view-wrapper').style.display = 'none';
+    document.getElementById('searchResultsSection').style.display = 'none';
+    document.getElementById('original-sections').style.display = 'block';
+    document.getElementById('searchInput').value = '';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// --- Global Search Logic ---
+async function globalSearch(query) {
+    const searchGrid = document.getElementById('searchResultsGrid');
+    const searchSection = document.getElementById('searchResultsSection');
+    const originalSections = document.getElementById('original-sections');
+
+    if (query.length < 2) {
+        searchSection.style.display = 'none';
+        originalSections.style.display = 'block';
+        return;
+    }
+
+    originalSections.style.display = 'none';
+    searchSection.style.display = 'block';
+    searchGrid.innerHTML = '<p style="color:white; text-align:center; grid-column:1/-1;">پوری لائبریری میں تلاش جاری ہے...</p>';
+
+    try {
+        // گوگل ڈرائیو سے پوری ویب سائٹ (دونوں مین فولڈرز) میں سرچ کریں
+        const driveQuery = `(name contains '${query}') and (parents in '${CONFIG.QURAN_FOLDER}' or parents in '${CONFIG.BOOKS_FOLDER}') and trashed=false`;
+        const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(driveQuery)}&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        const files = data.files || [];
+
+        searchGrid.innerHTML = '';
+        
+        if (files.length === 0) {
+            searchGrid.innerHTML = '<p style="color:var(--text-muted); text-align:center; grid-column:1/-1;">کوئی نتیجہ نہیں ملا۔</p>';
+            return;
+        }
+
+        files.forEach(file => {
+            const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
+            const card = document.createElement('article');
+            card.className = 'card';
+            card.style.textAlign = 'right';
+
+            let action = isFolder ? 
+                `<button class="btn btn-fill" onclick="openProfessionalFolder('${file.id}', '${file.name}')">فولڈر کھولیں</button>` :
+                `<div class="btn-group">
+                    <a class="btn btn-outline" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">مطالعہ</a>
+                    <a class="btn btn-fill" href="https://drive.google.com/uc?export=download&id=${file.id}">ڈاؤن لوڈ</a>
+                </div>`;
+
+            card.innerHTML = `
+                <span class="card-icon">${isFolder ? '📂' : '📄'}</span>
+                <h3 style="font-size:1.1rem; margin-bottom:15px;">${file.name}</h3>
+                ${action}`;
+            searchGrid.appendChild(card);
+        });
+    } catch (e) {
+        searchGrid.innerHTML = '<p style="color:red; text-align:center;">سرچ کے دوران مسئلہ ہوا۔</p>';
     }
 }
 
-// --- Real-time Search Logic (Corrected) ---
-document.getElementById('searchInput').addEventListener('input', function(e) {
-    const filter = e.target.value.toLowerCase();
-    // وہ تمام کارڈز جن پر 'search-item' کلاس ہے (Books, folders, videos)
-    const cards = document.querySelectorAll('.search-item');
-
-    cards.forEach(card => {
-        const title = card.getAttribute('data-title');
-        if (title && title.includes(filter)) {
-            card.style.display = 'flex';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+// Search Input Listener
+let searchTimer;
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => globalSearch(e.target.value), 500);
 });
 
 // --- Execution ---
 document.addEventListener('DOMContentLoaded', () => {
-  loadYoutubeVideos(); 
-  // الگ الگ فولڈرز لوڈ کریں
+  // Load initial grids
   fetchLibrary(CONFIG.QURAN_FOLDER, 'quranGrid'); 
   fetchLibrary(CONFIG.BOOKS_FOLDER, 'booksGrid');
+  
+  // YouTube videos (Original logic)
+  const loadYoutube = async () => {
+      const container = document.getElementById('youtubeGrid');
+      try {
+        const response = await fetch(CONFIG.YOUTUBE_FILE);
+        const videos = await response.json();
+        container.innerHTML = videos.map(video => `
+          <article class="card">
+            <iframe class="video-frame" src="${video.url}" frameborder="0" allowfullscreen></iframe>
+            <span class="channel-name">${video.channel}</span>
+            <h3>${video.title}</h3>
+          </article>`).join('');
+      } catch (e) { console.log("Video load error"); }
+  };
+  loadYoutube();
 });
-
 </script>
 
 <script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
