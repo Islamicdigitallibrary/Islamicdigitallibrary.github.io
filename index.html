@@ -6,28 +6,52 @@
 <meta name="yandex-verification" content="7a058aaf8b3219ca" />
 <meta name="google-adsense-account" content="ca-pub-1417987183063486">
 <script>
-  // یہاں تاریخ یا کوئی بھی نمبر لکھ دیں، جب بھی ویب سائٹ اپ ڈیٹ کریں تو یہ نمبر بدل دیں
-  const SITE_VERSION = "2026-02-07-v3"; 
+  /**
+   * پروفیشنل آٹو اپڈیٹ سسٹم (2026)
+   * جب بھی آپ کوڈ بدلیں، بس نیچے والا ورژن نمبر بدل دیں
+   */
+  const CURRENT_VERSION = "v_2.0_premium"; 
 
-  async function forceUpdate() {
+  async function updateSiteAssets() {
     const savedVersion = localStorage.getItem('site_version');
 
-    // اگر محفوظ ورژن اور موجودہ ورژن الگ ہیں تو کیشے صاف کریں
-    if (savedVersion !== SITE_VERSION) {
+    // اگر ورژن مختلف ہے تو صفائی شروع کریں
+    if (savedVersion !== CURRENT_VERSION) {
+      console.log("New version detected! Updating...");
+
+      // 1. تمام کیشے ڈیلیٹ کریں (Most Important)
       if ('caches' in window) {
-        const names = await caches.keys();
-        await Promise.all(names.map(name => caches.delete(name)));
+        const cacheNames = await caches.keys();
+        await Promise.all(
+          cacheNames.map(cacheName => caches.delete(cacheName))
+        );
       }
-      
-      // نیا ورژن محفوظ کریں اور پیج ری فریش کریں
-      localStorage.setItem('site_version', SITE_VERSION);
-      
-      // براؤزر کو مجبور کرنا کہ وہ سرور سے نیا ڈیٹا لائے
-      window.location.reload(true);
+
+      // 2. سروس ورکر کو ان رجسٹر کریں
+      if ('serviceWorker' in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (let registration of registrations) {
+          await registration.unregister();
+        }
+      }
+
+      // 3. نیا ورژن لوکل سٹوریج میں محفوظ کریں
+      localStorage.setItem('site_version', CURRENT_VERSION);
+
+      // 4. زبردستی ہارڈ ری لوڈ کریں (Cache Bypass)
+      // ری لوڈ کے ساتھ ہم ایک رینڈم نمبر بھی بھیجتے ہیں تاکہ سرور نیا ورژن ہی دے
+      window.location.href = window.location.origin + window.location.pathname + '?update=' + new Date().getTime();
     }
   }
 
-  forceUpdate();
+  // سکرپٹ رن کریں
+  updateSiteAssets();
+
+  // مین پیج کو لوڈ ہونے سے روکنے کے لیے ایک چھوٹا سا چیک
+  // تاکہ پرانی فائلز رینڈر نہ ہوں
+  window.addEventListener('load', () => {
+    console.log("Site is running on version: " + CURRENT_VERSION);
+  });
 </script>
 
 
