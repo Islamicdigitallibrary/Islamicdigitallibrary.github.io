@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="اسلامک ڈیجیٹل لائبریری - مستند اسلامی کتب، قرآن اور بیانات کا مرکز">
 <meta name="yandex-verification" content="7a058aaf8b3219ca" />
 <meta name="google-adsense-account" content="ca-pub-1417987183063486">
 
 <script>
-  const CURRENT_VERSION = "v_4.0_library_pro"; 
+  const CURRENT_VERSION = "v_5.0_pro_stable"; 
   async function updateSiteAssets() {
     const savedVersion = localStorage.getItem('site_version');
     if (savedVersion !== CURRENT_VERSION) {
@@ -23,435 +22,237 @@
 </script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1417987183063486" crossorigin="anonymous"></script>
-<script>
-  atOptions = { 'key' : '1afee638299e529fe4e4d722ea4984d5', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
-</script>
-<script src="https://lozengehelped.com/1afee638299e529fe4e4d722ea4984d5/invoke.js"></script>
 
-<title>اسلامک ڈیجیٹل لائبریری | جدید علمی مرکز</title>
+<title>اسلامک ڈیجیٹل لائبریری | پروفیشنل ورژن</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<meta name="theme-color" content="#0f172a">
 
 <style>
-/* --- پروفیشنل تھیم سیٹنگز --- */
 :root {
-  --bg-dark: #0f172a;
-  --bg-panel: #1e293b;
-  --primary-gold: #fbbf24;
-  --primary-hover: #d97706;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --glass: rgba(30, 41, 59, 0.7);
+  --bg-dark: #050a14;
+  --primary-gold: #d4af37;
+  --glass: rgba(255, 255, 255, 0.05);
+  --border: rgba(212, 175, 55, 0.2);
+  --text: #ffffff;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
   background-color: var(--bg-dark);
-  color: var(--text-main);
-  line-height: 2.2;
-  overflow-x: hidden;
-  min-height: 100vh;
+  color: var(--text);
+  line-height: 2;
+  background-attachment: fixed;
 }
 
-/* بیک گراؤنڈ ٹیکسچر */
-body::after {
-  content: "";
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  z-index: -2; pointer-events: none;
-}
-
-/* --- نیویگیشن بار --- */
+/* نویگیشن */
 .navbar {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(15, 23, 42, 0.95);
+  background: rgba(5, 10, 20, 0.9);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
-  padding: 15px 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 20px;
 }
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; color: var(--primary-gold); font-weight: bold; }
 
-.nav-container {
-  max-width: 1200px; margin: 0 auto; display: flex; 
-  justify-content: space-between; align-items: center; padding: 0 20px;
-}
+/* ہیرو سیکشن */
+.hero { text-align: center; padding: 50px 20px; border-bottom: 1px solid var(--border); }
+.profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary-gold); margin-bottom: 15px; }
 
-.logo { 
-  font-size: 1.6rem; color: var(--primary-gold); 
-  font-weight: 700; display: flex; align-items: center; gap: 10px;
-}
-
-.help-btn {
-    background: transparent; border: 1px solid var(--primary-gold);
-    color: var(--primary-gold); padding: 8px 20px; border-radius: 50px; 
-    font-family: 'Amiri', serif; cursor: pointer; transition: 0.3s;
-}
-.help-btn:hover { background: var(--primary-gold); color: #000; }
-
-/* --- ہیرو سیکشن --- */
-.hero { 
-    text-align: center; padding: 60px 20px; 
-    background: radial-gradient(circle at center, #1e293b 0%, var(--bg-dark) 70%);
-}
-.profile-pic {
-  width: 140px; height: 140px; border-radius: 50%;
-  border: 4px solid var(--primary-gold); 
-  padding: 5px; background: var(--bg-panel);
-  object-fit: cover; margin-bottom: 20px;
-  box-shadow: 0 0 30px rgba(251, 191, 36, 0.2);
-}
-
-.hero h1 { 
-    font-size: 2.5rem; color: #fff; margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-.hero p { color: var(--text-muted); font-size: 1.1rem; }
-
-/* --- کونٹینٹ لے آؤٹ --- */
 .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.section-head { font-size: 1.8rem; color: var(--primary-gold); margin: 40px 0 20px; display: flex; align-items: center; gap: 15px; }
 
-.section-head { 
-    font-size: 1.8rem; color: var(--primary-gold); 
-    margin: 50px 0 25px; border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px; display: flex; align-items: center; gap: 10px;
-}
+/* گریڈ اور کارڈز */
+.grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 
-.grid { 
-    display: grid; gap: 20px; 
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-/* --- کارڈ ڈیزائن --- */
 .card {
-  background: var(--bg-panel);
-  border: 1px solid var(--border-color);
-  border-radius: 16px; padding: 20px; 
-  transition: all 0.3s ease;
-  display: flex; flex-direction: column; position: relative;
-  overflow: hidden;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 15px; padding: 20px;
+  transition: 0.3s; display: flex; flex-direction: column;
 }
-.card:hover { 
-    transform: translateY(-5px); 
-    border-color: var(--primary-gold);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
+.card:hover { transform: translateY(-5px); border-color: var(--primary-gold); background: rgba(212, 175, 55, 0.05); }
 
-.card-icon { font-size: 2rem; margin-bottom: 10px; display: block; color: var(--primary-gold); }
-.card h3 { 
-    font-size: 1.1rem; margin-bottom: 15px; 
-    color: #fff; line-height: 1.6;
-}
+.video-frame { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; margin-bottom: 10px; }
 
-.btn-group { margin-top: auto; display: grid; gap: 8px; }
-.btn {
-  text-align: center; padding: 10px; border-radius: 8px;
-  text-decoration: none; font-weight: bold; font-size: 0.9rem;
-  transition: 0.2s; cursor: pointer; border: none; font-family: 'Amiri', serif;
-}
+.btn-group { display: flex; gap: 10px; margin-top: auto; }
+.btn { flex: 1; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; cursor: pointer; font-family: 'Amiri'; border: none; font-size: 0.9rem; }
 .btn-fill { background: var(--primary-gold); color: #000; }
-.btn-fill:hover { background: var(--primary-hover); }
-.btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); }
-.btn-outline:hover { border-color: var(--primary-gold); color: var(--primary-gold); }
+.btn-outline { background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); }
 
-/* --- بریڈ کرمب نیویگیشن (Breadcrumbs) --- */
-.breadcrumb {
-    background: var(--bg-panel); padding: 15px; border-radius: 10px;
-    margin-bottom: 25px; border: 1px solid var(--border-color);
-    display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
-    font-size: 1rem; color: var(--text-muted);
-}
-.breadcrumb span { cursor: pointer; transition: 0.2s; display: flex; align-items: center; }
-.breadcrumb span:hover { color: var(--primary-gold); }
-.breadcrumb span::after { content: '\f104'; font-family: 'Font Awesome 6 Free'; font-weight: 900; margin-right: 10px; color: #555; }
-.breadcrumb span:last-child { color: var(--primary-gold); font-weight: bold; pointer-events: none; }
-.breadcrumb span:last-child::after { content: ''; }
+/* بریڈ کرمب */
+.breadcrumb { background: var(--glass); padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; display: inline-block; }
+.breadcrumb span { cursor: pointer; color: var(--primary-gold); }
+.breadcrumb span::after { content: " / "; color: #fff; margin: 0 5px; }
+.breadcrumb span:last-child::after { content: ""; }
 
-/* --- ہیلپ موڈل --- */
-#helpModal {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9); z-index: 2000;
-    justify-content: center; align-items: center; padding: 20px;
-}
-.help-content { 
-    background: var(--bg-panel); padding: 30px; border-radius: 20px;
-    max-width: 500px; width: 100%; text-align: center; border: 1px solid var(--primary-gold);
-}
-.step-img { display: none; max-width: 100%; border-radius: 10px; margin: 15px 0; }
-.step-img.active { display: block; }
+footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.8; }
 
-/* --- فوٹر --- */
-footer { 
-    text-align: center; padding: 40px 20px; margin-top: 60px;
-    border-top: 1px solid var(--border-color); background: #020408;
-}
-
-@media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
-    .grid { grid-template-columns: 1fr; } 
-    .navbar { padding: 10px 0; }
-}
+@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
 </style>
 </head>
-
 <body>
-
-<div id="helpModal">
-    <div class="help-content">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-            <h3 style="color:var(--primary-gold);">ڈاؤن لوڈ کرنے کا طریقہ</h3>
-            <span onclick="document.getElementById('helpModal').style.display='none'" style="cursor:pointer; font-size:1.5rem;">&times;</span>
-        </div>
-        <img class="step-img active" src="https://lh3.googleusercontent.com/d/1NGc3oF-PzK3NifCLEGAE6QIHDiIq7mFD" alt="Step 1">
-        <img class="step-img" src="https://lh3.googleusercontent.com/d/1JgSUzgotDffPiD1fAJzv3Gn_9gm0VJxI" alt="Step 2">
-        <img class="step-img" src="https://lh3.googleusercontent.com/d/1UHHQc664AFyrhDb3nTcl1hEde8hfCzeQ" alt="Step 3">
-        <div style="margin-top:15px;">
-            <button class="btn btn-fill" onclick="changeStep(1)">اگلی تصویر</button>
-        </div>
-    </div>
-</div>
 
 <nav class="navbar">
   <div class="nav-container">
-    <div class="logo"><i class="fas fa-kaaba"></i> &nbsp; مکتبہ اسلامیہ</div>
-    <div style="display:flex; gap:10px;">
-        <button class="help-btn" onclick="document.getElementById('helpModal').style.display='flex'">
-            <i class="fas fa-question-circle"></i> مدد
-        </button>
-        <a href="contact.html" class="help-btn" style="text-decoration:none;">رابطہ</a>
-    </div>
+    <div class="logo"><i class="fas fa-book-quran"></i> اسلامک لائبریری</div>
+    <a href="contact.html" style="color:var(--primary-gold); text-decoration:none;">رابطہ کریں</a>
   </div>
 </nav>
 
-<div id="main-view">
+<div id="home-view">
     <header class="hero">
       <img src="https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf" alt="Profile" class="profile-pic">
       <h1>اسلامک ڈیجیٹل لائبریری</h1>
-      <p>یہاں آپ کو مستند اسلامی کتب، تفاسیر اور بیانات آسانی سے ملیں گے</p>
+      <p>جدید انداز میں اسلامی کتب کا وسیع ذخیرہ</p>
     </header>
 
     <main class="container">
-      
-      <section style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 40px;">
-          <h2 style="color: var(--primary-gold); margin-bottom: 10px; font-size: 1.4rem;">
-              <i class="fas fa-list"></i> ہمارے پاس کیا موجود ہے؟
-          </h2>
-          <p style="color: var(--text-muted);">
-              اس لائبریری میں قرآن مجید، تفاسیر (ابن کثیر، عثمانی)، احادیث (بخاری، مسلم)، فقہی مسائل، سیرت النبی ﷺ اور اصلاحی کتب کے فولڈرز موجود ہیں۔ نیچے دیے گئے "اسلامی کتب" کے فولڈر پر کلک کرکے تمام ذخیرہ دیکھیں۔
-          </p>
-      </section>
-
       <section>
-        <h2 class="section-head"><i class="fas fa-folder-open"></i> کتب خانہ (براؤز کریں)</h2>
-        <div id="rootGrid" class="grid">
-            </div>
-      </section>
-
-      <section>
-        <h2 class="section-head"><i class="fas fa-headphones"></i> آڈیو قرآن</h2>
+        <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
         <div class="grid">
           <div class="card">
-              <span class="card-icon"><i class="fas fa-quran"></i></span>
-              <h3>قرآن مجید (اردو ترجمہ)</h3>
-              <div class="btn-group">
-                  <a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں</a>
-              </div>
+              <h3>قرآن مجید اردو ترجمہ</h3>
+              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں</a></div>
           </div>
           <div class="card">
-              <span class="card-icon"><i class="fas fa-microphone-alt"></i></span>
-              <h3>تلاوتِ کلام پاک</h3>
-              <div class="btn-group">
-                  <a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill">پلے لسٹ</a>
-              </div>
+              <h3>تلاوتِ قرآنِ پاک</h3>
+              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill">پلے لسٹ</a></div>
           </div>
         </div>
       </section>
 
       <section>
-        <h2 class="section-head"><i class="fas fa-video"></i> منتخب بیانات</h2>
+        <h2 class="section-head"><span>📚</span> اسلامی کتب و فولڈرز</h2>
+        <div id="mainLibraryGrid" class="grid"></div>
+      </section>
+
+      <section>
+        <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت و بیانات</h2>
         <div id="youtubeGrid" class="grid"></div>
       </section>
 
+      <section style="margin-top:50px;">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+          <a href="about.html" class="btn btn-outline">ہمارے بارے میں</a>
+          <a href="privacy-policy.html" class="btn btn-outline">پرائیویسی پالیسی</a>
+          <a href="terms.html" class="btn btn-outline">شرائط و ضوابط</a>
+        </div>
+      </section>
     </main>
 </div>
 
 <div id="folder-view" class="container" style="display:none; padding-top:40px;">
-    <div class="breadcrumb" id="breadcrumbPath">
-        <span onclick="goHome()">ہوم</span>
-    </div>
-
-    <h2 id="currentFolderName" class="section-head" style="margin-top:0;"></h2>
-    <div id="folderContentGrid" class="grid"></div>
+    <div class="breadcrumb" id="breadcrumb"></div>
+    <h2 id="currentFolderName" class="section-head"></h2>
+    <div id="folderGrid" class="grid"></div>
 </div>
 
 <footer>
-  <p style="color: var(--text-muted); margin-bottom:10px;">© 2026 اسلامک ڈیجیٹل لائبریری | جملہ حقوق محفوظ ہیں</p>
-  
-  <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:20px;">
-      <a href="about.html" style="color:var(--text-muted); text-decoration:none;">ہمارے بارے میں</a>
-      <a href="privacy-policy.html" style="color:var(--text-muted); text-decoration:none;">پرائیویسی پالیسی</a>
-  </div>
-
-  <div style="opacity:0.01; height:1px; overflow:hidden;">
-    <script async="async" data-cfasync="false" src="https://lozengehelped.com/e8f48cab7075cad1a9bfb6eb3b02f264/invoke.js"></script>
-  </div>
+  <p>© 2026 اسلامک ڈیجیٹل لائبریری | جملہ حقوق محفوظ ہیں</p>
 </footer>
 
 <script>
-// --- کنفیگریشن ---
-// نوٹ: بہتر یہ ہے کہ آپ "BOOKS_FOLDER" میں وہ مین فولڈر آئی ڈی ڈالیں جس کے اندر آپ نے باقی 4، 5 فولڈرز بنائے ہیں۔
 const CONFIG = {
-  API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts', 
-  MAIN_ROOT_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC', // یہاں اپنا مین فولڈر ID ڈالیں
+  API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
+  MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC', // اپنا مین فولڈر آئی ڈی یہاں لکھیں
   YOUTUBE_FILE: 'youtube.json'
 };
 
-let navHistory = [{id: CONFIG.MAIN_ROOT_ID, name: 'کتب خانہ'}];
+let historyStack = [];
 
-// --- فولڈر فیچ کرنے کا فنکشن ---
-async function fetchLibrary(folderId, gridId, isRoot = false) {
+// لائبریری لوڈ کرنے کا مین فنکشن
+async function fetchDriveData(folderId, gridId, isMain = false) {
     const grid = document.getElementById(gridId);
-    grid.innerHTML = '<p style="color:var(--text-muted); grid-column:1/-1; text-align:center;"><i class="fas fa-circle-notch fa-spin"></i> لوڈنگ جاری ہے...</p>';
+    grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">لوڈنگ جاری ہے...</p>';
 
     try {
-        const query = `'${folderId}'+in+parents+and+trashed=false`;
-        const url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name,mimeType,size,thumbnailLink)&key=${CONFIG.API_KEY}`;
-        
+        const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
         const response = await fetch(url);
         const data = await response.json();
-        
+        const files = data.files || [];
+
         grid.innerHTML = '';
-        if (!data.files || data.files.length === 0) {
-            grid.innerHTML = `<p style="color:var(--text-muted); grid-column:1/-1; text-align:center;">یہ فولڈر ابھی خالی ہے۔</p>`;
-            return;
-        }
+        if (files.length === 0) { grid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">کوئی فائل نہیں ملی۔</p>'; return; }
 
-        // فولڈرز کو پہلے دکھائیں، پھر فائلز کو
-        const folders = data.files.filter(f => f.mimeType === 'application/vnd.google-apps.folder');
-        const files = data.files.filter(f => f.mimeType !== 'application/vnd.google-apps.folder');
-        const sortedFiles = [...folders, ...files];
-
-        sortedFiles.forEach(file => {
+        files.forEach(file => {
             const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
-            grid.appendChild(createCard(file, isFolder));
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            let icon = isFolder ? '📂' : '📄';
+            let action = isFolder ? 
+                `<button onclick="openFolder('${file.id}', '${file.name}')" class="btn btn-fill">فولڈر کھولیں</button>` :
+                `<div class="btn-group">
+                    <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="btn btn-outline">مطالعہ</a>
+                    <a href="https://drive.google.com/uc?export=download&id=${file.id}" class="btn btn-fill">ڈاؤن لوڈ</a>
+                 </div>`;
+
+            card.innerHTML = `
+                <div style="font-size:2rem; margin-bottom:10px;">${icon}</div>
+                <h3 style="font-size:1.1rem; margin-bottom:15px;">${file.name.replace('.pdf','')}</h3>
+                ${action}
+            `;
+            grid.appendChild(card);
         });
-
-    } catch (e) {
-        console.error(e);
-        grid.innerHTML = '<p style="color:#ef4444; grid-column:1/-1; text-align:center;">نیٹ ورک ایرر، دوبارہ کوشش کریں۔</p>';
-    }
+    } catch (e) { grid.innerHTML = 'لوڈنگ میں مسئلہ آ رہا ہے۔'; }
 }
 
-// --- کارڈ بنانے کا فنکشن ---
-function createCard(file, isFolder) {
-    const div = document.createElement('div');
-    div.className = 'card';
-    
-    let icon = isFolder ? '<i class="fas fa-folder"></i>' : '<i class="fas fa-file-pdf"></i>';
-    let subText = isFolder ? 'سب فولڈر' : 'پی ڈی ایف کتاب';
-    
-    // صفائی (نام سے ایکسٹینشن ہٹانا)
-    let cleanName = file.name.replace('.pdf', '').replace('.PDF', '');
-
-    let action = '';
-    if (isFolder) {
-        action = `<button class="btn btn-fill" onclick="openFolder('${file.id}', '${cleanName}')">اوپن کریں</button>`;
-    } else {
-        action = `
-            <a class="btn btn-outline" href="https://drive.google.com/file/d/${file.id}/preview" target="_blank">آن لائن پڑھیں</a>
-            <a class="btn btn-fill" href="https://drive.google.com/uc?export=download&id=${file.id}">ڈاؤن لوڈ</a>
-        `;
-    }
-
-    div.innerHTML = `
-        <span class="card-icon">${icon}</span>
-        <span style="font-size:0.8rem; color:var(--text-muted);">${subText}</span>
-        <h3>${cleanName}</h3>
-        <div class="btn-group">${action}</div>
-    `;
-    return div;
-}
-
-// --- فولڈر نیویگیشن سسٹم ---
-function openFolder(folderId, folderName) {
-    // ہسٹری میں ایڈ کریں
-    navHistory.push({id: folderId, name: folderName});
-    updateBreadcrumbs();
-
-    // ویو تبدیل کریں
-    document.getElementById('main-view').style.display = 'none';
+// فولڈر نیویگیشن
+function openFolder(id, name) {
+    historyStack.push({id, name});
+    updateBreadcrumb();
+    document.getElementById('home-view').style.display = 'none';
     document.getElementById('folder-view').style.display = 'block';
-    
-    document.getElementById('currentFolderName').innerHTML = `<i class="fas fa-folder-open"></i> ${folderName}`;
-    fetchLibrary(folderId, 'folderContentGrid');
+    document.getElementById('currentFolderName').innerText = name;
+    fetchDriveData(id, 'folderGrid');
     window.scrollTo(0,0);
 }
 
-// بریڈ کرمب اپڈیٹ (سب سے اہم فیچر)
-function updateBreadcrumbs() {
-    const pathContainer = document.getElementById('breadcrumbPath');
-    pathContainer.innerHTML = `<span onclick="goHome()"><i class="fas fa-home"></i> ہوم</span>`;
-    
-    // لوپ کے ذریعے راستہ بنائیں
-    navHistory.forEach((item, index) => {
-        if(index === 0) return; // ہوم پہلے ہی ہے
-        
-        const span = document.createElement('span');
-        // اگر یہ آخری نہیں ہے تو کلک ایبل بنائیں
-        if (index !== navHistory.length - 1) {
-            span.innerText = item.name;
-            span.onclick = () => jumpToFolder(index);
-        } else {
-            span.innerText = item.name; // آخری والا (موجودہ)
-        }
-        pathContainer.appendChild(span);
+function updateBreadcrumb() {
+    const bc = document.getElementById('breadcrumb');
+    bc.innerHTML = '<span onclick="goHome()">ہوم</span>';
+    historyStack.forEach((item, index) => {
+        const s = document.createElement('span');
+        s.innerText = item.name;
+        s.onclick = () => {
+            historyStack = historyStack.slice(0, index + 1);
+            openFolder(item.id, item.name);
+            historyStack.pop();
+        };
+        bc.appendChild(s);
     });
 }
 
-function jumpToFolder(index) {
-    // ہسٹری کو اس انڈیکس تک کاٹ دیں
-    navHistory = navHistory.slice(0, index + 1);
-    const target = navHistory[navHistory.length - 1];
-    
-    updateBreadcrumbs();
-    document.getElementById('currentFolderName').innerHTML = `<i class="fas fa-folder-open"></i> ${target.name}`;
-    fetchLibrary(target.id, 'folderContentGrid');
-}
-
 function goHome() {
-    navHistory = [{id: CONFIG.MAIN_ROOT_ID, name: 'کتب خانہ'}];
+    historyStack = [];
+    document.getElementById('home-view').style.display = 'block';
     document.getElementById('folder-view').style.display = 'none';
-    document.getElementById('main-view').style.display = 'block';
-    window.scrollTo(0,0);
 }
 
-// --- یوٹیوب اور ابتدائی لوڈنگ ---
+// ویڈیوز لوڈ کرنا (فکسڈ)
+async function loadVideos() {
+    const grid = document.getElementById('youtubeGrid');
+    try {
+        const response = await fetch(CONFIG.YOUTUBE_FILE);
+        const videos = await response.json();
+        grid.innerHTML = videos.map(v => `
+            <div class="card">
+                <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
+                <h3>${v.title}</h3>
+            </div>
+        `).join('');
+    } catch (e) {
+        grid.innerHTML = '<p>ویڈیوز لوڈ نہیں ہو سکیں، براہ کرم یوٹیوب فائل چیک کریں۔</p>';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // ہوم پیج پر روٹ فولڈر لوڈ کریں
-    fetchLibrary(CONFIG.MAIN_ROOT_ID, 'rootGrid', true);
-
-    // یوٹیوب (فرضی ڈیٹا اگر فائل نہ ملے)
-    const ytGrid = document.getElementById('youtubeGrid');
-    ytGrid.innerHTML = `
-        <div class="card">
-            <span style="font-size:3rem; color:red; text-align:center;"><i class="fab fa-youtube"></i></span>
-            <h3>تازہ ترین بیانات</h3>
-            <button class="btn btn-outline">یوٹیوب چینل دیکھیں</button>
-        </div>
-    `;
+    fetchDriveData(CONFIG.MAIN_FOLDER_ID, 'mainLibraryGrid', true);
+    loadVideos();
 });
-
-// ہیلپ سلائیڈر لاجک
-let stepIndex = 0;
-const steps = document.querySelectorAll('.step-img');
-function changeStep(n) {
-    steps[stepIndex].classList.remove('active');
-    stepIndex = (stepIndex + n + steps.length) % steps.length;
-    steps[stepIndex].classList.add('active');
-}
 </script>
 
 <script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
