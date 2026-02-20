@@ -29,267 +29,76 @@
 
 <style>
 :root {
-  --bg-dark: #0b0f1a;
-  --bg-darker: #050814;
+  --bg-dark: #050a14;
   --primary-gold: #d4af37;
-  --gold-light: #f5d97a;
-  --gold-dark: #b38f2c;
-  --glass-bg: rgba(15, 20, 30, 0.7);
-  --glass-border: rgba(212, 175, 55, 0.25);
-  --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-  --shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --glass: rgba(255, 255, 255, 0.05);
+  --border: rgba(212, 175, 55, 0.2);
+  --text: #ffffff;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
-  background: radial-gradient(circle at 10% 20%, #1a2332, var(--bg-dark) 80%);
-  color: var(--text-primary);
-  line-height: 1.8;
-  min-height: 100vh;
-  backdrop-filter: blur(2px);
-  position: relative;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M20 20 L80 20 L80 80 L20 80 Z' fill='none' stroke='%23d4af37' stroke-width='0.3' opacity='0.1'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: -1;
+  background-color: var(--bg-dark);
+  color: var(--text);
+  line-height: 2;
+  background-attachment: fixed;
 }
 
 /* نویگیشن */
 .navbar {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(5, 10, 20, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glass-border);
-  padding: 12px 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(5, 10, 20, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 20px;
 }
-.nav-container { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.logo { 
-  font-size: 1.7rem; 
-  color: var(--primary-gold); 
-  font-weight: bold; 
-  display: flex; 
-  align-items: center;
-  gap: 10px;
-  text-shadow: 0 2px 5px rgba(212, 175, 55, 0.3);
-}
-.logo i { font-size: 2rem; }
-
-.nav-container a { 
-  color: var(--primary-gold); 
-  text-decoration: none; 
-  padding: 8px 18px; 
-  border: 1px solid var(--glass-border); 
-  border-radius: 50px; 
-  transition: var(--transition);
-  font-weight: 500;
-  background: rgba(212, 175, 55, 0.05);
-}
-.nav-container a:hover { 
-  background: var(--primary-gold); 
-  color: #000; 
-  border-color: var(--primary-gold);
-  transform: translateY(-2px);
-}
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; color: var(--primary-gold); font-weight: bold; }
 
 /* ہیرو سیکشن */
-.hero { 
-  text-align: center; 
-  padding: 60px 20px; 
-  border-bottom: 1px solid var(--glass-border);
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(5px);
-  margin-bottom: 20px;
-}
-.profile-pic { 
-  width: 130px; 
-  height: 130px; 
-  border-radius: 50%; 
-  border: 4px solid var(--primary-gold); 
-  margin-bottom: 20px; 
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
-  transition: var(--transition);
-}
-.profile-pic:hover { transform: scale(1.05); border-color: #fff; }
-.hero h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--primary-gold); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-.hero p { font-size: 1.3rem; opacity: 0.9; }
+.hero { text-align: center; padding: 50px 20px; border-bottom: 1px solid var(--border); }
+.profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary-gold); margin-bottom: 15px; }
 
-.container { max-width: 1300px; margin: 0 auto; padding: 20px; }
-.section-head { 
-  font-size: 2rem; 
-  color: var(--primary-gold); 
-  margin: 50px 0 30px; 
-  display: flex; 
-  align-items: center; 
-  gap: 15px;
-  border-right: 5px solid var(--primary-gold);
-  padding-right: 20px;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-.section-head span { font-size: 2rem; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.section-head { font-size: 1.8rem; color: var(--primary-gold); margin: 40px 0 20px; display: flex; align-items: center; gap: 15px; }
 
 /* گریڈ اور کارڈز */
-.grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 
 .card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px; 
-  padding: 25px 20px;
-  transition: var(--transition); 
-  display: flex; 
-  flex-direction: column;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  position: relative;
-  overflow: hidden;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 15px; padding: 20px;
+  transition: 0.3s; display: flex; flex-direction: column;
 }
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 80%);
-  opacity: 0;
-  transition: var(--transition);
-}
-.card:hover::before { opacity: 1; }
-.card:hover { 
-  transform: translateY(-8px); 
-  border-color: var(--primary-gold); 
-  box-shadow: 0 20px 35px rgba(212, 175, 55, 0.2);
-}
-.card-icon { font-size: 2.8rem; margin-bottom: 15px; color: var(--primary-gold); }
-.card h3 { 
-  font-size: 1.2rem; 
-  margin-bottom: 20px; 
-  font-weight: 700;
-  line-height: 1.6;
-  color: #fff;
-  flex-grow: 1;
-}
+.card:hover { transform: translateY(-5px); border-color: var(--primary-gold); background: rgba(212, 175, 55, 0.05); }
 
-.btn-group { display: flex; gap: 12px; margin-top: 15px; }
-.btn { 
-  flex: 1; 
-  padding: 12px 5px; 
-  border-radius: 50px; 
-  text-decoration: none; 
-  font-weight: 600; 
-  text-align: center; 
-  cursor: pointer; 
-  font-family: 'Amiri'; 
-  border: none; 
-  font-size: 0.95rem;
-  transition: var(--transition);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.btn-fill { 
-  background: var(--primary-gold); 
-  color: #0a0f1a; 
-  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-}
-.btn-fill:hover { 
-  background: var(--gold-light); 
-  transform: scale(1.02); 
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
-}
-.btn-outline { 
-  background: transparent; 
-  border: 1px solid var(--primary-gold); 
-  color: var(--primary-gold);
-}
-.btn-outline:hover { 
-  background: rgba(212, 175, 55, 0.15); 
-  border-color: var(--gold-light);
-  color: var(--gold-light);
-}
+.video-frame { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; margin-bottom: 10px; }
 
-/* ویڈیو کارڈ */
-.video-frame { 
-  width: 100%; 
-  aspect-ratio: 16/9; 
-  border-radius: 16px; 
-  border: 2px solid var(--glass-border);
-  margin-bottom: 15px;
-  transition: var(--transition);
-}
-.card:hover .video-frame { border-color: var(--primary-gold); }
+.btn-group { display: flex; gap: 10px; margin-top: auto; }
+.btn { flex: 1; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; cursor: pointer; font-family: 'Amiri'; border: none; font-size: 0.9rem; }
+.btn-fill { background: var(--primary-gold); color: #000; }
+.btn-outline { background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); }
 
 /* بریڈ کرمب */
-.breadcrumb { 
-  background: rgba(0, 0, 0, 0.3); 
-  padding: 12px 25px; 
-  border-radius: 50px; 
-  margin-bottom: 25px; 
-  display: inline-block; 
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--glass-border);
-  font-size: 1rem;
-}
-.breadcrumb span { 
-  cursor: pointer; 
-  color: var(--primary-gold); 
-  transition: color 0.2s;
-  padding: 0 5px;
-}
-.breadcrumb span:hover { color: #fff; text-decoration: underline; }
-.breadcrumb span::after { 
-  content: " › "; 
-  color: var(--text-secondary); 
-  margin: 0 8px;
-  font-weight: bold;
-}
+.breadcrumb { background: var(--glass); padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; display: inline-block; }
+.breadcrumb span { cursor: pointer; color: var(--primary-gold); }
+.breadcrumb span::after { content: " / "; color: #fff; margin: 0 5px; }
 .breadcrumb span:last-child::after { content: ""; }
 
-/* لوڈنگ اسپنر */
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid rgba(212, 175, 55, 0.2);
-  border-top-color: var(--primary-gold);
-  border-radius: 50%;
-  animation: spin 1s ease infinite;
-  margin: 30px auto;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
+footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.8; }
 
-footer { 
-  text-align: center; 
-  padding: 40px; 
-  border-top: 1px solid var(--glass-border); 
-  margin-top: 70px; 
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(5px);
-  font-size: 1rem;
-}
-
-@media (max-width: 768px) { 
-  .grid { grid-template-columns: 1fr; } 
-  .hero h1 { font-size: 2rem; }
-  .section-head { font-size: 1.6rem; }
-  .navbar .logo { font-size: 1.3rem; }
-  .nav-container a { padding: 6px 12px; }
-}
+@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
 <nav class="navbar">
   <div class="nav-container">
-    <div class="logo"><i class="fas fa-mosque"></i> اسلامک لائبریری</div>
-    <a href="contact.html"><i class="fas fa-envelope"></i> رابطہ کریں</a>
+    <div class="logo"><i class="fas fa-book-quran"></i> اسلامک لائبریری</div>
+    <a href="contact.html" style="color:var(--primary-gold); text-decoration:none;">رابطہ کریں</a>
   </div>
 </nav>
 
@@ -302,36 +111,34 @@ footer {
 
     <main class="container">
       <section>
-        <h2 class="section-head"><span><i class="fas fa-headphones"></i></span> آڈیو آرکائیو</h2>
+        <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
         <div class="grid">
           <div class="card">
-              <div class="card-icon"><i class="fas fa-quran"></i></div>
               <h3>قرآن مجید اردو ترجمہ</h3>
-              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill"><i class="fas fa-play"></i> ابھی سنیں</a></div>
+              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں</a></div>
           </div>
           <div class="card">
-              <div class="card-icon"><i class="fas fa-microphone-alt"></i></div>
               <h3>تلاوتِ قرآنِ پاک</h3>
-              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill"><i class="fas fa-list"></i> پلے لسٹ</a></div>
+              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill">پلے لسٹ</a></div>
           </div>
         </div>
       </section>
 
       <section>
-        <h2 class="section-head"><span><i class="fas fa-book-open"></i></span> اسلامی کتب و فولڈرز</h2>
+        <h2 class="section-head"><span>📚</span> اسلامی کتب و فولڈرز</h2>
         <div id="mainLibraryGrid" class="grid"></div>
       </section>
 
       <section>
-        <h2 class="section-head"><span><i class="fas fa-video"></i></span> ویڈیو تلاوت و بیانات</h2>
+        <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت و بیانات</h2>
         <div id="youtubeGrid" class="grid"></div>
       </section>
 
-      <section style="margin-top:60px;">
-        <div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
-          <a href="about.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> ہمارے بارے میں</a>
-          <a href="privacy-policy.html" class="btn btn-outline"><i class="fas fa-shield-alt"></i> پرائیویسی پالیسی</a>
-          <a href="terms.html" class="btn btn-outline"><i class="fas fa-file-contract"></i> شرائط و ضوابط</a>
+      <section style="margin-top:50px;">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+          <a href="about.html" class="btn btn-outline">ہمارے بارے میں</a>
+          <a href="privacy-policy.html" class="btn btn-outline">پرائیویسی پالیسی</a>
+          <a href="terms.html" class="btn btn-outline">شرائط و ضوابط</a>
         </div>
       </section>
     </main>
@@ -350,23 +157,16 @@ footer {
 <script>
 const CONFIG = {
   API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
-  MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC',
+  MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC', // اپنا مین فولڈر آئی ڈی یہاں لکھیں
   YOUTUBE_FILE: 'youtube.json'
 };
 
 let historyStack = [];
 
-// اسپنر ایلیمنٹ بنانے کا فنکشن
-function createSpinner() {
-  const div = document.createElement('div');
-  div.className = 'spinner';
-  return div;
-}
-
+// لائبریری لوڈ کرنے کا مین فنکشن
 async function fetchDriveData(folderId, gridId, isMain = false) {
     const grid = document.getElementById(gridId);
-    grid.innerHTML = '';
-    grid.appendChild(createSpinner());
+    grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">لوڈنگ جاری ہے...</p>';
 
     try {
         const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
@@ -375,57 +175,52 @@ async function fetchDriveData(folderId, gridId, isMain = false) {
         const files = data.files || [];
 
         grid.innerHTML = '';
-        if (files.length === 0) { 
-            grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; font-size:1.2rem;">کوئی فائل نہیں ملی۔</p>'; 
-            return; 
-        }
+        if (files.length === 0) { grid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">کوئی فائل نہیں ملی۔</p>'; return; }
 
         files.forEach(file => {
             const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
             const card = document.createElement('div');
             card.className = 'card';
             
-            let icon = isFolder ? '<i class="fas fa-folder-open"></i>' : '<i class="fas fa-file-pdf"></i>';
+            let icon = isFolder ? '📂' : '📄';
             let action = isFolder ? 
-                `<button onclick="openFolder('${file.id}', '${file.name.replace(/'/g, "\\'")}')" class="btn btn-fill"><i class="fas fa-folder-open"></i> فولڈر کھولیں</button>` :
+                `<button onclick="openFolder('${file.id}', '${file.name}')" class="btn btn-fill">فولڈر کھولیں</button>` :
                 `<div class="btn-group">
-                    <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="btn btn-outline"><i class="fas fa-book-reader"></i> مطالعہ</a>
-                    <a href="https://drive.google.com/uc?export=download&id=${file.id}" class="btn btn-fill"><i class="fas fa-download"></i> ڈاؤن لوڈ</a>
+                    <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="btn btn-outline">مطالعہ</a>
+                    <a href="https://drive.google.com/uc?export=download&id=${file.id}" class="btn btn-fill">ڈاؤن لوڈ</a>
                  </div>`;
 
             card.innerHTML = `
-                <div class="card-icon">${icon}</div>
-                <h3>${file.name.replace('.pdf', '').replace(/.PDF/, '')}</h3>
+                <div style="font-size:2rem; margin-bottom:10px;">${icon}</div>
+                <h3 style="font-size:1.1rem; margin-bottom:15px;">${file.name.replace('.pdf','')}</h3>
                 ${action}
             `;
             grid.appendChild(card);
         });
-    } catch (e) { 
-        grid.innerHTML = '<p style="color:#d4af37; text-align:center;">لوڈنگ میں مسئلہ آ رہا ہے۔ دوبارہ کوشش کریں</p>'; 
-        console.error(e);
-    }
+    } catch (e) { grid.innerHTML = 'لوڈنگ میں مسئلہ آ رہا ہے۔'; }
 }
 
+// فولڈر نیویگیشن
 function openFolder(id, name) {
     historyStack.push({id, name});
     updateBreadcrumb();
     document.getElementById('home-view').style.display = 'none';
     document.getElementById('folder-view').style.display = 'block';
-    document.getElementById('currentFolderName').innerHTML = `<i class="fas fa-folder-open" style="margin-left:10px;"></i> ${name}`;
+    document.getElementById('currentFolderName').innerText = name;
     fetchDriveData(id, 'folderGrid');
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo(0,0);
 }
 
 function updateBreadcrumb() {
     const bc = document.getElementById('breadcrumb');
-    bc.innerHTML = '<span onclick="goHome()"><i class="fas fa-home"></i> ہوم</span>';
+    bc.innerHTML = '<span onclick="goHome()">ہوم</span>';
     historyStack.forEach((item, index) => {
         const s = document.createElement('span');
-        s.innerHTML = `<i class="fas fa-folder"></i> ${item.name}`;
+        s.innerText = item.name;
         s.onclick = () => {
             historyStack = historyStack.slice(0, index + 1);
             openFolder(item.id, item.name);
-            historyStack.pop(); // openFolder دوبارہ پش کرے گا، اس لیے پاپ
+            historyStack.pop();
         };
         bc.appendChild(s);
     });
@@ -437,17 +232,16 @@ function goHome() {
     document.getElementById('folder-view').style.display = 'none';
 }
 
+// ویڈیوز لوڈ کرنا (فکسڈ)
 async function loadVideos() {
     const grid = document.getElementById('youtubeGrid');
-    grid.innerHTML = '';
-    grid.appendChild(createSpinner());
     try {
         const response = await fetch(CONFIG.YOUTUBE_FILE);
         const videos = await response.json();
         grid.innerHTML = videos.map(v => `
             <div class="card">
-                <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" allowfullscreen loading="lazy"></iframe>
-                <h3><i class="fas fa-play-circle" style="color:var(--primary-gold); margin-left:5px;"></i> ${v.title}</h3>
+                <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
+                <h3>${v.title}</h3>
             </div>
         `).join('');
     } catch (e) {
