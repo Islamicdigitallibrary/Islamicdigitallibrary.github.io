@@ -59,7 +59,7 @@ body {
 
 /* ہیرو سیکشن */
 .hero { text-align: center; padding: 50px 20px; border-bottom: 1px solid var(--border); }
-.profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary-gold); margin-bottom: 15px; }
+.profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary-gold); margin-bottom: 15px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 .section-head { font-size: 1.8rem; color: var(--primary-gold); margin: 40px 0 20px; display: flex; align-items: center; gap: 15px; }
@@ -72,19 +72,35 @@ body {
   border: 1px solid var(--border);
   border-radius: 15px; padding: 20px;
   transition: 0.3s; display: flex; flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-.card:hover { transform: translateY(-5px); border-color: var(--primary-gold); background: rgba(212, 175, 55, 0.05); }
+.card:hover { transform: translateY(-5px); border-color: var(--primary-gold); background: rgba(212, 175, 55, 0.05); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15); }
+
+/* لمبے ناموں کو کنٹرول کرنے کے لیے */
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* زیادہ سے زیادہ 2 لائنیں دکھائے گا */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.6;
+}
 
 .video-frame { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; margin-bottom: 10px; }
 
 .btn-group { display: flex; gap: 10px; margin-top: auto; }
-.btn { flex: 1; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; cursor: pointer; font-family: 'Amiri'; border: none; font-size: 0.9rem; }
+.btn { flex: 1; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; cursor: pointer; font-family: 'Amiri'; border: none; font-size: 0.9rem; transition: 0.3s; }
 .btn-fill { background: var(--primary-gold); color: #000; }
+.btn-fill:hover { background: #e6c245; }
 .btn-outline { background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); }
+.btn-outline:hover { background: var(--primary-gold); color: #000; }
 
 /* بریڈ کرمب */
 .breadcrumb { background: var(--glass); padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; display: inline-block; }
-.breadcrumb span { cursor: pointer; color: var(--primary-gold); }
+.breadcrumb span { cursor: pointer; color: var(--primary-gold); transition: 0.2s; }
+.breadcrumb span:hover { color: #fff; }
 .breadcrumb span::after { content: " / "; color: #fff; margin: 0 5px; }
 .breadcrumb span:last-child::after { content: ""; }
 
@@ -114,11 +130,11 @@ footer { text-align: center; padding: 40px; border-top: 1px solid var(--border);
         <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
         <div class="grid">
           <div class="card">
-              <h3>قرآن مجید اردو ترجمہ</h3>
+              <h3 class="card-title">قرآن مجید اردو ترجمہ</h3>
               <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں</a></div>
           </div>
           <div class="card">
-              <h3>تلاوتِ قرآنِ پاک</h3>
+              <h3 class="card-title">تلاوتِ قرآنِ پاک</h3>
               <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill">پلے لسٹ</a></div>
           </div>
         </div>
@@ -136,9 +152,9 @@ footer { text-align: center; padding: 40px; border-top: 1px solid var(--border);
 
       <section style="margin-top:50px;">
         <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-          <a href="about.html" class="btn btn-outline">ہمارے بارے میں</a>
-          <a href="privacy-policy.html" class="btn btn-outline">پرائیویسی پالیسی</a>
-          <a href="terms.html" class="btn btn-outline">شرائط و ضوابط</a>
+          <a href="contact.html" class="btn btn-outline">رابطہ کریں</a>
+          <a href="https://digitalsiteshub.github.io" target="_blank" class="btn btn-outline">ڈیولپر کے مزید پلیٹ فارم</a>
+          <a href="https://www.facebook.com/groups/882329850371173/?ref=share&mibextid=NSMWBT" target="_blank" class="btn btn-outline">فیس بک لائبریری</a>
         </div>
       </section>
     </main>
@@ -192,12 +208,12 @@ async function fetchDriveData(folderId, gridId, isMain = false) {
 
             card.innerHTML = `
                 <div style="font-size:2rem; margin-bottom:10px;">${icon}</div>
-                <h3 style="font-size:1.1rem; margin-bottom:15px;">${file.name.replace('.pdf','')}</h3>
+                <h3 class="card-title">${file.name.replace('.pdf','')}</h3>
                 ${action}
             `;
             grid.appendChild(card);
         });
-    } catch (e) { grid.innerHTML = 'لوڈنگ میں مسئلہ آ رہا ہے۔'; }
+    } catch (e) { grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">لوڈنگ میں مسئلہ آ رہا ہے۔ انٹرنیٹ کنکشن چیک کریں۔</p>'; }
 }
 
 // فولڈر نیویگیشن
@@ -241,11 +257,11 @@ async function loadVideos() {
         grid.innerHTML = videos.map(v => `
             <div class="card">
                 <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
-                <h3>${v.title}</h3>
+                <h3 class="card-title">${v.title}</h3>
             </div>
         `).join('');
     } catch (e) {
-        grid.innerHTML = '<p>ویڈیوز لوڈ نہیں ہو سکیں، براہ کرم یوٹیوب فائل چیک کریں۔</p>';
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">ویڈیوز لوڈ نہیں ہو سکیں، براہ کرم یوٹیوب فائل چیک کریں۔</p>';
     }
 }
 
