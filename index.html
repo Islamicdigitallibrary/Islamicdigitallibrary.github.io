@@ -277,5 +277,15 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('PWA Service Worker Registered!'))
+        .catch(err => console.log('Service Worker Registration Failed:', err));
+    });
+  }
+</script>
+
 </body>
 </html>
