@@ -27,7 +27,6 @@
 <meta name="theme-color" content="#050a14">
 <link rel="apple-touch-icon" href="icon-512.png">
 
-
 <title>اسلامک ڈیجیٹل لائبریری | پروفیشنل ورژن</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -49,7 +48,6 @@ body {
   color: var(--text);
   line-height: 2;
   background-attachment: fixed;
-  /* اسلامی طرز کا ہلکا سا پیٹرن (پروفیشنل لیکن غیر نمایاں) */
   background-image: 
     radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.02) 0px, transparent 20%),
     radial-gradient(circle at 90% 70%, rgba(212, 175, 55, 0.02) 0px, transparent 30%),
@@ -87,17 +85,16 @@ body {
 }
 .card:hover { transform: translateY(-5px); border-color: var(--primary-gold); background: rgba(212, 175, 55, 0.08); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25); }
 
-/* لمبے ناموں کو کنٹرول کرنے کے لیے بہتر انداز */
 .card-title {
   font-size: 1.1rem;
   margin-bottom: 15px;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* تین لائنیں دکھائی دیں گی */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.6;
-  word-break: break-word; /* ضرورت پڑنے پر الفاظ توڑے */
+  word-break: break-word;
 }
 
 .video-frame { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; margin-bottom: 10px; }
@@ -117,21 +114,16 @@ body {
 .breadcrumb span:last-child::after { content: ""; }
 
 /* لوڈنگ اسپنر */
-.loader {
-  text-align: center;
-  grid-column: 1/-1;
-  padding: 40px;
-}
+.loader { text-align: center; grid-column: 1/-1; padding: 40px; }
 .loader i { font-size: 2rem; color: var(--primary-gold); animation: spin 1s linear infinite; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.8; }
 
-/* موبائل کے لیے مزید بہتری */
 @media (max-width: 768px) { 
   .grid { grid-template-columns: 1fr; } 
   .section-head { font-size: 1.5rem; }
-  .card-title { -webkit-line-clamp: 3; } /* موبائل پر بھی تین لائنیں */
+  .card-title { -webkit-line-clamp: 3; }
   .btn-group { flex-direction: column; }
   .btn { width: 100%; }
   .breadcrumb { font-size: 0.9rem; padding: 8px 15px; }
@@ -148,13 +140,13 @@ footer { text-align: center; padding: 40px; border-top: 1px solid var(--border);
   <div class="nav-container">
     <div class="logo"><i class="fas fa-book-quran"></i> اسلامک لائبریری</div>
     <a href="contact.html" style="color:var(--primary-gold); text-decoration:none;">رابطہ کریں</a>
-<a href="help-search.html" class="btn btn-outline">📖 کتاب تلاش کریں</a>
+    <a href="help-search.html" class="btn btn-outline">📖 کتاب تلاش کریں</a>
   </div>
 </nav>
 
 <div id="home-view">
     <header class="hero">
-      <img src="https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf" alt="Profile" class="profile-pic">
+      <img src="https://googleusercontent.com/profile/picture/0" alt="Profile" class="profile-pic">
       <h1>اسلامک ڈیجیٹل لائبریری</h1>
       <p>جدید انداز میں اسلامی کتب کا وسیع ذخیرہ</p>
     </header>
@@ -207,14 +199,13 @@ footer { text-align: center; padding: 40px; border-top: 1px solid var(--border);
 <script>
 const CONFIG = {
   API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
-  MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC', // اپنا مین فولڈر آئی ڈی یہاں لکھیں
+  MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC', 
   YOUTUBE_FILE: 'youtube.json',
-  CACHE_EXPIRY: 60 * 60 * 1000 // 1 گھنٹہ (ملی سیکنڈ میں)
+  CACHE_EXPIRY: 60 * 60 * 1000 
 };
 
 let historyStack = [];
 
-// کیشنگ کے لیے ہیلپر فنکشن
 function getCachedData(key) {
   const cached = localStorage.getItem(key);
   if (!cached) return null;
@@ -223,7 +214,7 @@ function getCachedData(key) {
     if (Date.now() - timestamp < CONFIG.CACHE_EXPIRY) {
       return data;
     } else {
-      localStorage.removeItem(key); // پرانی کیش ہٹائیں
+      localStorage.removeItem(key);
     }
   } catch (e) {}
   return null;
@@ -234,12 +225,10 @@ function setCachedData(key, data) {
   localStorage.setItem(key, JSON.stringify(cacheObj));
 }
 
-// لائبریری لوڈ کرنے کا مین فنکشن (کیش کے ساتھ)
 async function fetchDriveData(folderId, gridId, isMain = false) {
     const grid = document.getElementById(gridId);
     grid.innerHTML = '<div class="loader"><i class="fas fa-spinner"></i> لوڈ ہو رہا ہے...</div>';
 
-    // کیش چیک کریں
     const cacheKey = `folder_${folderId}`;
     let files = getCachedData(cacheKey);
 
@@ -248,10 +237,22 @@ async function fetchDriveData(folderId, gridId, isMain = false) {
             const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
             const response = await fetch(url);
             const data = await response.json();
+            
+            // Fix: Check for error in response
+            if (data.error) {
+                console.error("API Error:", data.error);
+                throw new Error(data.error.message);
+            }
+
             files = data.files || [];
-            setCachedData(cacheKey, files); // کیش میں محفوظ کریں
+            
+            // Fix: Only cache if we actually got valid data (even if empty)
+            if (response.ok) {
+                setCachedData(cacheKey, files);
+            }
         } catch (e) {
-            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">لوڈنگ میں مسئلہ آ رہا ہے۔ انٹرنیٹ کنیکشن چیک کریں۔</p>';
+            console.error(e);
+            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">لوڈنگ میں مسئلہ آ رہا ہے۔ انٹرنیٹ کنیکشن چیک کریں یا اے پی آئی کی حد ختم ہو گئی ہے۔</p>';
             return;
         }
     }
@@ -264,9 +265,13 @@ async function fetchDriveData(folderId, gridId, isMain = false) {
         const card = document.createElement('div');
         card.className = 'card';
         
+        // Fix: Proper escaping for quotes in title and onclick
+        const safeName = file.name.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+        const titleName = file.name.replace(/"/g, "&quot;");
+
         let icon = isFolder ? '📂' : '📄';
         let action = isFolder ? 
-            `<button onclick="openFolder('${file.id}', '${file.name.replace(/'/g, "\\'")}')" class="btn btn-fill">فولڈر کھولیں</button>` :
+            `<button onclick="openFolder('${file.id}', '${safeName}')" class="btn btn-fill">فولڈر کھولیں</button>` :
             `<div class="btn-group">
                 <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="btn btn-outline">مطالعہ</a>
                 <a href="https://drive.google.com/uc?export=download&id=${file.id}" class="btn btn-fill">ڈاؤن لوڈ</a>
@@ -274,16 +279,16 @@ async function fetchDriveData(folderId, gridId, isMain = false) {
 
         card.innerHTML = `
             <div style="font-size:2rem; margin-bottom:10px;">${icon}</div>
-            <h3 class="card-title" title="${file.name.replace(/"/g, '&quot;')}">${file.name.replace('.pdf','')}</h3>
+            <h3 class="card-title" title="${titleName}">${file.name.replace('.pdf','')}</h3>
             ${action}
         `;
         grid.appendChild(card);
     });
 }
 
-// فولڈر نیویگیشن
 function openFolder(id, name) {
     historyStack.push({id, name});
+    // Render breadcrumb *before* hiding the home view, but logically it doesn't matter much.
     updateBreadcrumb();
     document.getElementById('home-view').style.display = 'none';
     document.getElementById('folder-view').style.display = 'block';
@@ -300,9 +305,15 @@ function updateBreadcrumb() {
         s.innerText = item.name;
         s.setAttribute('title', item.name);
         s.onclick = () => {
-            historyStack = historyStack.slice(0, index + 1);
-            openFolder(item.id, item.name);
-            historyStack.pop();
+            // Fix: Logic corrected to avoid stack corruption
+            // 1. Slice the stack to where we clicked
+            const newStack = historyStack.slice(0, index + 1);
+            historyStack = newStack;
+            
+            // 2. Update View manually (without calling openFolder which pushes again)
+            document.getElementById('currentFolderName').innerText = item.name;
+            fetchDriveData(item.id, 'folderGrid');
+            updateBreadcrumb();
         };
         bc.appendChild(s);
     });
@@ -312,22 +323,27 @@ function goHome() {
     historyStack = [];
     document.getElementById('home-view').style.display = 'block';
     document.getElementById('folder-view').style.display = 'none';
+    // Optional: Refresh main grid if needed, but not strictly required
 }
 
-// ویڈیوز لوڈ کرنا (فکسڈ)
 async function loadVideos() {
     const grid = document.getElementById('youtubeGrid');
     try {
         const response = await fetch(CONFIG.YOUTUBE_FILE);
+        if (!response.ok) throw new Error("JSON not found");
         const videos = await response.json();
+        
+        if (!Array.isArray(videos)) throw new Error("Invalid JSON format");
+
         grid.innerHTML = videos.map(v => `
             <div class="card">
-                <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
-                <h3 class="card-title" title="${v.title}">${v.title}</h3>
+                <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" frameborder="0" allowfullscreen></iframe>
+                <h3 class="card-title" title="${v.title.replace(/"/g, "&quot;") || ''}">${v.title || 'Video'}</h3>
             </div>
         `).join('');
     } catch (e) {
-        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">ویڈیوز لوڈ نہیں ہو سکیں، براہ کرم یوٹیوب فائل چیک کریں۔</p>';
+        console.warn("Video load error:", e);
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">ویڈیوز فی الحال دستیاب نہیں ہیں۔</p>';
     }
 }
 
