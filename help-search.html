@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="yandex-verification" content="7a058aaf8b3219ca" />
+<meta name="google-adsense-account" content="ca-pub-1417987183063486">
+<script>
+  const CURRENT_VERSION = "v_help_1.0_pro";
+  async function updateSiteAssets() {
+    const savedVersion = localStorage.getItem('site_version');
+    if (savedVersion !== CURRENT_VERSION) {
+      if ('caches' in window) {
+        const cacheNames = await caches.keys();
+        await Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)));
+      }
+      localStorage.setItem('site_version', CURRENT_VERSION);
+    }
+  }
+  updateSiteAssets();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1417987183063486" crossorigin="anonymous"></script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#050a14">
+<link rel="apple-touch-icon" href="icon-512.png">
+<title>ہیلپ سینٹر | کتاب تلاش کریں</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-dark: #050a14;
+  --primary-gold: #d4af37;
+  --glass: rgba(255, 255, 255, 0.05);
+  --border: rgba(212, 175, 55, 0.2);
+  --text: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
+  background-color: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.8;
+  background-attachment: fixed;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.02) 0px, transparent 20%),
+    radial-gradient(circle at 90% 70%, rgba(212, 175, 55, 0.02) 0px, transparent 30%),
+    repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.01) 0px, rgba(212, 175, 55, 0.01) 2px, transparent 2px, transparent 6px);
+}
+.navbar {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(5, 10, 20, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 20px;
+}
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.logo { font-size: 1.5rem; color: var(--primary-gold); font-weight: bold; }
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+
+/* ہیلپ ہیڈر */
+.help-header { text-align: center; margin-bottom: 40px; }
+.help-header h1 { font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 10px; }
+.help-header p { font-size: 1.2rem; opacity: 0.9; }
+
+/* سرچ باکس */
+.search-wrapper { max-width: 600px; margin: 0 auto 40px; position: relative; }
+.search-wrapper i { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--primary-gold); font-size: 1.2rem; }
+#searchInput {
+  width: 100%;
+  padding: 18px 55px 18px 20px;
+  border: 2px solid var(--border);
+  border-radius: 60px;
+  background: var(--glass);
+  color: white;
+  font-size: 1.2rem;
+  font-family: inherit;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px);
+}
+#searchInput:focus { outline: none; border-color: var(--primary-gold); box-shadow: 0 0 20px rgba(212,175,55,0.3); }
+#searchInput::placeholder { color: #aaa; font-size: 1rem; }
+
+/* شماریات */
+.stats-bar { display: flex; justify-content: space-between; align-items: center; margin: 20px 0; flex-wrap: wrap; gap: 15px; }
+.total-books { background: var(--glass); padding: 8px 18px; border-radius: 40px; border: 1px solid var(--border); }
+.reset-btn { background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); padding: 8px 20px; border-radius: 40px; cursor: pointer; transition: 0.3s; font-family: inherit; }
+.reset-btn:hover { background: var(--primary-gold); color: black; }
+
+/* کتابوں کی گرڈ */
+.books-grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); margin-top: 20px; }
+.book-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 20px;
+  transition: 0.3s;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+.book-card:hover { transform: translateY(-6px); border-color: var(--primary-gold); background: rgba(212,175,55,0.08); box-shadow: 0 12px 28px rgba(212,175,55,0.25); }
+.book-icon { font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 10px; }
+.book-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 5px; }
+.book-path {
+  background: rgba(0,0,0,0.3);
+  padding: 8px 12px;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  margin: 12px 0 15px;
+  border: 1px dashed var(--border);
+  color: #ccc;
+  direction: ltr;
+  text-align: right;
+  word-break: break-word;
+}
+.book-path i { margin-left: 5px; color: var(--primary-gold); }
+.btn-group { display: flex; gap: 10px; margin-top: auto; }
+.btn { flex: 1; padding: 12px; border-radius: 40px; text-decoration: none; font-weight: bold; text-align: center; font-family: inherit; border: none; font-size: 0.95rem; transition: 0.3s; cursor: pointer; }
+.btn-fill { background: var(--primary-gold); color: #000; }
+.btn-fill:hover { background: #e6c245; }
+.btn-outline { background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); }
+.btn-outline:hover { background: var(--primary-gold); color: #000; }
+.home-button { display: block; width: fit-content; margin: 50px auto 0; padding: 15px 40px; font-size: 1.2rem; border-radius: 60px; background: var(--glass); border: 2px solid var(--primary-gold); color: var(--primary-gold); text-decoration: none; transition: 0.3s; }
+.home-button:hover { background: var(--primary-gold); color: #000; }
+
+/* لوڈنگ */
+.loader { text-align: center; padding: 60px; }
+.loader i { font-size: 3rem; color: var(--primary-gold); animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* فوٹر */
+footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); margin-top: 60px; opacity: 0.8; }
+
+@media (max-width: 600px) {
+  .help-header h1 { font-size: 2rem; }
+  .book-title { font-size: 1.2rem; }
+  .btn-group { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo"><i class="fas fa-book-quran"></i> ہیلپ سینٹر</div>
+    <a href="index.html" style="color:var(--primary-gold); text-decoration:none;"><i class="fas fa-home"></i> مرکزی صفحہ</a>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="help-header">
+    <h1>📚 کتاب تلاش کریں</h1>
+    <p>تمام فولڈرز میں موجود PDF کتب، مکمل راستے کے ساتھ</p>
+  </div>
+
+  <div class="search-wrapper">
+    <i class="fas fa-search"></i>
+    <input type="text" id="searchInput" placeholder="کتاب کا نام لکھیں..." autocomplete="off">
+  </div>
+
+  <div class="stats-bar">
+    <span class="total-books" id="totalCount">کتابیں: 0</span>
+    <button class="reset-btn" id="resetSearchBtn"><i class="fas fa-redo-alt"></i> دوبارہ دکھائیں</button>
+  </div>
+
+  <div id="booksContainer" class="books-grid">
+    <div class="loader"><i class="fas fa-spinner"></i><br>تمام کتابیں لوڈ ہو رہی ہیں، براہ کرم انتظار کریں...</div>
+  </div>
+
+  <a href="index.html" class="home-button"><i class="fas fa-home"></i> ہوم پیج پر واپس جائیں</a>
+</main>
+
+<footer>
+  <p>© 2026 اسلامک ڈیجیٹل لائبریری | جملہ حقوق محفوظ ہیں</p>
+</footer>
+
+<script>
+const CONFIG = {
+  API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
+  MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC', // مین فولڈر آئی ڈی
+  CACHE_KEY: 'all_books_cache',
+  CACHE_EXPIRY: 3600000 // 1 گھنٹہ
+};
+
+let allBooks = [];          // اصل ڈیٹا بیس
+let filteredBooks = [];     // فلٹر شدہ
+
+// DOM عناصر
+const searchInput = document.getElementById('searchInput');
+const booksContainer = document.getElementById('booksContainer');
+const totalSpan = document.getElementById('totalCount');
+const resetBtn = document.getElementById('resetSearchBtn');
+
+// کیش سے ڈیٹا حاصل کریں
+function getCachedBooks() {
+  const cached = localStorage.getItem(CONFIG.CACHE_KEY);
+  if (!cached) return null;
+  try {
+    const { timestamp, books } = JSON.parse(cached);
+    if (Date.now() - timestamp < CONFIG.CACHE_EXPIRY) {
+      return books;
+    } else {
+      localStorage.removeItem(CONFIG.CACHE_KEY);
+    }
+  } catch (e) {}
+  return null;
+}
+
+// کیش میں محفوظ کریں
+function cacheBooks(books) {
+  const cacheObj = { timestamp: Date.now(), books };
+  localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify(cacheObj));
+}
+
+// Recursive function to get all PDF files with their paths
+async function loadAllBooks(folderId, currentPath = []) {
+  const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const files = data.files || [];
+    
+    let books = [];
+    for (const file of files) {
+      if (file.mimeType === 'application/vnd.google-apps.folder') {
+        // فولڈر ہے، اندر جائیں
+        const newPath = [...currentPath, file.name];
+        const subBooks = await loadAllBooks(file.id, newPath);
+        books = books.concat(subBooks);
+      } else if (file.name.toLowerCase().endsWith('.pdf')) {
+        // PDF فائل
+        books.push({
+          id: file.id,
+          name: file.name,
+          path: currentPath  // path array جیسے ["فقه", "نماز"]
+        });
+      }
+    }
+    return books;
+  } catch (error) {
+    console.error('Error loading folder:', folderId, error);
+    return [];
+  }
+}
+
+// تمام کتابیں لوڈ کریں (پہلے کیش چیک کریں)
+async function loadAllBooksCached() {
+  let books = getCachedBooks();
+  if (books) {
+    allBooks = books;
+    filteredBooks = [...allBooks];
+    displayBooks();
+    return;
+  }
+
+  booksContainer.innerHTML = '<div class="loader"><i class="fas fa-spinner"></i><br>پہلی بار لوڈ ہو رہا ہے، تھوڑا صبر کریں...</div>';
+  allBooks = await loadAllBooks(CONFIG.MAIN_FOLDER_ID, []);
+  cacheBooks(allBooks);
+  filteredBooks = [...allBooks];
+  displayBooks();
+}
+
+// کتابوں کو ترتیب اور ڈسپلے کریں
+function displayBooks() {
+  if (!allBooks.length) {
+    booksContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center;">کوئی کتاب نہیں ملی۔</p>';
+    totalSpan.innerText = 'کتابیں: 0';
+    return;
+  }
+
+  // ترتیب (اردو حروف تہجی کے مطابق)
+  filteredBooks.sort((a, b) => a.name.localeCompare(b.name, 'ur'));
+
+  let html = '';
+  filteredBooks.forEach(book => {
+    // راستہ بناو: ہوم / سب فولڈر / ...
+    const pathString = book.path.length ? 'ہوم / ' + book.path.join(' / ') : 'ہوم';
+    html += `
+      <div class="book-card">
+        <div class="book-icon"><i class="fas fa-file-pdf"></i></div>
+        <div class="book-title">${book.name.replace('.pdf', '')}</div>
+        <div class="book-path"><i class="fas fa-folder-open"></i> ${pathString}</div>
+        <div class="btn-group">
+          <a href="https://drive.google.com/file/d/${book.id}/view" target="_blank" class="btn btn-outline"><i class="fas fa-eye"></i> مطالعہ</a>
+          <a href="https://drive.google.com/uc?export=download&id=${book.id}" class="btn btn-fill"><i class="fas fa-download"></i> ڈاؤن لوڈ</a>
+        </div>
+      </div>
+    `;
+  });
+
+  booksContainer.innerHTML = html;
+  totalSpan.innerText = `کتابیں: ${filteredBooks.length}`;
+}
+
+// سرچ فلٹر (ریئل ٹائم)
+function filterBooks() {
+  const keyword = searchInput.value.trim().toLowerCase();
+  if (keyword === '') {
+    filteredBooks = [...allBooks];
+  } else {
+    filteredBooks = allBooks.filter(book =>
+      book.name.toLowerCase().includes(keyword)
+    );
+  }
+  displayBooks();
+}
+
+// ری سیٹ
+function resetSearch() {
+  searchInput.value = '';
+  filteredBooks = [...allBooks];
+  displayBooks();
+}
+
+// ایونٹ لسٹنر
+searchInput.addEventListener('input', filterBooks);
+resetBtn.addEventListener('click', resetSearch);
+
+// شروع کریں
+document.addEventListener('DOMContentLoaded', loadAllBooksCached);
+</script>
+
+<!-- سروس ورکر (اگر موجود ہو) -->
+<script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('PWA Service Worker Registered!'))
+        .catch(err => console.log('Service Worker Registration Failed:', err));
+    });
+  }
+</script>
+
+</body>
+</html>
