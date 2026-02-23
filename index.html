@@ -7,7 +7,7 @@
 <meta name="google-adsense-account" content="ca-pub-1417987183063486">
 
 <script>
-  const CURRENT_VERSION = "v_5.01_piro_stable"; 
+  const CURRENT_VERSION = "v_5.02_piro_professional"; 
   async function updateSiteAssets() {
     const savedVersion = localStorage.getItem('site_version');
     if (savedVersion !== CURRENT_VERSION) {
@@ -49,6 +49,11 @@ body {
   color: var(--text);
   line-height: 2;
   background-attachment: fixed;
+  /* اسلامی طرز کا ہلکا سا پیٹرن (پروفیشنل لیکن غیر نمایاں) */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.02) 0px, transparent 20%),
+    radial-gradient(circle at 90% 70%, rgba(212, 175, 55, 0.02) 0px, transparent 30%),
+    repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.01) 0px, rgba(212, 175, 55, 0.01) 2px, transparent 2px, transparent 6px);
 }
 
 /* نویگیشن */
@@ -59,7 +64,7 @@ body {
   border-bottom: 1px solid var(--border);
   padding: 15px 20px;
 }
-.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .logo { font-size: 1.5rem; color: var(--primary-gold); font-weight: bold; }
 
 /* ہیرو سیکشن */
@@ -78,19 +83,21 @@ body {
   border-radius: 15px; padding: 20px;
   transition: 0.3s; display: flex; flex-direction: column;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px);
 }
-.card:hover { transform: translateY(-5px); border-color: var(--primary-gold); background: rgba(212, 175, 55, 0.05); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15); }
+.card:hover { transform: translateY(-5px); border-color: var(--primary-gold); background: rgba(212, 175, 55, 0.08); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25); }
 
-/* لمبے ناموں کو کنٹرول کرنے کے لیے */
+/* لمبے ناموں کو کنٹرول کرنے کے لیے بہتر انداز */
 .card-title {
   font-size: 1.1rem;
   margin-bottom: 15px;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* زیادہ سے زیادہ 2 لائنیں دکھائے گا */
+  -webkit-line-clamp: 3; /* تین لائنیں دکھائی دیں گی */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.6;
+  word-break: break-word; /* ضرورت پڑنے پر الفاظ توڑے */
 }
 
 .video-frame { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; margin-bottom: 10px; }
@@ -103,15 +110,36 @@ body {
 .btn-outline:hover { background: var(--primary-gold); color: #000; }
 
 /* بریڈ کرمب */
-.breadcrumb { background: var(--glass); padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; display: inline-block; }
+.breadcrumb { background: var(--glass); padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; display: inline-block; backdrop-filter: blur(5px); border: 1px solid var(--border); }
 .breadcrumb span { cursor: pointer; color: var(--primary-gold); transition: 0.2s; }
 .breadcrumb span:hover { color: #fff; }
 .breadcrumb span::after { content: " / "; color: #fff; margin: 0 5px; }
 .breadcrumb span:last-child::after { content: ""; }
 
+/* لوڈنگ اسپنر */
+.loader {
+  text-align: center;
+  grid-column: 1/-1;
+  padding: 40px;
+}
+.loader i { font-size: 2rem; color: var(--primary-gold); animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
 footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.8; }
 
-@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+/* موبائل کے لیے مزید بہتری */
+@media (max-width: 768px) { 
+  .grid { grid-template-columns: 1fr; } 
+  .section-head { font-size: 1.5rem; }
+  .card-title { -webkit-line-clamp: 3; } /* موبائل پر بھی تین لائنیں */
+  .btn-group { flex-direction: column; }
+  .btn { width: 100%; }
+  .breadcrumb { font-size: 0.9rem; padding: 8px 15px; }
+}
+@media (max-width: 480px) {
+  .navbar .logo { font-size: 1.2rem; }
+  .hero h1 { font-size: 1.5rem; }
+}
 </style>
 </head>
 <body>
@@ -179,46 +207,77 @@ footer { text-align: center; padding: 40px; border-top: 1px solid var(--border);
 const CONFIG = {
   API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
   MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC', // اپنا مین فولڈر آئی ڈی یہاں لکھیں
-  YOUTUBE_FILE: 'youtube.json'
+  YOUTUBE_FILE: 'youtube.json',
+  CACHE_EXPIRY: 60 * 60 * 1000 // 1 گھنٹہ (ملی سیکنڈ میں)
 };
 
 let historyStack = [];
 
-// لائبریری لوڈ کرنے کا مین فنکشن
+// کیشنگ کے لیے ہیلپر فنکشن
+function getCachedData(key) {
+  const cached = localStorage.getItem(key);
+  if (!cached) return null;
+  try {
+    const { timestamp, data } = JSON.parse(cached);
+    if (Date.now() - timestamp < CONFIG.CACHE_EXPIRY) {
+      return data;
+    } else {
+      localStorage.removeItem(key); // پرانی کیش ہٹائیں
+    }
+  } catch (e) {}
+  return null;
+}
+
+function setCachedData(key, data) {
+  const cacheObj = { timestamp: Date.now(), data };
+  localStorage.setItem(key, JSON.stringify(cacheObj));
+}
+
+// لائبریری لوڈ کرنے کا مین فنکشن (کیش کے ساتھ)
 async function fetchDriveData(folderId, gridId, isMain = false) {
     const grid = document.getElementById(gridId);
-    grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">لوڈنگ جاری ہے...</p>';
+    grid.innerHTML = '<div class="loader"><i class="fas fa-spinner"></i> لوڈ ہو رہا ہے...</div>';
 
-    try {
-        const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        const files = data.files || [];
+    // کیش چیک کریں
+    const cacheKey = `folder_${folderId}`;
+    let files = getCachedData(cacheKey);
 
-        grid.innerHTML = '';
-        if (files.length === 0) { grid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">کوئی فائل نہیں ملی۔</p>'; return; }
+    if (!files) {
+        try {
+            const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            files = data.files || [];
+            setCachedData(cacheKey, files); // کیش میں محفوظ کریں
+        } catch (e) {
+            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">لوڈنگ میں مسئلہ آ رہا ہے۔ انٹرنیٹ کنیکشن چیک کریں۔</p>';
+            return;
+        }
+    }
 
-        files.forEach(file => {
-            const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
-            const card = document.createElement('div');
-            card.className = 'card';
-            
-            let icon = isFolder ? '📂' : '📄';
-            let action = isFolder ? 
-                `<button onclick="openFolder('${file.id}', '${file.name}')" class="btn btn-fill">فولڈر کھولیں</button>` :
-                `<div class="btn-group">
-                    <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="btn btn-outline">مطالعہ</a>
-                    <a href="https://drive.google.com/uc?export=download&id=${file.id}" class="btn btn-fill">ڈاؤن لوڈ</a>
-                 </div>`;
+    grid.innerHTML = '';
+    if (files.length === 0) { grid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">کوئی فائل نہیں ملی۔</p>'; return; }
 
-            card.innerHTML = `
-                <div style="font-size:2rem; margin-bottom:10px;">${icon}</div>
-                <h3 class="card-title">${file.name.replace('.pdf','')}</h3>
-                ${action}
-            `;
-            grid.appendChild(card);
-        });
-    } catch (e) { grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">لوڈنگ میں مسئلہ آ رہا ہے۔ انٹرنیٹ کنکشن چیک کریں۔</p>'; }
+    files.forEach(file => {
+        const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
+        const card = document.createElement('div');
+        card.className = 'card';
+        
+        let icon = isFolder ? '📂' : '📄';
+        let action = isFolder ? 
+            `<button onclick="openFolder('${file.id}', '${file.name.replace(/'/g, "\\'")}')" class="btn btn-fill">فولڈر کھولیں</button>` :
+            `<div class="btn-group">
+                <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="btn btn-outline">مطالعہ</a>
+                <a href="https://drive.google.com/uc?export=download&id=${file.id}" class="btn btn-fill">ڈاؤن لوڈ</a>
+             </div>`;
+
+        card.innerHTML = `
+            <div style="font-size:2rem; margin-bottom:10px;">${icon}</div>
+            <h3 class="card-title" title="${file.name.replace(/"/g, '&quot;')}">${file.name.replace('.pdf','')}</h3>
+            ${action}
+        `;
+        grid.appendChild(card);
+    });
 }
 
 // فولڈر نیویگیشن
@@ -238,6 +297,7 @@ function updateBreadcrumb() {
     historyStack.forEach((item, index) => {
         const s = document.createElement('span');
         s.innerText = item.name;
+        s.setAttribute('title', item.name);
         s.onclick = () => {
             historyStack = historyStack.slice(0, index + 1);
             openFolder(item.id, item.name);
@@ -262,7 +322,7 @@ async function loadVideos() {
         grid.innerHTML = videos.map(v => `
             <div class="card">
                 <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
-                <h3 class="card-title">${v.title}</h3>
+                <h3 class="card-title" title="${v.title}">${v.title}</h3>
             </div>
         `).join('');
     } catch (e) {
