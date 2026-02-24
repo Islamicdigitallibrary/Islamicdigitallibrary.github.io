@@ -95,7 +95,8 @@ body {
   justify-content: space-between; /* Pushes button to bottom */
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   backdrop-filter: blur(5px);
-  height: 100%; /* Ensure full height in grid */
+  height: auto; /* مسئلہ 1 کا حل: اونچائی کو آٹو کیا تاکہ بڑا نام کٹے نہ */
+  min-height: 100%; /* Ensure full height in grid */
 }
 .card:active { transform: scale(0.98); } /* Touch feedback */
 
@@ -103,12 +104,12 @@ body {
 .card-title {
   font-size: 1.1rem;
   margin-bottom: 15px;
-  /* Removed line clamp so text expands fully */
-  line-height: 1.5;
+  line-height: 1.9; /* مسئلہ 1 کا حل: اردو نستعلیق کے لیے لائنوں میں فاصلہ بڑھایا */
   word-break: break-word;
   white-space: normal;
   overflow: visible;
   height: auto;
+  min-height: min-content; /* مسئلہ 1 کا حل: اس بات کو یقینی بنایا کہ نام پورا نظر آئے */
 }
 
 .video-frame { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; margin-bottom: 10px; background: #000; }
@@ -240,6 +241,37 @@ function setCachedData(key, data) {
   }
 }
 
+// مسئلہ 2 کا حل: پس منظر میں خاموشی سے ڈیٹا اکٹھا کرنے والا فنکشن (Prefetching)
+async function prefetchFolderData(files) {
+    if (!files || !files.length) return;
+    
+    // صرف فولڈرز تلاش کریں
+    const folders = files.filter(f => f.mimeType === 'application/vnd.google-apps.folder');
+    
+    for (let i = 0; i < folders.length; i++) {
+        const folderId = folders[i].id;
+        const cacheKey = `folder_${folderId}`;
+        
+        // اگر ڈیٹا پہلے سے محفوظ نہیں ہے تو خاموشی سے لائیں
+        if (!getCachedData(cacheKey) && navigator.onLine) {
+            try {
+                const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}&orderBy=folder,name`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.files) {
+                    setCachedData(cacheKey, data.files); // ڈیٹا کیش میں سیو کر لیں
+                }
+                
+                // گوگل کی لمٹ سے بچنے کے لیے ہر فولڈر کے بعد 2 سیکنڈ کا وقفہ
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            } catch (e) {
+                console.warn("Prefetch error for folder:", folderId);
+            }
+        }
+    }
+}
+
 async function fetchDriveData(folderId, gridId, isMain = false) {
     const grid = document.getElementById(gridId);
     
@@ -253,6 +285,10 @@ async function fetchDriveData(folderId, gridId, isMain = false) {
 
     if (files) {
         renderFiles(files, grid);
+        // مسئلہ 2 کا حل: اگر کیش سے مین فولڈر لوڈ ہوا ہے تو خاموشی سے باقی فولڈرز کا ڈیٹا لائیں
+        if (isMain) {
+            setTimeout(() => prefetchFolderData(files), 3000); // 3 سیکنڈ بعد شروع کریں تاکہ ویب سائٹ فوراً کھل جائے
+        }
     }
 
     // Fetch fresh data in background if connected, or if no cache
@@ -267,6 +303,12 @@ async function fetchDriveData(folderId, gridId, isMain = false) {
             files = data.files || [];
             setCachedData(cacheKey, files);
             renderFiles(files, grid); // Re-render with fresh data
+
+            // مسئلہ 2 کا حل: اگر نیا ڈیٹا آیا ہے تو بھی پس منظر میں پری فیچنگ شروع کر دیں
+            if (isMain) {
+                setTimeout(() => prefetchFolderData(files), 3000); 
+            }
+
         } catch (e) {
             console.error("Fetch Error:", e);
             if (!files) {
