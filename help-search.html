@@ -7,7 +7,7 @@
 
 <script>
   // ورژن کنٹرول - تاکہ پرانی فائلز براؤزر میں پھنس نہ جائیں
-  const CURRENT_VERSION = "v_search_2.0_ultra_fast";
+  const CURRENT_VERSION = "v_search_2.1_ultra_fast";
   async function updateSiteAssets() {
     const savedVersion = localStorage.getItem('search_page_version');
     if (savedVersion !== CURRENT_VERSION) {
@@ -44,7 +44,7 @@ body {
   font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
   background-color: var(--bg-dark);
   color: var(--text);
-  padding-top: 140px; /* Space for fixed header */
+  padding-top: 140px; 
   background-attachment: fixed;
   background-image: 
     radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.03) 0px, transparent 20%),
@@ -88,7 +88,7 @@ body {
 }
 #searchInput {
   width: 100%;
-  padding: 12px 50px 12px 20px; /* Right padding for icon */
+  padding: 12px 50px 12px 20px; 
   border: 2px solid var(--border);
   border-radius: 50px;
   background: rgba(255,255,255,0.05);
@@ -117,7 +117,7 @@ body {
 .grid {
   display: grid;
   gap: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive Grid */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
 }
 
 .book-card {
@@ -130,14 +130,29 @@ body {
 }
 .book-card:hover { transform: translateY(-3px); border-color: var(--primary-gold); background: rgba(212,175,55,0.08); }
 
-.book-info { flex-grow: 1; }
+/* --- NEW CHANGES HERE FOR LONG TEXT --- */
+.book-info { 
+    flex: 1; 
+    min-width: 0; /* Ensures flex child allows text wrapping */
+}
 .book-title { 
-    font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; color: #fff; 
-    line-height: 1.4;
+    font-size: 1.1rem; 
+    font-weight: bold; 
+    margin-bottom: 5px; 
+    color: #fff; 
+    line-height: 1.5;
+    word-wrap: break-word; /* Forces long words to break */
+    overflow-wrap: break-word;
+    white-space: normal; /* Allows text to go to next line */
 }
 .book-path { 
-    font-size: 0.75rem; color: #888; margin-bottom: 10px; 
-    display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+    font-size: 0.75rem; 
+    color: #888; 
+    margin-bottom: 10px; 
+    display: block; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 .book-path i { color: var(--primary-gold); margin-left: 5px; }
 
@@ -146,6 +161,7 @@ body {
     flex: 1; padding: 8px; border-radius: 6px; 
     text-decoration: none; font-weight: bold; text-align: center; font-size: 0.85rem; 
     border: none; cursor: pointer; transition: 0.2s; 
+    white-space: nowrap; /* Prevents button text from breaking */
 }
 .btn-fill { background: var(--primary-gold); color: #000; }
 .btn-outline { background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); }
@@ -161,11 +177,16 @@ body {
 /* --- Mobile Tweaks --- */
 @media (max-width: 600px) {
   body { padding-top: 130px; }
-  .grid { grid-template-columns: 1fr; } /* Single column on mobile */
-  .book-card { flex-direction: row; align-items: center; gap: 10px; padding: 10px; }
+  .grid { grid-template-columns: 1fr; } 
+  .book-card { 
+      flex-direction: row; 
+      align-items: flex-start; /* Aligns items at top so buttons stay nice if text is multi-line */
+      gap: 15px; 
+      padding: 12px; 
+  }
   .book-info { text-align: right; }
-  .btn-group { flex-direction: column; min-width: 90px; }
-  .book-path { display: none; } /* Hide path on mobile to save space */
+  .btn-group { flex-direction: column; min-width: 90px; margin-top: 0; }
+  .book-path { display: none; } 
   .fixed-header { padding-bottom: 10px; }
   .search-container { padding: 0 15px; }
 }
@@ -262,11 +283,8 @@ async function fetchAllRecursive(folderId, path = "") {
             if (data.files) {
                 for (const file of data.files) {
                     if (file.mimeType === 'application/vnd.google-apps.folder') {
-                        // Go deeper (Recursive)
-                        // Note: Using await here ensures we don't spam the API too hard at once
                         await fetchAllRecursive(file.id, path ? `${path} / ${file.name}` : file.name);
                     } else if (file.name.toLowerCase().endsWith('.pdf')) {
-                        // It's a book
                         allBooks.push({
                             id: file.id,
                             name: file.name.replace('.pdf',''),
@@ -277,9 +295,8 @@ async function fetchAllRecursive(folderId, path = "") {
                 }
             }
             
-            // UI Update during fetch (Shows user it's working)
             countSpan.innerText = `${allBooks.length} کتابیں`;
-            if(allBooks.length % 50 === 0) renderBooks(allBooks); // Update UI every 50 books found
+            if(allBooks.length % 50 === 0) renderBooks(allBooks); 
 
             nextPageToken = data.nextPageToken;
         } while (nextPageToken);
@@ -288,20 +305,18 @@ async function fetchAllRecursive(folderId, path = "") {
         statusSpan.innerText = "لائن منقطع ہو گئی";
     }
 
-    // Finished
     if (folderId === CONFIG.MAIN_FOLDER_ID) {
         isScanning = false;
         statusSpan.innerHTML = '<i class="fas fa-check"></i> فہرست اپڈیٹ ہو گئی';
         statusSpan.style.color = '#4caf50';
         statusSpan.style.animation = 'none';
         
-        // Save to cache
         localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({
             timestamp: Date.now(),
             data: allBooks
         }));
         
-        renderBooks(allBooks); // Final Render
+        renderBooks(allBooks); 
     }
 }
 
@@ -312,15 +327,10 @@ function renderBooks(books) {
         return;
     }
 
-    // Sort Alphabetically
-    // Note: Doing this on every render might be slow for 1000+ items, 
-    // but useful for the final list.
     if(!isScanning) {
         books.sort((a, b) => a.name.localeCompare(b.name, 'ur'));
     }
 
-    // Limit initial display to prevent browser hang if list is huge
-    // Only showing filtered result or first 100 if searching is empty
     const displayList = searchInput.value ? books : books.slice(0, 100); 
 
     const html = displayList.map(book => `
@@ -336,7 +346,6 @@ function renderBooks(books) {
         </div>
     `).join('');
 
-    // If list is huge and truncated
     const moreMsg = (!searchInput.value && books.length > 100) 
         ? `<div style="grid-column:1/-1; text-align:center; padding:20px; color:#888;">مزید ${books.length - 100} کتابیں... تلاش کریں</div>` 
         : '';
@@ -349,7 +358,6 @@ function renderBooks(books) {
 searchInput.addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
     if (term.length < 2) {
-        // If search is cleared, show initial 100
         renderBooks(allBooks); 
         return;
     }
