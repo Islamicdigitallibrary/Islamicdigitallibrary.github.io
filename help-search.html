@@ -27,7 +27,7 @@
     font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
     background-color: var(--bg-deep);
     color: var(--text-light);
-    padding-top: 140px; /* space for fixed header (filter removed) */
+    padding-top: 140px;
     background-image: 
       radial-gradient(circle at 10% 20%, rgba(229,192,92,0.06), transparent 30%),
       radial-gradient(circle at 90% 70%, rgba(229,192,92,0.06), transparent 30%);
@@ -36,7 +36,7 @@
     line-height: 1.6;
   }
 
-  /* --- GOOGLE TRANSLATE CUSTOM (full language visibility) --- */
+  /* --- GOOGLE TRANSLATE CUSTOM (تمام زبانیں، مکمل نمائش) --- */
   body { top: 0 !important; }
   .skiptranslate iframe { display: none !important; }
   #goog-gt-tt, .goog-te-banner-frame { display: none !important; }
@@ -59,13 +59,13 @@
     border-radius: 40px !important;
     padding: 8px 28px 8px 18px !important;
     font-family: 'Amiri', serif !important;
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;  /* تھوڑا چھوٹا سائز */
     font-weight: 400;
     outline: none;
     cursor: pointer;
     width: auto !important;
-    min-width: 220px !important;
-    max-width: 320px !important;  /* expanded for all language names */
+    min-width: 280px !important;     /* بڑھائی گئی چوڑائی */
+    max-width: 360px !important;      /* زیادہ سے زیادہ چوڑائی */
     backdrop-filter: blur(8px);
     -webkit-appearance: none;
     appearance: none;
@@ -81,11 +81,14 @@
     box-shadow: 0 0 12px var(--primary-glow);
     background-color: rgba(20, 30, 50, 0.9) !important;
   }
+  /* ڈراپ ڈاؤن آپشنز کا انداز */
   .goog-te-gadget .goog-te-combo option {
     background: #1a1f2f;
     color: white;
-    font-size: 0.95rem;
-    padding: 5px;
+    font-size: 0.85rem;        /* چھوٹا سائز تاکہ تمام زبانیں نظر آئیں */
+    padding: 8px;
+    white-space: normal;        /* لمبے نام لپیٹنے کی اجازت */
+    line-height: 1.4;
   }
 
   /* --- FIXED HEADER --- */
@@ -130,7 +133,7 @@
     color: #f5d97a;
   }
 
-  /* search area */
+  /* سرچ بار */
   .search-container {
     max-width: 900px;
     margin: 12px auto 8px;
@@ -189,7 +192,7 @@
     font-size: 1rem;
   }
 
-  /* stats bar */
+  /* شماریات بار */
   .stats-bar {
     display: flex;
     justify-content: space-between;
@@ -205,7 +208,7 @@
     margin-left: 5px;
   }
 
-  /* main grid */
+  /* کتابوں کا گرڈ */
   .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -217,7 +220,6 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 
-  /* book cards – more premium */
   .book-card {
     background: var(--glass-bg);
     border: 1px solid var(--border-soft);
@@ -280,7 +282,6 @@
     border: 1px dashed var(--border-soft);
   }
 
-  /* buttons */
   .btn-group {
     display: flex;
     gap: 10px;
@@ -324,7 +325,6 @@
     color: #f5da7a;
   }
 
-  /* message boxes */
   .message-box {
     text-align: center;
     padding: 50px 20px;
@@ -361,13 +361,17 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* --- RESPONSIVE PROFESSIONAL TOUCHES --- */
+  /* موبائل کے لیے مزید بہتریاں */
   @media (max-width: 700px) {
-    body { padding-top: 160px; }  /* adjusted for mobile */
+    body { padding-top: 160px; }
     .navbar { flex-direction: column; align-items: stretch; }
     .logo { justify-content: center; font-size: 1.4rem; }
     #google_translate_element { display: flex; justify-content: center; margin-top: 5px; }
-    .goog-te-gadget .goog-te-combo { min-width: 260px !important; font-size: 0.95rem !important; }
+    .goog-te-gadget .goog-te-combo {
+      min-width: 260px !important;
+      font-size: 0.85rem !important;
+      max-width: 300px !important;
+    }
     .stats-bar { flex-direction: column; align-items: center; gap: 5px; }
   }
 
@@ -395,7 +399,6 @@
     <i class="fas fa-times-circle clear-icon" id="clearSearch" title="صاف کریں"></i>
   </div>
 
-  <!-- stats bar only (alphabet filter removed per user request) -->
   <div class="stats-bar">
     <span id="loadingStatus"><span class="loader"></span> لوڈ ہو رہا ہے...</span>
     <span id="totalCount">0 کتابیں</span>
@@ -406,14 +409,14 @@
   <div id="booksGrid" class="grid"></div>
 </main>
 
-<!-- Google Translate API - now with ALL languages (no restriction) -->
+<!-- Google Translate API - تمام زبانیں شامل -->
 <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'ur',
       layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       autoDisplay: false
-      // 'includedLanguages' removed to show all world languages
+      // کوئی پابندی نہیں، تمام زبانیں دکھائی دیں گی
     }, 'google_translate_element');
   }
 </script>
@@ -421,7 +424,6 @@
 
 <script>
 (function() {
-  // ----- CONFIG -----
   const CONFIG = {
     API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
     MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC',
@@ -430,16 +432,14 @@
   };
 
   let allBooks = [];
-  let currentSearchTerm = '';   // removed letter filter
+  let currentSearchTerm = '';
 
-  // DOM elements
   const gridEl = document.getElementById('booksGrid');
   const searchInput = document.getElementById('searchInput');
   const clearIcon = document.getElementById('clearSearch');
   const loadingSpan = document.getElementById('loadingStatus');
   const totalSpan = document.getElementById('totalCount');
 
-  // ----- HELPER: Edit distance (for suggestions) -----
   function getEditDistance(a, b) {
     if (a.length === 0) return b.length;
     if (b.length === 0) return a.length;
@@ -462,38 +462,27 @@
     return matrix[b.length][a.length];
   }
 
-  // ----- FILTER LOGIC (only by search term, no letter filter) -----
   function getFilteredBooks() {
     let filtered = allBooks;
-
-    // If search term length < 2, return all (filtered)
     if (currentSearchTerm.length < 2) {
       return filtered;
     }
-
     const term = currentSearchTerm.toLowerCase().trim();
-
-    // exact matches (includes term)
     const exact = filtered.filter(book => book.name.toLowerCase().includes(term));
-
     if (exact.length > 0) {
-      return exact;   // show exact matches
+      return exact;
     } else {
-      // suggestions based on edit distance
-      const suggestions = filtered.map(book => {
-        return {
-          ...book,
-          score: getEditDistance(term, book.name.toLowerCase().substring(0, term.length))
-        };
-      })
+      const suggestions = filtered.map(book => ({
+        ...book,
+        score: getEditDistance(term, book.name.toLowerCase().substring(0, term.length))
+      }))
       .sort((a, b) => a.score - b.score)
       .slice(0, 6)
-      .filter(s => s.score <= term.length + 2);  // reasonable fuzziness
+      .filter(s => s.score <= term.length + 2);
       return suggestions;
     }
   }
 
-  // ----- RENDER -----
   function renderBooks() {
     const filtered = getFilteredBooks();
     const isSuggestion = (currentSearchTerm.length >= 2 && 
@@ -515,8 +504,7 @@
 
     let html = isSuggestion ? `<div class="suggestions-title"><i class="fas fa-lightbulb"></i> مطلوبہ کتاب نہیں، کیا ان میں سے کوئی مقصود ہے؟</div>` : '';
 
-    const displayBooks = filtered.slice(0, 150); // limit for performance
-
+    const displayBooks = filtered.slice(0, 150);
     html += displayBooks.map(book => `
       <div class="book-card">
         <div class="book-info">
@@ -537,14 +525,12 @@
     gridEl.innerHTML = html;
   }
 
-  // ----- EVENT: search input -----
   searchInput.addEventListener('input', (e) => {
     currentSearchTerm = e.target.value;
     clearIcon.style.display = currentSearchTerm.length > 0 ? 'block' : 'none';
     renderBooks();
   });
 
-  // ----- EVENT: clear search -----
   clearIcon.addEventListener('click', () => {
     searchInput.value = '';
     currentSearchTerm = '';
@@ -553,7 +539,6 @@
     searchInput.focus();
   });
 
-  // ----- FETCH DATA (recursive drive loader) -----
   async function fetchAllRecursive(folderId, path = "") {
     let nextPageToken = null;
     let subFolders = [];
@@ -580,14 +565,12 @@
         nextPageToken = data.nextPageToken;
       } while (nextPageToken);
 
-      // recursively process subfolders
       if (subFolders.length > 0) {
         await Promise.all(subFolders.map(folder =>
           fetchAllRecursive(folder.id, path ? `${path} / ${folder.name}` : folder.name)
         ));
       }
 
-      // after all fetched, sort alphabetically and render
       allBooks.sort((a, b) => a.name.localeCompare(b.name, 'ur'));
       localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data: allBooks }));
       loadingSpan.innerHTML = '<i class="fas fa-check-circle" style="color:#2ecc71;"></i> اپ ڈیٹ ہوگیا';
@@ -595,12 +578,10 @@
     } catch (e) {
       console.error("Drive fetch error:", e);
       loadingSpan.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#e74c3c;"></i> مسئلہ';
-      // still try to render whatever we have
       renderBooks();
     }
   }
 
-  // load from cache or start fetch
   async function loadFromCacheOrFetch() {
     const cached = localStorage.getItem(CONFIG.CACHE_KEY);
     if (cached) {
@@ -616,7 +597,6 @@
     await fetchAllRecursive(CONFIG.MAIN_FOLDER_ID);
   }
 
-  // start
   loadFromCacheOrFetch();
 })();
 </script>
