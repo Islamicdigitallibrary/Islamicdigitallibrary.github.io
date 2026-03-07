@@ -27,7 +27,7 @@
     font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
     background-color: var(--bg-deep);
     color: var(--text-light);
-    padding-top: 165px; /* room for fixed header + filter */
+    padding-top: 140px; /* space for fixed header (filter removed) */
     background-image: 
       radial-gradient(circle at 10% 20%, rgba(229,192,92,0.06), transparent 30%),
       radial-gradient(circle at 90% 70%, rgba(229,192,92,0.06), transparent 30%);
@@ -64,8 +64,8 @@
     outline: none;
     cursor: pointer;
     width: auto !important;
-    min-width: 180px !important;
-    max-width: 260px !important;
+    min-width: 220px !important;
+    max-width: 320px !important;  /* expanded for all language names */
     backdrop-filter: blur(8px);
     -webkit-appearance: none;
     appearance: none;
@@ -99,7 +99,7 @@
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-soft);
-    padding: 12px 0 12px 0;
+    padding: 12px 0 8px 0;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   }
 
@@ -133,7 +133,7 @@
   /* search area */
   .search-container {
     max-width: 900px;
-    margin: 15px auto 8px;
+    margin: 12px auto 8px;
     padding: 0 20px;
     position: relative;
   }
@@ -189,62 +189,12 @@
     font-size: 1rem;
   }
 
-  /* --- NEW ALPHABET FILTER BAR (Urdu) --- */
-  .alphabet-filter {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px 8px;
-    max-width: 1100px;
-    margin: 15px auto 5px;
-    padding: 0 15px;
-  }
-  .letter-btn {
-    background: rgba(20, 30, 45, 0.7);
-    border: 1px solid var(--border-soft);
-    color: var(--text-dim);
-    font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
-    font-size: 1.3rem;
-    font-weight: 500;
-    min-width: 44px;
-    height: 44px;
-    border-radius: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 8px;
-    cursor: pointer;
-    transition: var(--transition);
-    backdrop-filter: blur(4px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    line-height: 1;
-  }
-  .letter-btn:hover {
-    border-color: var(--primary-gold);
-    color: #f5e1a0;
-    background: rgba(229, 192, 92, 0.15);
-    transform: translateY(-2px);
-  }
-  .letter-btn.active {
-    background: var(--primary-gold);
-    color: #0a1020;
-    border-color: var(--primary-gold);
-    font-weight: 700;
-    box-shadow: 0 0 15px #e5c05c;
-  }
-  .letter-btn.all-btn {
-    font-size: 1rem;
-    min-width: 60px;
-    background: rgba(0,0,0,0.3);
-    border-color: #5f6a80;
-  }
-
   /* stats bar */
   .stats-bar {
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
-    margin: 8px auto 0;
+    margin: 10px auto 0;
     padding: 0 20px;
     font-size: 1rem;
     color: var(--text-dim);
@@ -411,15 +361,13 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* --- RESPONSIVE TWEAKS --- */
+  /* --- RESPONSIVE PROFESSIONAL TOUCHES --- */
   @media (max-width: 700px) {
-    body { padding-top: 190px; }
+    body { padding-top: 160px; }  /* adjusted for mobile */
     .navbar { flex-direction: column; align-items: stretch; }
     .logo { justify-content: center; font-size: 1.4rem; }
     #google_translate_element { display: flex; justify-content: center; margin-top: 5px; }
-    .goog-te-gadget .goog-te-combo { min-width: 240px !important; font-size: 0.95rem !important; }
-    .alphabet-filter { gap: 4px; }
-    .letter-btn { min-width: 38px; height: 38px; font-size: 1.1rem; }
+    .goog-te-gadget .goog-te-combo { min-width: 260px !important; font-size: 0.95rem !important; }
     .stats-bar { flex-direction: column; align-items: center; gap: 5px; }
   }
 
@@ -427,8 +375,9 @@
     .grid { gap: 15px; }
     .book-card { padding: 16px; }
     .btn-group { flex-direction: column; }
-    .alphabet-filter .letter-btn { min-width: 32px; height: 32px; font-size: 1rem; }
     .logo { font-size: 1.2rem; }
+    .goog-te-gadget .goog-te-combo { min-width: 240px !important; }
+    body { padding-top: 170px; }
   }
 </style>
 </head>
@@ -446,47 +395,7 @@
     <i class="fas fa-times-circle clear-icon" id="clearSearch" title="صاف کریں"></i>
   </div>
 
-  <!-- Urdu Alphabet Filter (professional) -->
-  <div class="alphabet-filter" id="alphabetFilter">
-    <button class="letter-btn all-btn active" data-letter="all">تمام</button>
-    <button class="letter-btn" data-letter="ا">ا</button>
-    <button class="letter-btn" data-letter="ب">ب</button>
-    <button class="letter-btn" data-letter="پ">پ</button>
-    <button class="letter-btn" data-letter="ت">ت</button>
-    <button class="letter-btn" data-letter="ٹ">ٹ</button>
-    <button class="letter-btn" data-letter="ث">ث</button>
-    <button class="letter-btn" data-letter="ج">ج</button>
-    <button class="letter-btn" data-letter="چ">چ</button>
-    <button class="letter-btn" data-letter="ح">ح</button>
-    <button class="letter-btn" data-letter="خ">خ</button>
-    <button class="letter-btn" data-letter="د">د</button>
-    <button class="letter-btn" data-letter="ڈ">ڈ</button>
-    <button class="letter-btn" data-letter="ذ">ذ</button>
-    <button class="letter-btn" data-letter="ر">ر</button>
-    <button class="letter-btn" data-letter="ڑ">ڑ</button>
-    <button class="letter-btn" data-letter="ز">ز</button>
-    <button class="letter-btn" data-letter="ژ">ژ</button>
-    <button class="letter-btn" data-letter="س">س</button>
-    <button class="letter-btn" data-letter="ش">ش</button>
-    <button class="letter-btn" data-letter="ص">ص</button>
-    <button class="letter-btn" data-letter="ض">ض</button>
-    <button class="letter-btn" data-letter="ط">ط</button>
-    <button class="letter-btn" data-letter="ظ">ظ</button>
-    <button class="letter-btn" data-letter="ع">ع</button>
-    <button class="letter-btn" data-letter="غ">غ</button>
-    <button class="letter-btn" data-letter="ف">ف</button>
-    <button class="letter-btn" data-letter="ق">ق</button>
-    <button class="letter-btn" data-letter="ک">ک</button>
-    <button class="letter-btn" data-letter="گ">گ</button>
-    <button class="letter-btn" data-letter="ل">ل</button>
-    <button class="letter-btn" data-letter="م">م</button>
-    <button class="letter-btn" data-letter="ن">ن</button>
-    <button class="letter-btn" data-letter="و">و</button>
-    <button class="letter-btn" data-letter="ہ">ہ</button>
-    <button class="letter-btn" data-letter="ی">ی</button>
-    <button class="letter-btn" data-letter="ے">ے</button>
-  </div>
-
+  <!-- stats bar only (alphabet filter removed per user request) -->
   <div class="stats-bar">
     <span id="loadingStatus"><span class="loader"></span> لوڈ ہو رہا ہے...</span>
     <span id="totalCount">0 کتابیں</span>
@@ -497,14 +406,14 @@
   <div id="booksGrid" class="grid"></div>
 </main>
 
-<!-- Google Translate API -->
+<!-- Google Translate API - now with ALL languages (no restriction) -->
 <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'ur',
-      includedLanguages: 'ur,en,ar,fa,fr,de,es,tr,id,bn,hi,ru,zh-CN,ja', // common + more
       layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       autoDisplay: false
+      // 'includedLanguages' removed to show all world languages
     }, 'google_translate_element');
   }
 </script>
@@ -521,8 +430,7 @@
   };
 
   let allBooks = [];
-  let currentLetter = 'all';        // active letter filter
-  let currentSearchTerm = '';
+  let currentSearchTerm = '';   // removed letter filter
 
   // DOM elements
   const gridEl = document.getElementById('booksGrid');
@@ -530,7 +438,6 @@
   const clearIcon = document.getElementById('clearSearch');
   const loadingSpan = document.getElementById('loadingStatus');
   const totalSpan = document.getElementById('totalCount');
-  const letterButtons = document.querySelectorAll('.letter-btn');
 
   // ----- HELPER: Edit distance (for suggestions) -----
   function getEditDistance(a, b) {
@@ -555,19 +462,11 @@
     return matrix[b.length][a.length];
   }
 
-  // ----- FILTER LOGIC (by letter + search term) -----
+  // ----- FILTER LOGIC (only by search term, no letter filter) -----
   function getFilteredBooks() {
     let filtered = allBooks;
 
-    // 1) Filter by letter if not 'all'
-    if (currentLetter !== 'all') {
-      filtered = filtered.filter(book => {
-        const firstChar = book.name.charAt(0);
-        return firstChar === currentLetter;
-      });
-    }
-
-    // 2) If search term length < 2, return filtered (no search)
+    // If search term length < 2, return all (filtered)
     if (currentSearchTerm.length < 2) {
       return filtered;
     }
@@ -580,7 +479,7 @@
     if (exact.length > 0) {
       return exact;   // show exact matches
     } else {
-      // suggestions based on edit distance (from filtered set)
+      // suggestions based on edit distance
       const suggestions = filtered.map(book => {
         return {
           ...book,
@@ -608,7 +507,7 @@
         <div class="message-box">
           <i class="fas fa-book-open"></i>
           <h3>کتاب نہیں ملی</h3>
-          <p>اس زمرے یا حرف میں کوئی کتاب نہیں ہے۔ دوسرا حرف آزمائیں۔</p>
+          <p>آپ کی تلاش کے مطابق کوئی کتاب نہیں مل سکی۔ دوسرے الفاظ آزمائیں۔</p>
         </div>
       `;
       return;
@@ -637,28 +536,6 @@
 
     gridEl.innerHTML = html;
   }
-
-  // ----- ALPHABET BUTTON ACTIVE TOGGLE -----
-  function setActiveLetter(letter) {
-    letterButtons.forEach(btn => {
-      const btnLetter = btn.dataset.letter;
-      if (btnLetter === letter) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-  }
-
-  // ----- EVENT: letter click -----
-  letterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const letter = btn.dataset.letter;
-      currentLetter = letter;
-      setActiveLetter(letter);
-      renderBooks();
-    });
-  });
 
   // ----- EVENT: search input -----
   searchInput.addEventListener('input', (e) => {
