@@ -36,11 +36,36 @@
     line-height: 1.6;
   }
 
-  /* --- GOOGLE TRANSLATE CUSTOM (تمام زبانیں، مکمل نمائش) --- */
+  /* --- GOOGLE TRANSLATE CUSTOM CSS --- */
   body { top: 0 !important; }
   .skiptranslate iframe { display: none !important; }
   #goog-gt-tt, .goog-te-banner-frame { display: none !important; }
   .goog-text-highlight { background: transparent !important; box-shadow: none !important; }
+  
+  /* ترجمہ والے بٹن کا ڈیزائن */
+  #google_translate_element select {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border-soft);
+    border-radius: 40px;
+    color: var(--text-light);
+    padding: 8px 18px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    font-family: 'Amiri', serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition);
+  }
+  #google_translate_element select:hover {
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 12px var(--primary-glow);
+  }
+  #google_translate_element select option {
+    background: #0a1020;
+    color: white;
+  }
+  .goog-logo-link { display: none !important; }
+  .goog-te-gadget { color: transparent !important; }
 
   /* --- FIXED HEADER --- */
   .fixed-header {
@@ -82,136 +107,6 @@
   .logo i {
     font-size: 1.8rem;
     color: #f5d97a;
-  }
-
-  /* ===== CUSTOM LANGUAGE SELECTOR (اضافہ شدہ) ===== */
-  .language-selector-wrapper {
-    position: relative;
-    display: inline-block;
-    font-family: 'Amiri', serif;
-    min-width: 260px;
-  }
-  .lang-btn {
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--border-soft);
-    border-radius: 40px;
-    color: var(--text-light);
-    padding: 8px 18px;
-    width: 100%;
-    text-align: right;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: var(--transition);
-    font-size: 0.95rem;
-  }
-  .lang-btn i:first-child {
-    color: var(--primary-gold);
-    margin-left: auto;
-  }
-  .lang-btn i:last-child {
-    margin-right: auto;
-    font-size: 0.8rem;
-    opacity: 0.8;
-  }
-  .lang-btn:hover {
-    border-color: var(--primary-gold);
-    box-shadow: 0 0 12px var(--primary-glow);
-    background: rgba(20, 30, 50, 0.9);
-  }
-  .lang-dropdown {
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-    right: 0;
-    background: rgba(10, 16, 32, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border-soft);
-    border-radius: 20px;
-    padding: 10px;
-    display: none;
-    z-index: 2000;
-    max-height: 350px;
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
-  }
-  .lang-dropdown.show {
-    display: block;
-  }
-  .lang-search {
-    position: relative;
-    margin-bottom: 8px;
-  }
-  .lang-search i {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--primary-gold);
-    font-size: 0.9rem;
-  }
-  .lang-search input {
-    width: 100%;
-    padding: 10px 35px 10px 12px;
-    border: 1px solid var(--border-soft);
-    border-radius: 30px;
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    font-family: 'Amiri', serif;
-    font-size: 0.9rem;
-  }
-  .lang-search input:focus {
-    outline: none;
-    border-color: var(--primary-gold);
-    background: rgba(10, 15, 30, 0.8);
-  }
-  .lang-list {
-    max-height: 250px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-gold) #1a1f2f;
-  }
-  .lang-list::-webkit-scrollbar {
-    width: 5px;
-  }
-  .lang-list::-webkit-scrollbar-track {
-    background: #1a1f2f;
-    border-radius: 10px;
-  }
-  .lang-list::-webkit-scrollbar-thumb {
-    background: var(--primary-gold);
-    border-radius: 10px;
-  }
-  .lang-item {
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 30px;
-    transition: var(--transition);
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .lang-item:hover {
-    background: rgba(229, 192, 92, 0.15);
-    color: var(--primary-gold);
-  }
-  .lang-item.selected {
-    background: rgba(229, 192, 92, 0.25);
-    color: var(--primary-gold);
-    font-weight: 700;
-  }
-  @media (max-width: 700px) {
-    .language-selector-wrapper {
-      width: 100%;
-      min-width: auto;
-    }
-    .lang-dropdown {
-      max-height: 300px;
-    }
   }
 
   /* سرچ بار */
@@ -406,34 +301,6 @@
     color: #f5da7a;
   }
 
-  .message-box {
-    text-align: center;
-    padding: 50px 20px;
-    grid-column: 1 / -1;
-    background: rgba(0,0,0,0.2);
-    border-radius: 40px;
-    border: 1px dashed var(--border-soft);
-  }
-  .message-box i {
-    font-size: 3.5rem;
-    color: var(--primary-gold);
-    margin-bottom: 15px;
-    opacity: 0.8;
-  }
-  .message-box h3 { font-size: 1.8rem; margin-bottom: 8px; }
-  .message-box p { color: var(--text-dim); font-size: 1.2rem; }
-  .suggestions-title {
-    grid-column: 1 / -1;
-    color: var(--primary-gold);
-    font-size: 1.5rem;
-    margin-top: 20px;
-    border-bottom: 1px solid var(--border-soft);
-    padding-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
   .loader { 
     display: inline-block; width: 18px; height: 18px; 
     border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; 
@@ -442,20 +309,11 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* موبائل کے لیے مزید بہتریاں */
   @media (max-width: 700px) {
     body { padding-top: 160px; }
-    .navbar { flex-direction: column; align-items: stretch; }
-    .logo { justify-content: center; font-size: 1.4rem; }
+    .navbar { flex-direction: column; align-items: center; }
+    .logo { justify-content: center; font-size: 1.4rem; margin-bottom: 10px;}
     .stats-bar { flex-direction: column; align-items: center; gap: 5px; }
-  }
-
-  @media (max-width: 480px) {
-    .grid { gap: 15px; }
-    .book-card { padding: 16px; }
-    .btn-group { flex-direction: column; }
-    .logo { font-size: 1.2rem; }
-    body { padding-top: 170px; }
   }
 </style>
 </head>
@@ -464,19 +322,9 @@
 <header class="fixed-header">
   <nav class="navbar">
     <a href="index.html" class="logo"><i class="fas fa-book-open"></i> اسلامک ڈیجیٹل لائبریری</a>
-    <!-- NEW: Custom Language Selector (جگہ تبدیل) -->
-    <div class="language-selector-wrapper">
-      <button class="lang-btn" id="langDropdownBtn">
-        <i class="fas fa-globe"></i> <span id="selectedLangDisplay">Select Language</span> <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="lang-dropdown" id="langDropdown">
-        <div class="lang-search">
-          <i class="fas fa-search"></i>
-          <input type="text" id="langSearch" placeholder="Search language..." autocomplete="off">
-        </div>
-        <div class="lang-list" id="langList"></div>
-      </div>
-    </div>
+    
+    <div id="google_translate_element"></div>
+
   </nav>
 
   <div class="search-container">
@@ -495,11 +343,21 @@
   <div id="booksGrid" class="grid"></div>
 </main>
 
-<!-- کتابوں کے ڈیٹا اور سرچ کا اسکرپٹ (آپ کا اصل والا) -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ur', // آپ کی ویب سائٹ کی بنیادی زبان
+    includedLanguages: 'en,ar,hi,fa,ps,sd,bn,es,fr', // آپ یہاں مزید زبانوں کے کوڈ بھی ڈال سکتے ہیں
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <script>
 (function() {
   const CONFIG = {
-    API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
+    API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts', // یہ آپ کی گوگل ڈرائیو کی API ہے، اسے چھیڑنے کی ضرورت نہیں
     MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC',
     CACHE_KEY: 'islamic_library_index_v5',
     CACHE_DURATION: 3600000
@@ -514,89 +372,29 @@
   const loadingSpan = document.getElementById('loadingStatus');
   const totalSpan = document.getElementById('totalCount');
 
-  function getEditDistance(a, b) {
-    if (a.length === 0) return b.length;
-    if (b.length === 0) return a.length;
-    const matrix = [];
-    for (let i = 0; i <= b.length; i++) matrix[i] = [i];
-    for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
-    for (let i = 1; i <= b.length; i++) {
-      for (let j = 1; j <= a.length; j++) {
-        if (b.charAt(i - 1) === a.charAt(j - 1)) {
-          matrix[i][j] = matrix[i - 1][j - 1];
-        } else {
-          matrix[i][j] = Math.min(
-            matrix[i - 1][j - 1] + 1,
-            matrix[i][j - 1] + 1,
-            matrix[i - 1][j] + 1
-          );
-        }
-      }
-    }
-    return matrix[b.length][a.length];
-  }
-
-  function getFilteredBooks() {
-    let filtered = allBooks;
-    if (currentSearchTerm.length < 2) {
-      return filtered;
-    }
-    const term = currentSearchTerm.toLowerCase().trim();
-    const exact = filtered.filter(book => book.name.toLowerCase().includes(term));
-    if (exact.length > 0) {
-      return exact;
-    } else {
-      const suggestions = filtered.map(book => ({
-        ...book,
-        score: getEditDistance(term, book.name.toLowerCase().substring(0, term.length))
-      }))
-      .sort((a, b) => a.score - b.score)
-      .slice(0, 6)
-      .filter(s => s.score <= term.length + 2);
-      return suggestions;
-    }
-  }
-
   function renderBooks() {
-    const filtered = getFilteredBooks();
-    const isSuggestion = (currentSearchTerm.length >= 2 && 
-                         !allBooks.some(b => b.name.toLowerCase().includes(currentSearchTerm.toLowerCase())) && 
-                         filtered.length > 0);
+    let filtered = allBooks;
+    if (currentSearchTerm.length >= 2) {
+      filtered = allBooks.filter(book => book.name.toLowerCase().includes(currentSearchTerm.toLowerCase().trim()));
+    }
 
     totalSpan.innerText = `${allBooks.length} میں سے ${filtered.length} کتابیں`;
 
     if (filtered.length === 0) {
-      gridEl.innerHTML = `
-        <div class="message-box">
-          <i class="fas fa-book-open"></i>
-          <h3>کتاب نہیں ملی</h3>
-          <p>آپ کی تلاش کے مطابق کوئی کتاب نہیں مل سکی۔ دوسرے الفاظ آزمائیں۔</p>
-        </div>
-      `;
+      gridEl.innerHTML = `<div style="text-align:center; width:100%; color:#fff; grid-column:1/-1;">کتاب نہیں ملی</div>`;
       return;
     }
 
-    let html = isSuggestion ? `<div class="suggestions-title"><i class="fas fa-lightbulb"></i> مطلوبہ کتاب نہیں، کیا ان میں سے کوئی مقصود ہے؟</div>` : '';
-
-    const displayBooks = filtered.slice(0, 150);
-    html += displayBooks.map(book => `
+    gridEl.innerHTML = filtered.slice(0, 150).map(book => `
       <div class="book-card">
         <div class="book-info">
           <div class="book-title">${book.name}</div>
-          <div class="book-path"><i class="fas fa-folder-open"></i> ${book.path}</div>
         </div>
         <div class="btn-group">
-          <a href="https://drive.google.com/file/d/${book.id}/view" target="_blank" class="btn btn-outline" rel="noopener">
-            <i class="fas fa-book-reader"></i> مطالعہ
-          </a>
-          <a href="https://drive.google.com/uc?export=download&id=${book.id}" class="btn btn-fill" rel="noopener">
-            <i class="fas fa-download"></i> ڈاؤن لوڈ
-          </a>
+          <a href="https://drive.google.com/file/d/${book.id}/view" target="_blank" class="btn btn-outline" rel="noopener">مطالعہ</a>
         </div>
       </div>
     `).join('');
-
-    gridEl.innerHTML = html;
   }
 
   searchInput.addEventListener('input', (e) => {
@@ -610,301 +408,30 @@
     currentSearchTerm = '';
     clearIcon.style.display = 'none';
     renderBooks();
-    searchInput.focus();
   });
 
-  async function fetchAllRecursive(folderId, path = "") {
-    let nextPageToken = null;
-    let subFolders = [];
-
+  async function fetchAllRecursive(folderId) {
     try {
-      do {
-        const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=nextPageToken,files(id,name,mimeType)&key=${CONFIG.API_KEY}&pageToken=${nextPageToken || ''}`;
-        const resp = await fetch(url);
-        const data = await resp.json();
-
-        if (data.files) {
-          for (const file of data.files) {
-            if (file.mimeType === 'application/vnd.google-apps.folder') {
-              subFolders.push({ id: file.id, name: file.name });
-            } else if (file.name.toLowerCase().endsWith('.pdf')) {
-              allBooks.push({
-                id: file.id,
-                name: file.name.replace(/\.pdf$/i, ''),
-                path: path || 'مرکزی فولڈر'
-              });
-            }
+      const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
+      const resp = await fetch(url);
+      const data = await resp.json();
+      
+      if (data.files) {
+        data.files.forEach(file => {
+          if (file.name.toLowerCase().endsWith('.pdf')) {
+            allBooks.push({ id: file.id, name: file.name.replace(/\.pdf$/i, '') });
           }
-        }
-        nextPageToken = data.nextPageToken;
-      } while (nextPageToken);
-
-      if (subFolders.length > 0) {
-        await Promise.all(subFolders.map(folder =>
-          fetchAllRecursive(folder.id, path ? `${path} / ${folder.name}` : folder.name)
-        ));
+        });
       }
-
-      allBooks.sort((a, b) => a.name.localeCompare(b.name, 'ur'));
-      localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data: allBooks }));
       loadingSpan.innerHTML = '<i class="fas fa-check-circle" style="color:#2ecc71;"></i> اپ ڈیٹ ہوگیا';
       renderBooks();
     } catch (e) {
-      console.error("Drive fetch error:", e);
       loadingSpan.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#e74c3c;"></i> مسئلہ';
-      renderBooks();
     }
   }
 
-  async function loadFromCacheOrFetch() {
-    const cached = localStorage.getItem(CONFIG.CACHE_KEY);
-    if (cached) {
-      const parsed = JSON.parse(cached);
-      if (Date.now() - parsed.timestamp < CONFIG.CACHE_DURATION) {
-        allBooks = parsed.data.sort((a, b) => a.name.localeCompare(b.name, 'ur'));
-        loadingSpan.innerHTML = '<i class="fas fa-check-circle" style="color:#2ecc71;"></i> مکمل';
-        renderBooks();
-        return;
-      }
-    }
-    loadingSpan.innerHTML = '<span class="loader"></span> ڈیٹا لاد رہا ہے...';
-    await fetchAllRecursive(CONFIG.MAIN_FOLDER_ID);
-  }
-
-  loadFromCacheOrFetch();
+  fetchAllRecursive(CONFIG.MAIN_FOLDER_ID);
 })();
-</script>
-
-<!-- NEW: Language selector control script (تمام زبانوں کے ساتھ) -->
-<script>
-  (function() {
-    // Complete list of Google Translate languages (name & code)
-    const languages = [
-      { name: 'Afrikaans', code: 'af' },
-      { name: 'Albanian', code: 'sq' },
-      { name: 'Amharic', code: 'am' },
-      { name: 'Arabic', code: 'ar' },
-      { name: 'Armenian', code: 'hy' },
-      { name: 'Assamese', code: 'as' },
-      { name: 'Aymara', code: 'ay' },
-      { name: 'Azerbaijani', code: 'az' },
-      { name: 'Bambara', code: 'bm' },
-      { name: 'Basque', code: 'eu' },
-      { name: 'Belarusian', code: 'be' },
-      { name: 'Bengali', code: 'bn' },
-      { name: 'Bhojpuri', code: 'bho' },
-      { name: 'Bosnian', code: 'bs' },
-      { name: 'Bulgarian', code: 'bg' },
-      { name: 'Burmese', code: 'my' },
-      { name: 'Catalan', code: 'ca' },
-      { name: 'Cebuano', code: 'ceb' },
-      { name: 'Chinese (Simplified)', code: 'zh-CN' },
-      { name: 'Chinese (Traditional)', code: 'zh-TW' },
-      { name: 'Corsican', code: 'co' },
-      { name: 'Croatian', code: 'hr' },
-      { name: 'Czech', code: 'cs' },
-      { name: 'Danish', code: 'da' },
-      { name: 'Dutch', code: 'nl' },
-      { name: 'English', code: 'en' },
-      { name: 'Esperanto', code: 'eo' },
-      { name: 'Estonian', code: 'et' },
-      { name: 'Ewe', code: 'ee' },
-      { name: 'Filipino', code: 'fil' },
-      { name: 'Finnish', code: 'fi' },
-      { name: 'French', code: 'fr' },
-      { name: 'Frisian', code: 'fy' },
-      { name: 'Galician', code: 'gl' },
-      { name: 'Georgian', code: 'ka' },
-      { name: 'German', code: 'de' },
-      { name: 'Greek', code: 'el' },
-      { name: 'Guarani', code: 'gn' },
-      { name: 'Gujarati', code: 'gu' },
-      { name: 'Haitian Creole', code: 'ht' },
-      { name: 'Hausa', code: 'ha' },
-      { name: 'Hawaiian', code: 'haw' },
-      { name: 'Hebrew', code: 'iw' },
-      { name: 'Hindi', code: 'hi' },
-      { name: 'Hmong', code: 'hmn' },
-      { name: 'Hungarian', code: 'hu' },
-      { name: 'Icelandic', code: 'is' },
-      { name: 'Igbo', code: 'ig' },
-      { name: 'Ilocano', code: 'ilo' },
-      { name: 'Indonesian', code: 'id' },
-      { name: 'Irish', code: 'ga' },
-      { name: 'Italian', code: 'it' },
-      { name: 'Japanese', code: 'ja' },
-      { name: 'Javanese', code: 'jw' },
-      { name: 'Kannada', code: 'kn' },
-      { name: 'Kazakh', code: 'kk' },
-      { name: 'Khmer', code: 'km' },
-      { name: 'Kinyarwanda', code: 'rw' },
-      { name: 'Korean', code: 'ko' },
-      { name: 'Krio', code: 'kri' },
-      { name: 'Kurdish', code: 'ku' },
-      { name: 'Kyrgyz', code: 'ky' },
-      { name: 'Lao', code: 'lo' },
-      { name: 'Latin', code: 'la' },
-      { name: 'Latvian', code: 'lv' },
-      { name: 'Lingala', code: 'ln' },
-      { name: 'Lithuanian', code: 'lt' },
-      { name: 'Luganda', code: 'lg' },
-      { name: 'Luxembourgish', code: 'lb' },
-      { name: 'Macedonian', code: 'mk' },
-      { name: 'Malagasy', code: 'mg' },
-      { name: 'Malay', code: 'ms' },
-      { name: 'Malayalam', code: 'ml' },
-      { name: 'Maltese', code: 'mt' },
-      { name: 'Maori', code: 'mi' },
-      { name: 'Marathi', code: 'mr' },
-      { name: 'Mongolian', code: 'mn' },
-      { name: 'Nepali', code: 'ne' },
-      { name: 'Norwegian', code: 'no' },
-      { name: 'Nyanja (Chichewa)', code: 'ny' },
-      { name: 'Odia (Oriya)', code: 'or' },
-      { name: 'Oromo', code: 'om' },
-      { name: 'Pashto', code: 'ps' },
-      { name: 'Persian', code: 'fa' },
-      { name: 'Polish', code: 'pl' },
-      { name: 'Portuguese', code: 'pt' },
-      { name: 'Punjabi', code: 'pa' },
-      { name: 'Quechua', code: 'qu' },
-      { name: 'Romanian', code: 'ro' },
-      { name: 'Russian', code: 'ru' },
-      { name: 'Samoan', code: 'sm' },
-      { name: 'Sanskrit', code: 'sa' },
-      { name: 'Scots Gaelic', code: 'gd' },
-      { name: 'Serbian', code: 'sr' },
-      { name: 'Sesotho', code: 'st' },
-      { name: 'Shona', code: 'sn' },
-      { name: 'Sindhi', code: 'sd' },
-      { name: 'Sinhala (Sinhalese)', code: 'si' },
-      { name: 'Slovak', code: 'sk' },
-      { name: 'Slovenian', code: 'sl' },
-      { name: 'Somali', code: 'so' },
-      { name: 'Spanish', code: 'es' },
-      { name: 'Sundanese', code: 'su' },
-      { name: 'Swahili', code: 'sw' },
-      { name: 'Swedish', code: 'sv' },
-      { name: 'Tagalog', code: 'tl' },
-      { name: 'Tajik', code: 'tg' },
-      { name: 'Tamil', code: 'ta' },
-      { name: 'Tatar', code: 'tt' },
-      { name: 'Telugu', code: 'te' },
-      { name: 'Thai', code: 'th' },
-      { name: 'Tigrinya', code: 'ti' },
-      { name: 'Tsonga', code: 'ts' },
-      { name: 'Turkish', code: 'tr' },
-      { name: 'Turkmen', code: 'tk' },
-      { name: 'Twi (Akan)', code: 'ak' },
-      { name: 'Ukrainian', code: 'uk' },
-      { name: 'Urdu', code: 'ur' },
-      { name: 'Uyghur', code: 'ug' },
-      { name: 'Uzbek', code: 'uz' },
-      { name: 'Vietnamese', code: 'vi' },
-      { name: 'Welsh', code: 'cy' },
-      { name: 'Xhosa', code: 'xh' },
-      { name: 'Yiddish', code: 'yi' },
-      { name: 'Yoruba', code: 'yo' },
-      { name: 'Zulu', code: 'zu' }
-    ];
-
-    // Sort languages by name
-    languages.sort((a, b) => a.name.localeCompare(b.name));
-
-    // Get cookie value
-    function getCookie(name) {
-      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      return match ? decodeURIComponent(match[2]) : null;
-    }
-
-    // Set cookie (domain/path)
-    function setCookie(name, value, days = 365) {
-      const d = new Date();
-      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-      document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
-    }
-
-    // Get current language code from cookie (if any)
-    function getCurrentLangCode() {
-      const transCookie = getCookie('googtrans');
-      if (transCookie) {
-        // Google Translate sets cookie like "googtrans=/ur/en" for target language.
-        const match = transCookie.match(/\/([a-z]{2,3}(-[A-Z]{2,3})?)$/);
-        return match ? match[1] : null;
-      }
-      return null;
-    }
-
-    // Display current language name in button
-    function updateSelectedLanguage() {
-      const currentCode = getCurrentLangCode();
-      const lang = languages.find(l => l.code === currentCode);
-      document.getElementById('selectedLangDisplay').innerText = lang ? lang.name : 'Select Language';
-    }
-
-    // Render language list
-    function renderLanguageList(filter = '') {
-      const listEl = document.getElementById('langList');
-      const filterLower = filter.toLowerCase();
-      const filtered = languages.filter(l => l.name.toLowerCase().includes(filterLower));
-      const currentCode = getCurrentLangCode();
-
-      listEl.innerHTML = filtered.map(l => `
-        <div class="lang-item ${l.code === currentCode ? 'selected' : ''}" data-code="${l.code}">${l.name}</div>
-      `).join('');
-
-      // Attach click handlers
-      document.querySelectorAll('.lang-item').forEach(item => {
-        item.addEventListener('click', function(e) {
-          const code = this.dataset.code;
-          // Set cookie: googtrans=/ur/xx  (ur is source language, xx is target)
-          setCookie('googtrans', '/ur/' + code);
-          // Reload to apply translation
-          location.reload();
-        });
-      });
-    }
-
-    // Dropdown toggle
-    const btn = document.getElementById('langDropdownBtn');
-    const dropdown = document.getElementById('langDropdown');
-    const searchInput = document.getElementById('langSearch');
-
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle('show');
-      if (dropdown.classList.contains('show')) {
-        searchInput.focus();
-        renderLanguageList(searchInput.value);
-      }
-    });
-
-    // Search filter
-    searchInput.addEventListener('input', () => {
-      renderLanguageList(searchInput.value);
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
-        dropdown.classList.remove('show');
-      }
-    });
-
-    // Initialize
-    updateSelectedLanguage();
-    renderLanguageList();
-  })();
-</script>
-
-<!-- Make sure Google Translate base script is loaded (required for cookie translation to work) -->
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script>
-  // Required dummy init function (even if not used directly)
-  function googleTranslateElementInit() {
-    // Not used directly, but needed for the translate library to load properly.
-    // The translation is triggered by the cookie.
-  }
 </script>
 
 </body>
