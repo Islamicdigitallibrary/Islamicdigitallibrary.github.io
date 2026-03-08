@@ -301,6 +301,34 @@
     color: #f5da7a;
   }
 
+  .message-box {
+    text-align: center;
+    padding: 50px 20px;
+    grid-column: 1 / -1;
+    background: rgba(0,0,0,0.2);
+    border-radius: 40px;
+    border: 1px dashed var(--border-soft);
+  }
+  .message-box i {
+    font-size: 3.5rem;
+    color: var(--primary-gold);
+    margin-bottom: 15px;
+    opacity: 0.8;
+  }
+  .message-box h3 { font-size: 1.8rem; margin-bottom: 8px; }
+  .message-box p { color: var(--text-dim); font-size: 1.2rem; }
+  .suggestions-title {
+    grid-column: 1 / -1;
+    color: var(--primary-gold);
+    font-size: 1.5rem;
+    margin-top: 20px;
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
   .loader { 
     display: inline-block; width: 18px; height: 18px; 
     border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; 
@@ -334,7 +362,7 @@
   </div>
 
   <div class="stats-bar">
-    <span id="loadingStatus"><span class="loader"></span> لوڈ ہو رہا ہے...</span>
+    <span id="loadingStatus"><span class="loader"></span> ڈیٹا لاد رہا ہے...</span>
     <span id="totalCount">0 کتابیں</span>
   </div>
 </header>
@@ -346,8 +374,8 @@
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
-    pageLanguage: 'ur', // آپ کی ویب سائٹ کی بنیادی زبان
-    includedLanguages: 'en,ar,hi,fa,ps,sd,bn,es,fr', // آپ یہاں مزید زبانوں کے کوڈ بھی ڈال سکتے ہیں
+    pageLanguage: 'ur', 
+    /* میں نے زبانوں کی پابندی ہٹا دی ہے، اب دنیا کی تمام زبانیں آئیں گی */
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE
   }, 'google_translate_element');
 }
@@ -357,10 +385,10 @@ function googleTranslateElementInit() {
 <script>
 (function() {
   const CONFIG = {
-    API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts', // یہ آپ کی گوگل ڈرائیو کی API ہے، اسے چھیڑنے کی ضرورت نہیں
+    API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
     MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC',
     CACHE_KEY: 'islamic_library_index_v5',
-    CACHE_DURATION: 3600000
+    CACHE_DURATION: 3600000 // کیشے کا وقت تاکہ فاسٹ لوڈنگ ہو
   };
 
   let allBooks = [];
@@ -372,29 +400,89 @@ function googleTranslateElementInit() {
   const loadingSpan = document.getElementById('loadingStatus');
   const totalSpan = document.getElementById('totalCount');
 
-  function renderBooks() {
-    let filtered = allBooks;
-    if (currentSearchTerm.length >= 2) {
-      filtered = allBooks.filter(book => book.name.toLowerCase().includes(currentSearchTerm.toLowerCase().trim()));
+  function getEditDistance(a, b) {
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
+    const matrix = [];
+    for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+    for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        if (b.charAt(i - 1) === a.charAt(j - 1)) {
+          matrix[i][j] = matrix[i - 1][j - 1];
+        } else {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j - 1] + 1,
+            matrix[i][j - 1] + 1,
+            matrix[i - 1][j] + 1
+          );
+        }
+      }
     }
+    return matrix[b.length][a.length];
+  }
+
+  function getFilteredBooks() {
+    let filtered = allBooks;
+    if (currentSearchTerm.length < 2) {
+      return filtered;
+    }
+    const term = currentSearchTerm.toLowerCase().trim();
+    const exact = filtered.filter(book => book.name.toLowerCase().includes(term));
+    if (exact.length > 0) {
+      return exact;
+    } else {
+      const suggestions = filtered.map(book => ({
+        ...book,
+        score: getEditDistance(term, book.name.toLowerCase().substring(0, term.length))
+      }))
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 6)
+      .filter(s => s.score <= term.length + 2);
+      return suggestions;
+    }
+  }
+
+  function renderBooks() {
+    const filtered = getFilteredBooks();
+    const isSuggestion = (currentSearchTerm.length >= 2 && 
+                         !allBooks.some(b => b.name.toLowerCase().includes(currentSearchTerm.toLowerCase())) && 
+                         filtered.length > 0);
 
     totalSpan.innerText = `${allBooks.length} میں سے ${filtered.length} کتابیں`;
 
     if (filtered.length === 0) {
-      gridEl.innerHTML = `<div style="text-align:center; width:100%; color:#fff; grid-column:1/-1;">کتاب نہیں ملی</div>`;
+      gridEl.innerHTML = `
+        <div class="message-box">
+          <i class="fas fa-book-open"></i>
+          <h3>کتاب نہیں ملی</h3>
+          <p>آپ کی تلاش کے مطابق کوئی کتاب نہیں مل سکی۔ دوسرے الفاظ آزمائیں۔</p>
+        </div>
+      `;
       return;
     }
 
-    gridEl.innerHTML = filtered.slice(0, 150).map(book => `
+    let html = isSuggestion ? `<div class="suggestions-title"><i class="fas fa-lightbulb"></i> مطلوبہ کتاب نہیں، کیا ان میں سے کوئی مقصود ہے؟</div>` : '';
+
+    const displayBooks = filtered.slice(0, 150);
+    html += displayBooks.map(book => `
       <div class="book-card">
         <div class="book-info">
           <div class="book-title">${book.name}</div>
+          <div class="book-path"><i class="fas fa-folder-open"></i> ${book.path}</div>
         </div>
         <div class="btn-group">
-          <a href="https://drive.google.com/file/d/${book.id}/view" target="_blank" class="btn btn-outline" rel="noopener">مطالعہ</a>
+          <a href="https://drive.google.com/file/d/${book.id}/view" target="_blank" class="btn btn-outline" rel="noopener">
+            <i class="fas fa-book-reader"></i> مطالعہ
+          </a>
+          <a href="https://drive.google.com/uc?export=download&id=${book.id}" class="btn btn-fill" rel="noopener">
+            <i class="fas fa-download"></i> ڈاؤن لوڈ
+          </a>
         </div>
       </div>
     `).join('');
+
+    gridEl.innerHTML = html;
   }
 
   searchInput.addEventListener('input', (e) => {
@@ -408,29 +496,69 @@ function googleTranslateElementInit() {
     currentSearchTerm = '';
     clearIcon.style.display = 'none';
     renderBooks();
+    searchInput.focus();
   });
 
-  async function fetchAllRecursive(folderId) {
+  async function fetchAllRecursive(folderId, path = "") {
+    let nextPageToken = null;
+    let subFolders = [];
+
     try {
-      const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}`;
-      const resp = await fetch(url);
-      const data = await resp.json();
-      
-      if (data.files) {
-        data.files.forEach(file => {
-          if (file.name.toLowerCase().endsWith('.pdf')) {
-            allBooks.push({ id: file.id, name: file.name.replace(/\.pdf$/i, '') });
+      do {
+        const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=nextPageToken,files(id,name,mimeType)&key=${CONFIG.API_KEY}&pageToken=${nextPageToken || ''}`;
+        const resp = await fetch(url);
+        const data = await resp.json();
+
+        if (data.files) {
+          for (const file of data.files) {
+            if (file.mimeType === 'application/vnd.google-apps.folder') {
+              subFolders.push({ id: file.id, name: file.name });
+            } else if (file.name.toLowerCase().endsWith('.pdf')) {
+              allBooks.push({
+                id: file.id,
+                name: file.name.replace(/\.pdf$/i, ''),
+                path: path || 'مرکزی فولڈر'
+              });
+            }
           }
-        });
+        }
+        nextPageToken = data.nextPageToken;
+      } while (nextPageToken);
+
+      if (subFolders.length > 0) {
+        await Promise.all(subFolders.map(folder =>
+          fetchAllRecursive(folder.id, path ? `${path} / ${folder.name}` : folder.name)
+        ));
       }
+
+      allBooks.sort((a, b) => a.name.localeCompare(b.name, 'ur'));
+      localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data: allBooks }));
       loadingSpan.innerHTML = '<i class="fas fa-check-circle" style="color:#2ecc71;"></i> اپ ڈیٹ ہوگیا';
       renderBooks();
     } catch (e) {
+      console.error("Drive fetch error:", e);
       loadingSpan.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#e74c3c;"></i> مسئلہ';
+      renderBooks();
     }
   }
 
-  fetchAllRecursive(CONFIG.MAIN_FOLDER_ID);
+  async function loadFromCacheOrFetch() {
+    const cached = localStorage.getItem(CONFIG.CACHE_KEY);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      // کیشے چیک کر رہا ہے تاکہ بار بار لوڈ نہ کرنا پڑے (فاسٹ لوڈنگ)
+      if (Date.now() - parsed.timestamp < CONFIG.CACHE_DURATION) {
+        allBooks = parsed.data.sort((a, b) => a.name.localeCompare(b.name, 'ur'));
+        loadingSpan.innerHTML = '<i class="fas fa-check-circle" style="color:#2ecc71;"></i> مکمل';
+        renderBooks();
+        return;
+      }
+    }
+    loadingSpan.innerHTML = '<span class="loader"></span> ڈیٹا لاد رہا ہے...';
+    await fetchAllRecursive(CONFIG.MAIN_FOLDER_ID);
+  }
+
+  loadFromCacheOrFetch();
 })();
 </script>
 
