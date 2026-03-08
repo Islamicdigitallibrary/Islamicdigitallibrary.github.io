@@ -42,7 +42,7 @@
   #goog-gt-tt, .goog-te-banner-frame { display: none !important; }
   .goog-text-highlight { background: transparent !important; box-shadow: none !important; }
   
-  /* ترجمہ والے بٹن کا ڈیزائن */
+  /* ترجمہ والے بٹن کا ڈیزائن (اب یہ اسکرول ہو گا) */
   #google_translate_element select {
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--border-soft);
@@ -55,6 +55,9 @@
     font-size: 0.95rem;
     outline: none;
     transition: var(--transition);
+    /* اسکرول کے لیے اضافی خصوصیات (جاوا اسکرپٹ سے size سیٹ ہو گا) */
+    max-height: 200px;
+    overflow-y: auto;
   }
   #google_translate_element select:hover {
     border-color: var(--primary-gold);
@@ -63,11 +66,12 @@
   #google_translate_element select option {
     background: #0a1020;
     color: white;
+    padding: 6px;
   }
   .goog-logo-link { display: none !important; }
   .goog-te-gadget { color: transparent !important; }
 
-  /* --- FIXED HEADER --- */
+  /* --- FIXED HEADER (بالکل ویسا ہی، بلیک) --- */
   .fixed-header {
     position: fixed;
     top: 0;
@@ -184,7 +188,7 @@
     margin-left: 5px;
   }
 
-  /* کتابوں کا گرڈ */
+  /* کتابوں کا گرڈ (بالکل ویسا ہی) */
   .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -338,10 +342,12 @@
   @keyframes spin { to { transform: rotate(360deg); } }
 
   @media (max-width: 700px) {
-    body { padding-top: 160px; }
+    body { padding-top: 180px; } /* تھوڑا سا اضافی جگہ بڑے select کے لیے */
     .navbar { flex-direction: column; align-items: center; }
     .logo { justify-content: center; font-size: 1.4rem; margin-bottom: 10px;}
     .stats-bar { flex-direction: column; align-items: center; gap: 5px; }
+    /* چھوٹی اسکرین پر بھی select کو مناسب سائز */
+    #google_translate_element select { max-width: 280px; }
   }
 </style>
 </head>
@@ -375,12 +381,58 @@
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'ur', 
-    /* میں نے زبانوں کی پابندی ہٹا دی ہے، اب دنیا کی تمام زبانیں آئیں گی */
+    /* تمام زبانیں دکھائی دیں گی */
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE
   }, 'google_translate_element');
 }
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- یہ نیا اسکرپٹ ہے جو ٹرانسلیٹر کے select کو اسکرول ایبل لسٹ باکس میں بدل دے گا -->
+<script>
+(function makeTranslateScrollable() {
+  // جب بھی گوگل ٹرانسلیٹ کا ویجٹ لوڈ ہو، اس کے select کو ڈھونڈ کر size = 8 کریں
+  function customizeSelect() {
+    const translateDiv = document.getElementById('google_translate_element');
+    if (!translateDiv) return;
+
+    const checkExist = setInterval(function() {
+      const select = translateDiv.querySelector('select');
+      if (select) {
+        clearInterval(checkExist);
+        
+        // صرف ایک بار customize کرنے کے لیے
+        if (!select.hasAttribute('data-scrollable')) {
+          select.setAttribute('data-scrollable', 'true');
+          
+          // size = 8 کرنے سے ایک بار میں 8 زبانیں نظر آئیں گی، اور اگر زیادہ ہوں تو اسکرول آ جائے گا
+          select.setAttribute('size', '8');
+          
+          // اسٹائل میں تھوڑی بہتر کاری: اونچائی خودکار اور اسکرول
+          select.style.height = 'auto';
+          select.style.maxHeight = '200px';
+          select.style.overflowY = 'auto';
+          select.style.borderRadius = '20px';  // گول کونے برقرار
+          select.style.padding = '6px 12px';
+          
+          // اختیاری: پس منظر تھوڑا شفاف رکھنا
+          select.style.background = 'rgba(0, 0, 0, 0.7)';
+        }
+      }
+    }, 300); // ہر 300ms بعد چیک کریں
+  }
+
+  // کال کریں جب صفحہ مکمل لوڈ ہو
+  window.addEventListener('load', customizeSelect);
+  
+  // اگر گوگل کا اسکرپٹ پہلے لوڈ ہو جائے تو بھی کام کرے
+  if (document.readyState === 'complete') {
+    customizeSelect();
+  } else {
+    window.addEventListener('load', customizeSelect);
+  }
+})();
+</script>
 
 <script>
 (function() {
@@ -546,7 +598,6 @@ function googleTranslateElementInit() {
     const cached = localStorage.getItem(CONFIG.CACHE_KEY);
     if (cached) {
       const parsed = JSON.parse(cached);
-      // کیشے چیک کر رہا ہے تاکہ بار بار لوڈ نہ کرنا پڑے (فاسٹ لوڈنگ)
       if (Date.now() - parsed.timestamp < CONFIG.CACHE_DURATION) {
         allBooks = parsed.data.sort((a, b) => a.name.localeCompare(b.name, 'ur'));
         loadingSpan.innerHTML = '<i class="fas fa-check-circle" style="color:#2ecc71;"></i> مکمل';
@@ -560,6 +611,30 @@ function googleTranslateElementInit() {
 
   loadFromCacheOrFetch();
 })();
+</script>
+
+<!-- اسکرپٹ جو ٹرانسلیٹر کے select کو اسکرول ایبل بنائے گا (دوبارہ یقینی بنانے کے لیے) -->
+<script>
+  // دوسرا طریقہ: mutationObserver سے مستقل نگرانی
+  (function watchForTranslate() {
+    const target = document.getElementById('google_translate_element');
+    if (!target) return;
+
+    const observer = new MutationObserver(function(mutations) {
+      const select = target.querySelector('select');
+      if (select && !select.hasAttribute('data-scrollable-2')) {
+        select.setAttribute('data-scrollable-2', 'true');
+        select.setAttribute('size', '8');
+        select.style.height = 'auto';
+        select.style.maxHeight = '200px';
+        select.style.overflowY = 'auto';
+        select.style.borderRadius = '20px';
+        select.style.background = 'rgba(0, 0, 0, 0.7)';
+      }
+    });
+
+    observer.observe(target, { childList: true, subtree: true, attributes: false });
+  })();
 </script>
 
 </body>
