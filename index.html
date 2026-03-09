@@ -135,19 +135,6 @@ body {
 
 footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.8; font-size: 0.9rem;}
 
-/* بینر کے لیے اضافی سٹائل (اختیاری) */
-.banner {
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 15px;
-  margin: 20px auto;
-  max-width: 1200px;
-  text-align: center;
-  font-size: 1rem;
-  backdrop-filter: blur(5px);
-}
-
 /* Mobile Optimization */
 @media (max-width: 600px) { 
   .grid { grid-template-columns: 1fr; } 
@@ -169,26 +156,14 @@ footer { text-align: center; padding: 30px; border-top: 1px solid var(--border);
   </div>
 </nav>
 
-<!-- بینر کو یہاں منتقل کیا گیا ہے (اب ڈاک ٹائپ کے بعد) -->
-<div class="banner">
-  AdZilla: HUGE monster is shaking crypto!<br>
-  Learn more<br><br>
-  تلاوت قرآن پاک (پاره بانی پاره)<br><br>
-  ابھی سنتی<br><br>
-  مرکزی التبریری ❤️<br>
-  ویژلوبیمات ❤️<br><br>
-  ذیلولہ کے مزید پلیٹ فارم<br>
-  رابطہ کریں<br><br>
-  فیس بک لاٹبریری
-</div>
-
 <div id="home-view">
     <header class="hero">
      <img src="https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf" alt="Profile" class="profile-pic" loading="lazy">
       <h1>اسلامک ڈیجیٹل لائبریری</h1>
       <p>جدید انداز میں اسلامی کتب کا وسیع ذخیرہ</p>
     </header>
-<main class="container">
+
+    <main class="container">
       <section>
         <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
         <div class="grid">
@@ -207,13 +182,13 @@ footer { text-align: center; padding: 30px; border-top: 1px solid var(--border);
         </div>
       </section>
 
-      <section style="margin-top: 40px;">
-        <h2 class="section-head"><i class="fas fa-book-open"></i> مرکزی لائبریری</h2>
+      <section>
+        <h2 class="section-head"><span>📚</span> اسلامی کتب و فولڈرز</h2>
         <div id="mainLibraryGrid" class="grid"></div>
       </section>
 
-      <section style="margin-top: 40px;">
-        <h2 class="section-head"><i class="fab fa-youtube"></i> ویڈیو بیانات</h2>
+      <section>
+        <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت و بیانات</h2>
         <div id="youtubeGrid" class="grid"></div>
       </section>
 
@@ -359,7 +334,7 @@ function renderFiles(files, grid) {
         const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
         
         // Sanitize names for HTML attributes
-        const safeName = file.name.replace(/'/g, "\\'").replace(/"/g, """);
+        const safeName = file.name.replace(/'/g, "\\'").replace(/"/g, "&quot;");
         const displayName = file.name.replace('.pdf', '');
 
         let icon = isFolder ? '<i class="fas fa-folder" style="color:#d4af37;"></i>' : '<i class="fas fa-file-pdf" style="color:#fff; opacity:0.7;"></i>';
@@ -472,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js" async></script>
+<script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
