@@ -181,6 +181,16 @@ footer { text-align: center; padding: 30px; border-top: 1px solid var(--border);
         </div>
       </section>
 
+      <section style="margin-top: 40px;">
+        <h2 class="section-head"><i class="fas fa-book-open"></i> مرکزی لائبریری</h2>
+        <div id="mainLibraryGrid" class="grid"></div>
+      </section>
+
+      <section style="margin-top: 40px;">
+        <h2 class="section-head"><i class="fab fa-youtube"></i> ویڈیو بیانات</h2>
+        <div id="youtubeGrid" class="grid"></div>
+      </section>
+
       <section style="margin-top:50px;">
         <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
           <a href="contact.html" class="btn btn-outline">رابطہ کریں</a>
@@ -323,7 +333,7 @@ function renderFiles(files, grid) {
         const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
         
         // Sanitize names for HTML attributes
-        const safeName = file.name.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+        const safeName = file.name.replace(/'/g, "\\'").replace(/"/g, """);
         const displayName = file.name.replace('.pdf', '');
 
         let icon = isFolder ? '<i class="fas fa-folder" style="color:#d4af37;"></i>' : '<i class="fas fa-file-pdf" style="color:#fff; opacity:0.7;"></i>';
