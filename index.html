@@ -135,6 +135,19 @@ body {
 
 footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.8; font-size: 0.9rem;}
 
+/* بینر کے لیے اضافی سٹائل (اختیاری) */
+.banner {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px auto;
+  max-width: 1200px;
+  text-align: center;
+  font-size: 1rem;
+  backdrop-filter: blur(5px);
+}
+
 /* Mobile Optimization */
 @media (max-width: 600px) { 
   .grid { grid-template-columns: 1fr; } 
@@ -156,8 +169,18 @@ footer { text-align: center; padding: 30px; border-top: 1px solid var(--border);
   </div>
 </nav>
 
-<!-- بینر اسکرپٹ - یہاں رکھنے سے document.write صحیح جگہ پر مواد ڈالے گا -->
-<script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
+<!-- بینر کو یہاں منتقل کیا گیا ہے (اب ڈاک ٹائپ کے بعد) -->
+<div class="banner">
+  AdZilla: HUGE monster is shaking crypto!<br>
+  Learn more<br><br>
+  تلاوت قرآن پاک (پاره بانی پاره)<br><br>
+  ابھی سنتی<br><br>
+  مرکزی التبریری ❤️<br>
+  ویژلوبیمات ❤️<br><br>
+  ذیلولہ کے مزید پلیٹ فارم<br>
+  رابطہ کریں<br><br>
+  فیس بک لاٹبریری
+</div>
 
 <div id="home-view">
     <header class="hero">
@@ -449,6 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js" async></script>
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
