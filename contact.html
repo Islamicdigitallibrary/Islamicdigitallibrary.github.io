@@ -1,174 +1,629 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رابطہ کریں | ید اللہ ڈیجیٹل ہب</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | Yadullah Digital Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a14;
+      --accent: #6c63ff;
+      --accent2: #ff6584;
+      --accent3: #43e8d8;
+      --text: #e8e8ff;
+      --muted: #7272a0;
+      --border: rgba(108,99,255,0.18);
+      --success: #43e8a0;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; overflow-x: hidden; position: relative;
+    }
+    .bg-scene { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18; animation: orbFloat 12s ease-in-out infinite; }
+    .orb1 { width: 500px; height: 500px; background: var(--accent); top: -100px; left: -150px; }
+    .orb2 { width: 400px; height: 400px; background: var(--accent2); bottom: -100px; right: -100px; animation-delay: -4s; }
+    .orb3 { width: 300px; height: 300px; background: var(--accent3); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: -8s; }
+    @keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-40px) scale(1.08)} }
+    .grid-overlay {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(108,99,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,0.04) 1px,transparent 1px);
+      background-size: 60px 60px;
+    }
 
-    <style>
-        :root {
-            --primary: #4361ee;
-            --glass-bg: rgba(255, 255, 255, 0.8);
-            --glass-border: rgba(255, 255, 255, 0.5);
-        }
+    /* Card */
+    .card-wrap { position: relative; z-index: 10; perspective: 1200px; width: 100%; max-width: 520px; }
+    .card {
+      background: linear-gradient(145deg,rgba(25,25,50,0.95),rgba(12,12,28,0.98));
+      border: 1px solid var(--border); border-radius: 28px; padding: 44px 40px;
+      box-shadow: 0 0 0 1px rgba(108,99,255,0.08), 0 8px 32px rgba(0,0,0,0.5), 0 32px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+      transform-style: preserve-3d; transition: transform 0.2s ease, box-shadow 0.3s ease;
+      animation: cardIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg,transparent,var(--accent),var(--accent3),transparent); border-radius: 100%;
+    }
+    @keyframes cardIn { from{opacity:0;transform:translateY(40px) rotateX(8deg)} to{opacity:1;transform:translateY(0) rotateX(0)} }
 
-        body {
-            font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            margin: 0;
-        }
+    /* Header */
+    .card-header { text-align: center; margin-bottom: 30px; }
+    .brand-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.25);
+      border-radius: 50px; padding: 6px 16px; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent3); margin-bottom: 16px; font-family: 'Syne',sans-serif;
+    }
+    .card-header h1 { font-family: 'Syne',sans-serif; font-size: 2rem; font-weight: 800; color: var(--text); line-height: 1.1; letter-spacing: -0.02em; }
+    .card-header h1 span { background: linear-gradient(135deg,var(--accent),var(--accent3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .card-header p { margin-top: 8px; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    /* Toggle */
+    .mode-toggle {
+      display: flex; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-radius: 14px; padding: 5px; margin-bottom: 26px; position: relative;
+    }
+    .mode-slider {
+      position: absolute; top: 5px; left: 5px;
+      width: calc(50% - 5px); height: calc(100% - 10px);
+      background: linear-gradient(135deg,var(--accent),#8b5cf6); border-radius: 10px;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+    }
+    .mode-slider.complaint { transform: translateX(100%); }
+    .mode-btn {
+      flex: 1; padding: 11px 0; border: none; background: transparent; color: var(--muted);
+      font-family: 'DM Sans',sans-serif; font-size: 0.88rem; font-weight: 500; cursor: pointer;
+      border-radius: 10px; position: relative; z-index: 1; transition: color 0.3s;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+    }
+    .mode-btn.active { color: #fff; }
+    .mode-btn i { font-size: 0.8rem; }
 
-        .contact-container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 40px;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: center;
-        }
+    /* Panels */
+    .form-panel { display: none; animation: panelIn 0.4s ease both; }
+    .form-panel.active { display: block; }
+    @keyframes panelIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
-        h1 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-family: 'Noto Nastaliq Urdu';
-        }
+    /* Form */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 15px; position: relative; }
+    label {
+      display: block; font-size: 0.78rem; font-weight: 500; color: var(--muted);
+      margin-bottom: 7px; letter-spacing: 0.05em; text-transform: uppercase; font-family: 'Syne',sans-serif;
+    }
+    .opt-tag { font-size: 0.68rem; color: rgba(114,114,160,0.5); text-transform: none; letter-spacing: 0; font-family: 'DM Sans',sans-serif; }
+    .input-wrap { position: relative; }
+    .input-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--muted); font-size: 0.82rem; pointer-events: none; transition: color 0.25s;
+    }
+    .ta-wrap .input-icon { top: 14px; transform: none; }
+    input, textarea, select {
+      width: 100%; padding: 12px 14px 12px 40px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; color: var(--text); font-family: 'DM Sans',sans-serif; font-size: 0.9rem;
+      transition: all 0.25s ease; outline: none; appearance: none;
+    }
+    textarea { padding-top: 12px; resize: none; }
+    select { cursor: pointer; }
+    select option { background: #191932; color: var(--text); }
+    input::placeholder, textarea::placeholder { color: rgba(114,114,160,0.55); font-size: 0.87rem; }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent); background: rgba(108,99,255,0.07); box-shadow: 0 0 0 3px rgba(108,99,255,0.12);
+    }
+    .input-wrap:focus-within .input-icon { color: var(--accent); }
 
-        .form-group {
-            text-align: right;
-            margin-bottom: 15px;
-        }
+    /* Pref radios */
+    .pref-row { display: flex; gap: 10px; margin-top: 4px; }
+    .pref-opt { flex: 1; }
+    .pref-opt input[type="radio"] { display: none; }
+    .pref-lbl {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 10px 8px; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+      background: rgba(255,255,255,0.03); color: var(--muted); font-size: 0.82rem;
+      cursor: pointer; transition: all 0.22s ease; font-family: 'DM Sans',sans-serif; user-select: none;
+    }
+    .pref-opt input[type="radio"]:checked + .pref-lbl {
+      border-color: var(--accent); background: rgba(108,99,255,0.12); color: #fff; box-shadow: 0 0 12px rgba(108,99,255,0.18);
+    }
+    .pref-detail { display: none; margin-top: 8px; }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
+    /* Cat chips */
+    .cat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-bottom: 12px; }
+    .cat-chip {
+      padding: 9px 10px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
+      background: rgba(255,255,255,0.03); color: var(--muted); font-family: 'DM Sans',sans-serif; font-size: 0.8rem;
+      cursor: pointer; transition: all 0.22s ease; display: flex; align-items: center; gap: 8px; user-select: none;
+    }
+    .cat-chip i { font-size: 0.75rem; color: var(--accent); opacity: 0.6; }
+    .cat-chip:hover { border-color: rgba(108,99,255,0.4); background: rgba(108,99,255,0.07); color: var(--text); }
+    .cat-chip.selected { border-color: var(--accent); background: rgba(108,99,255,0.15); color: #fff; box-shadow: 0 0 12px rgba(108,99,255,0.2); }
+    .cat-chip.selected i { opacity: 1; }
+    .cat-err-msg { display: none; font-size: 0.78rem; color: var(--accent2); margin-top: 4px; font-family: 'DM Sans',sans-serif; }
+    #otherCatWrap { display: none; margin-top: 8px; }
 
-        input, textarea, select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
-            background: white;
-        }
+    .char-count { position: absolute; bottom: 9px; right: 12px; font-size: 0.68rem; color: rgba(114,114,160,0.5); pointer-events: none; }
 
-        .send-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1.1rem;
-            font-family: 'Noto Nastaliq Urdu';
-        }
+    /* Submit */
+    .submit-btn {
+      width: 100%; padding: 15px;
+      background: linear-gradient(135deg,var(--accent) 0%,#8b5cf6 50%,var(--accent3) 100%);
+      border: none; border-radius: 14px; color: #fff;
+      font-family: 'Syne',sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.04em;
+      cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;
+      margin-top: 4px; box-shadow: 0 4px 20px rgba(108,99,255,0.35);
+    }
+    .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(108,99,255,0.5); }
+    .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+    .btn-inner { display: flex; align-items: center; justify-content: center; gap: 10px; transition: opacity 0.3s; }
+    .submit-btn.loading .btn-inner { opacity: 0; }
+    .btn-loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+    .submit-btn.loading .btn-loader { opacity: 1; }
+    .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to{transform:rotate(360deg)} }
 
-        .send-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
+    .back-link { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 20px; color: var(--muted); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+    .back-link:hover { color: var(--accent3); }
 
-        .back-link {
-            display: block;
-            margin-top: 15px;
-            color: var(--primary);
-            text-decoration: none;
-        }
-    </style>
+    /* Success screen */
+    #successScreen { display: none; text-align: center; padding: 10px 0 4px; animation: panelIn 0.5s ease both; }
+    #successScreen.show { display: block; }
+    .success-ring {
+      width: 82px; height: 82px; margin: 0 auto 22px; border-radius: 50%;
+      background: linear-gradient(135deg,var(--success),var(--accent3));
+      display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--bg);
+      box-shadow: 0 0 40px rgba(67,232,160,0.3);
+      animation: popIn 0.5s 0.15s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes popIn { from{transform:scale(0) rotate(-20deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
+    #successTitle { font-family: 'Syne',sans-serif; font-size: 1.7rem; color: var(--text); margin-bottom: 12px; }
+    #successMsg { color: var(--muted); font-size: 0.9rem; line-height: 1.75; max-width: 370px; margin: 0 auto 22px; }
+    #successMsg strong { color: var(--accent3); }
+    .ticket-badge {
+      display: inline-block; background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.28);
+      border-radius: 10px; padding: 9px 22px; font-family: 'Syne',sans-serif; font-size: 0.78rem;
+      color: var(--accent3); letter-spacing: 0.1em; margin-bottom: 26px;
+    }
+    .go-back-btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
+      background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 50px; color: var(--text); font-family: 'DM Sans',sans-serif; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.25s ease;
+    }
+    .go-back-btn:hover { background: rgba(108,99,255,0.22); transform: translateY(-2px); }
+
+    /* Error field highlight */
+    .field-error { border-color: var(--accent2) !important; box-shadow: 0 0 0 3px rgba(255,101,132,0.12) !important; }
+
+    @media (max-width: 520px) {
+      .card { padding: 30px 20px; }
+      .card-header h1 { font-size: 1.65rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .pref-row { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="contact-container">
-    <h1>رابطہ کریں</h1>
-    <p>آپ کے پیغامات ہمارے لیے اہم ہیں۔</p>
+<div class="bg-scene">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+<div class="grid-overlay"></div>
 
-    <!-- ڈراپ ڈاؤن (Contact / Complaint) -->
-    <div class="form-group">
-        <label for="msgType">میں چاہتا ہوں:</label>
-        <select id="msgType">
-            <option value="contact" selected>رابطہ کریں</option>
-            <option value="complaint">شکایت درج کروائیں</option>
-        </select>
+<div class="card-wrap" id="cardWrap">
+  <div class="card" id="mainCard">
+
+    <!-- SUCCESS SCREEN -->
+    <div id="successScreen">
+      <div class="success-ring"><i class="fas fa-check"></i></div>
+      <h2 id="successTitle">Message Sent!</h2>
+      <p id="successMsg"></p>
+      <div class="ticket-badge" id="ticketBadge">REF #YDH-000000</div><br/>
+      <button class="go-back-btn" onclick="resetAll()">
+        <i class="fas fa-arrow-left"></i> Send Another
+      </button>
+      <a href="index.html" class="back-link" style="margin-top:14px;"><i class="fas fa-house"></i> Back to Home</a>
     </div>
 
-    <!-- اصل فارم جو FormSubmit کو ڈیٹا بھیجے گا -->
-    <form id="contactForm" action="https://formsubmit.co/ullahyad199@gmail.com" method="POST">
-        <!-- FormSubmit کے لیے ضروری ہڈن فیلڈز -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="thankyou.html"> <!-- یہ thankyou.html کی طرف لے جائے گا -->
+    <!-- MAIN CONTENT -->
+    <div id="mainContent">
+      <div class="card-header">
+        <div class="brand-badge"><i class="fas fa-circle-dot"></i> Yadullah Digital Hub</div>
+        <h1>Get in <span>Touch</span></h1>
+        <p>We're here to help. Choose an option below.</p>
+      </div>
 
+      <div class="mode-toggle">
+        <div class="mode-slider" id="modeSlider"></div>
+        <button class="mode-btn active" id="btnContact" onclick="switchMode('contact')">
+          <i class="fas fa-paper-plane"></i> Contact Us
+        </button>
+        <button class="mode-btn" id="btnComplaint" onclick="switchMode('complaint')">
+          <i class="fas fa-flag"></i> File a Complaint
+        </button>
+      </div>
+
+      <!-- CONTACT PANEL -->
+      <div class="form-panel active" id="contactPanel">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <div class="input-wrap">
+              <input type="text" id="c_fname" placeholder="John"/>
+              <i class="input-icon fas fa-user"></i>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <div class="input-wrap">
+              <input type="text" id="c_lname" placeholder="Doe"/>
+              <i class="input-icon fas fa-user"></i>
+            </div>
+          </div>
+        </div>
         <div class="form-group">
-            <label>آپ کا نام</label>
-            <input type="text" name="name" placeholder="نام لکھیں..." required>
+          <label>Email Address</label>
+          <div class="input-wrap">
+            <input type="email" id="c_email" placeholder="you@example.com"/>
+            <i class="input-icon fas fa-envelope"></i>
+          </div>
         </div>
-
         <div class="form-group">
-            <label>آپ کا ای میل</label>
-            <input type="email" name="email" placeholder="example@domain.com" required>
+          <label>Preferred Reply Method <span class="opt-tag">(optional)</span></label>
+          <div class="pref-row">
+            <div class="pref-opt">
+              <input type="radio" name="cpref" id="cPrefE" value="email"/>
+              <label class="pref-lbl" for="cPrefE"><i class="fas fa-envelope"></i> Email</label>
+            </div>
+            <div class="pref-opt">
+              <input type="radio" name="cpref" id="cPrefW" value="whatsapp"/>
+              <label class="pref-lbl" for="cPrefW"><i class="fab fa-whatsapp"></i> WhatsApp</label>
+            </div>
+          </div>
+          <div class="pref-detail" id="cEmailDetail">
+            <div class="input-wrap" style="margin-top:8px">
+              <input type="email" id="c_remail" placeholder="Reply email (if different)"/>
+              <i class="input-icon fas fa-at"></i>
+            </div>
+          </div>
+          <div class="pref-detail" id="cWADetail">
+            <div class="input-wrap" style="margin-top:8px">
+              <input type="tel" id="c_wa" placeholder="e.g. +92 300 0000000"/>
+              <i class="input-icon fab fa-whatsapp"></i>
+            </div>
+          </div>
         </div>
-
-        <div class="form-group" id="subjectDiv">
-            <label>عنوان</label>
-            <input type="text" name="subject" id="subjectInput" placeholder="رابطہ کا عنوان" required>
-        </div>
-
         <div class="form-group">
-            <label>پیغام</label>
-            <textarea name="message" rows="4" placeholder="آپ کیا کہنا چاہتے ہیں؟" required></textarea>
+          <label>Subject</label>
+          <div class="input-wrap">
+            <input type="text" id="c_subject" placeholder="How can we help?"/>
+            <i class="input-icon fas fa-tag"></i>
+          </div>
         </div>
+        <div class="form-group">
+          <label>Message</label>
+          <div class="input-wrap ta-wrap">
+            <textarea id="c_msg" rows="4" placeholder="Write your message here..." maxlength="1000" oninput="cnt('c_msg','c_cnt')"></textarea>
+            <i class="input-icon fas fa-comment-dots"></i>
+            <span class="char-count"><span id="c_cnt">0</span>/1000</span>
+          </div>
+        </div>
+        <button class="submit-btn" id="contactBtn" onclick="submitContact()">
+          <div class="btn-inner"><i class="fas fa-paper-plane"></i> Send Message</div>
+          <div class="btn-loader"><div class="spinner"></div></div>
+        </button>
+      </div>
 
-        <button type="submit" class="send-btn">بھیجیں</button>
-    </form>
+      <!-- COMPLAINT PANEL -->
+      <div class="form-panel" id="complaintPanel">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <div class="input-wrap">
+              <input type="text" id="r_name" placeholder="Your name"/>
+              <i class="input-icon fas fa-user"></i>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <input type="email" id="r_email" placeholder="you@example.com"/>
+              <i class="input-icon fas fa-envelope"></i>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Preferred Reply Method <span class="opt-tag">(optional)</span></label>
+          <div class="pref-row">
+            <div class="pref-opt">
+              <input type="radio" name="rpref" id="rPrefE" value="email"/>
+              <label class="pref-lbl" for="rPrefE"><i class="fas fa-envelope"></i> Email</label>
+            </div>
+            <div class="pref-opt">
+              <input type="radio" name="rpref" id="rPrefW" value="whatsapp"/>
+              <label class="pref-lbl" for="rPrefW"><i class="fab fa-whatsapp"></i> WhatsApp</label>
+            </div>
+          </div>
+          <div class="pref-detail" id="rEmailDetail">
+            <div class="input-wrap" style="margin-top:8px">
+              <input type="email" id="r_remail" placeholder="Reply email (if different)"/>
+              <i class="input-icon fas fa-at"></i>
+            </div>
+          </div>
+          <div class="pref-detail" id="rWADetail">
+            <div class="input-wrap" style="margin-top:8px">
+              <input type="tel" id="r_wa" placeholder="e.g. +92 300 0000000"/>
+              <i class="input-icon fab fa-whatsapp"></i>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Category <span style="color:var(--accent2)">*</span></label>
+          <div class="cat-grid" id="catGrid">
+            <div class="cat-chip" data-cat="Wrong Information" onclick="selCat(this)"><i class="fas fa-circle-exclamation"></i> Wrong Information</div>
+            <div class="cat-chip" data-cat="Website Not Working" onclick="selCat(this)"><i class="fas fa-triangle-exclamation"></i> Website Not Working</div>
+            <div class="cat-chip" data-cat="Slow Response" onclick="selCat(this)"><i class="fas fa-clock"></i> Slow Response</div>
+            <div class="cat-chip" data-cat="Rude Behaviour" onclick="selCat(this)"><i class="fas fa-face-angry"></i> Rude Behaviour</div>
+            <div class="cat-chip" data-cat="Content Issue" onclick="selCat(this)"><i class="fas fa-file-circle-xmark"></i> Content Issue</div>
+            <div class="cat-chip" data-cat="Suggestion / Feedback" onclick="selCat(this)"><i class="fas fa-lightbulb"></i> Suggestion</div>
+            <div class="cat-chip" data-cat="Other" onclick="selCat(this)"><i class="fas fa-ellipsis"></i> Other</div>
+          </div>
+          <p class="cat-err-msg" id="catErr"><i class="fas fa-circle-exclamation"></i> Please select a category</p>
+          <div id="otherCatWrap">
+            <div class="input-wrap">
+              <input type="text" id="r_othercat" placeholder="Please describe your category..."/>
+              <i class="input-icon fas fa-pen"></i>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Complaint Title</label>
+          <div class="input-wrap">
+            <input type="text" id="r_title" placeholder="Brief title of your complaint"/>
+            <i class="input-icon fas fa-triangle-exclamation"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <div class="input-wrap ta-wrap">
+            <textarea id="r_msg" rows="4" placeholder="Describe the issue in detail..." maxlength="1500" oninput="cnt('r_msg','r_cnt')"></textarea>
+            <i class="input-icon fas fa-align-left"></i>
+            <span class="char-count"><span id="r_cnt">0</span>/1500</span>
+          </div>
+        </div>
+        <button class="submit-btn" id="complaintBtn" onclick="submitComplaint()">
+          <div class="btn-inner"><i class="fas fa-flag"></i> Submit Complaint</div>
+          <div class="btn-loader"><div class="spinner"></div></div>
+        </button>
+      </div>
 
-    <a href="index.html" class="back-link">← واپس ہوم پیج پر جائیں</a>
+      <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
 </div>
 
-<!-- جاوا اسکرپٹ: ڈراپ ڈاؤن کی بنیاد پر سبجیکٹ خودکار کریں -->
 <script>
-    const msgType = document.getElementById('msgType');
-    const subjectInput = document.getElementById('subjectInput');
+  /* 3D tilt */
+  const cardWrap = document.getElementById('cardWrap');
+  const card = document.getElementById('mainCard');
+  cardWrap.addEventListener('mousemove', e => {
+    const r = cardWrap.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width - 0.5;
+    const y = (e.clientY-r.top)/r.height - 0.5;
+    card.style.transform = `rotateY(${x*7}deg) rotateX(${-y*5}deg)`;
+  });
+  cardWrap.addEventListener('mouseleave', () => { card.style.transform=''; });
 
-    function updateSubject() {
-        if (msgType.value === 'contact') {
-            subjectInput.placeholder = "رابطہ کا عنوان (مثلاً: تعاون کا سوال)";
-            if (!subjectInput.value.startsWith('رابطہ:')) {
-                subjectInput.value = 'رابطہ: ';
-            }
-        } else {
-            subjectInput.placeholder = "شکایت کا عنوان (مثلاً: پروڈکٹ کا مسئلہ)";
-            if (!subjectInput.value.startsWith('شکایت:')) {
-                subjectInput.value = 'شکایت: ';
-            }
-        }
+  /* Mode switch */
+  let curMode = 'contact';
+  function switchMode(m) {
+    curMode = m;
+    document.getElementById('modeSlider').classList.toggle('complaint', m==='complaint');
+    document.getElementById('btnContact').classList.toggle('active', m==='contact');
+    document.getElementById('btnComplaint').classList.toggle('active', m==='complaint');
+    document.getElementById('contactPanel').classList.toggle('active', m==='contact');
+    document.getElementById('complaintPanel').classList.toggle('active', m==='complaint');
+  }
+
+  /* Pref radio show/hide */
+  function setupPref(name, eId, wId) {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.addEventListener('change', () => {
+        document.getElementById(eId).style.display = r.value==='email' && r.checked ? 'block':'none';
+        document.getElementById(wId).style.display = r.value==='whatsapp' && r.checked ? 'block':'none';
+      });
+    });
+  }
+  setupPref('cpref','cEmailDetail','cWADetail');
+  setupPref('rpref','rEmailDetail','rWADetail');
+
+  /* Category */
+  let selCatVal = '';
+  function selCat(el) {
+    document.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+    selCatVal = el.dataset.cat;
+    document.getElementById('catErr').style.display = 'none';
+    document.getElementById('otherCatWrap').style.display = selCatVal==='Other' ? 'block':'none';
+  }
+
+  /* Char count */
+  function cnt(taId, cntId) {
+    document.getElementById(cntId).textContent = document.getElementById(taId).value.length;
+  }
+
+  /* Highlight error field */
+  function fieldErr(id) {
+    const el = document.getElementById(id);
+    el.classList.add('field-error');
+    el.focus();
+    setTimeout(()=>el.classList.remove('field-error'),2500);
+    return false;
+  }
+
+  /* ── Unique Reference ID (timestamp-based, no server needed) ──
+     Format: YDH-[YYYYMMDD]-[HHmmss]-[3 random digits]
+     e.g.  YDH-20260317-143022-847
+     - Date+time part changes every second → no two submissions at same second get same prefix
+     - 3 random digits make same-second collisions virtually impossible
+  */
+  function generateRefId() {
+    const now = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    const datePart = now.getFullYear().toString() +
+                     pad(now.getMonth()+1) +
+                     pad(now.getDate());
+    const timePart = pad(now.getHours()) +
+                     pad(now.getMinutes()) +
+                     pad(now.getSeconds());
+    const rand = Math.floor(100 + Math.random()*900); // 3-digit random
+    return 'YDH-' + datePart + '-' + timePart + '-' + rand;
+  }
+
+  /* SUBMIT CONTACT */
+  async function submitContact() {
+    const fname = document.getElementById('c_fname').value.trim();
+    const lname = document.getElementById('c_lname').value.trim();
+    const email = document.getElementById('c_email').value.trim();
+    const subject = document.getElementById('c_subject').value.trim();
+    const msg = document.getElementById('c_msg').value.trim();
+    if(!fname) return fieldErr('c_fname');
+    if(!lname) return fieldErr('c_lname');
+    if(!email) return fieldErr('c_email');
+    if(!subject) return fieldErr('c_subject');
+    if(!msg) return fieldErr('c_msg');
+
+    const pref = document.querySelector('input[name="cpref"]:checked');
+    const refId = generateRefId();
+    const payload = {
+      'Reference ID': refId,
+      'Form Type': 'Contact Message',
+      'Name': fname + ' ' + lname,
+      'Email': email,
+      'Subject': subject,
+      'Message': msg,
+      'Preferred Reply': pref ? pref.value : 'Not specified',
+      'Reply Email': document.getElementById('c_remail').value.trim() || '—',
+      'WhatsApp': document.getElementById('c_wa').value.trim() || '—'
+    };
+
+    const btn = document.getElementById('contactBtn');
+    btn.classList.add('loading'); btn.disabled=true;
+    await sendData(payload, 'contact', refId);
+    btn.classList.remove('loading'); btn.disabled=false;
+  }
+
+  /* SUBMIT COMPLAINT */
+  async function submitComplaint() {
+    const name = document.getElementById('r_name').value.trim();
+    const email = document.getElementById('r_email').value.trim();
+    const title = document.getElementById('r_title').value.trim();
+    const msg = document.getElementById('r_msg').value.trim();
+    if(!name) return fieldErr('r_name');
+    if(!email) return fieldErr('r_email');
+    if(!selCatVal) {
+      document.getElementById('catErr').style.display='block';
+      document.getElementById('catGrid').scrollIntoView({behavior:'smooth',block:'center'});
+      return;
     }
+    if(!title) return fieldErr('r_title');
+    if(!msg) return fieldErr('r_msg');
 
-    // جب صفحہ لوڈ ہو اور جب ڈراپ ڈاؤن تبدیل ہو
-    msgType.addEventListener('change', updateSubject);
-    window.addEventListener('load', updateSubject);
+    const finalCat = selCatVal==='Other'
+      ? ('Other: ' + document.getElementById('r_othercat').value.trim())
+      : selCatVal;
+
+    const pref = document.querySelector('input[name="rpref"]:checked');
+    const refId = generateRefId();
+    const payload = {
+      'Reference ID': refId,
+      'Form Type': 'Complaint',
+      'Name': name,
+      'Email': email,
+      'Complaint Category': finalCat,
+      'Complaint Title': title,
+      'Message': msg,
+      'Preferred Reply': pref ? pref.value : 'Not specified',
+      'Reply Email': document.getElementById('r_remail').value.trim() || '—',
+      'WhatsApp': document.getElementById('r_wa').value.trim() || '—'
+    };
+
+    const btn = document.getElementById('complaintBtn');
+    btn.classList.add('loading'); btn.disabled=true;
+    await sendData(payload, 'complaint', refId);
+    btn.classList.remove('loading'); btn.disabled=false;
+  }
+
+  /* AJAX to FormSubmit */
+  async function sendData(payload, mode, refId) {
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/ullahyad199@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if(data.success==='true'||data.success===true) {
+        showSuccess(mode, refId);
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch(e) {
+      alert('Could not send the message. Please check your connection and try again.');
+    }
+  }
+
+  /* Show success */
+  function showSuccess(mode, refId) {
+    document.getElementById('ticketBadge').textContent = 'REF # ' + refId;
+    if(mode==='contact') {
+      document.getElementById('successTitle').textContent = 'Message Received! ✓';
+      document.getElementById('successMsg').innerHTML =
+        `Thank you for contacting <strong>Yadullah Digital Hub</strong>!<br/><br/>
+        We have received your message and our team will review it carefully.
+        We will <strong>get back to you as soon as possible</strong> — typically within 24 hours.
+        Please keep an eye on your inbox. We look forward to connecting with you!`;
+    } else {
+      document.getElementById('successTitle').textContent = 'Complaint Submitted! ✓';
+      document.getElementById('successMsg').innerHTML =
+        `Thank you for bringing this to our attention.<br/><br/>
+        Your complaint has been <strong>officially registered</strong> with the reference number below.
+        Please stay assured — we take every complaint seriously.
+        <strong>insha'Allah</strong>, our team will do its best to resolve your issue promptly and
+        <strong>contact you at the earliest opportunity</strong>. We sincerely apologize for any inconvenience caused.`;
+    }
+    document.getElementById('mainContent').style.display='none';
+    document.getElementById('successScreen').classList.add('show');
+    card.style.transform='';
+  }
+
+  /* Reset */
+  function resetAll() {
+    document.getElementById('successScreen').classList.remove('show');
+    document.getElementById('mainContent').style.display='block';
+    document.querySelectorAll('input[type="text"],input[type="email"],input[type="tel"],textarea').forEach(el=>el.value='');
+    document.querySelectorAll('input[type="radio"]').forEach(el=>el.checked=false);
+    document.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('selected'));
+    document.querySelectorAll('.pref-detail').forEach(d=>d.style.display='none');
+    document.getElementById('otherCatWrap').style.display='none';
+    document.getElementById('catErr').style.display='none';
+    document.getElementById('c_cnt').textContent='0';
+    document.getElementById('r_cnt').textContent='0';
+    document.querySelectorAll('.submit-btn').forEach(b=>{b.classList.remove('loading');b.disabled=false;});
+    selCatVal='';
+    switchMode('contact');
+  }
 </script>
-
-<!-- اہم: فارم کو چالو کرنے کے لیے اپنے ایلال میں آئے ایکٹیویشن لنک پر کلک کرنا نہ بھولیں -->
 </body>
 </html>
