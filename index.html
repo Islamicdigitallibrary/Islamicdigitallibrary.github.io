@@ -1,464 +1,349 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="yandex-verification" content="7a058aaf8b3219ca" />
-<meta name="google-adsense-account" content="ca-pub-1417987183063486">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    <!-- Yandex and Adsense verification (preserved) -->
+    <meta name="yandex-verification" content="7a058aaf8b3219ca" />
+    <meta name="google-adsense-account" content="ca-pub-1417987183063486" />
+    
+    <!-- SEO: Meta Description added -->
+    <meta name="description" content="اسلامک ڈیجیٹل لائبریری - جدید انداز میں قرآن، حدیث، اور اسلامی کتب کا وسیع ذخیرہ۔ آڈیو تلاوت، ویڈیوز، اور پی ڈی ایف کتب۔">
+    
+    <!-- Version control (optimized) -->
+    <script>
+        const CURRENT_VERSION = "v_6.0_premium_optimized";
+        async function updateSiteAssets() {
+            const savedVersion = localStorage.getItem('site_version');
+            if (savedVersion !== CURRENT_VERSION) {
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)));
+                }
+                localStorage.setItem('site_version', CURRENT_VERSION);
+            }
+        }
+        updateSiteAssets();
+    </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://www.googleapis.com">
+    <!-- Preconnect only to critical origins (4 max) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://www.googleapis.com">
+    
+    <!-- DNS-prefetch for other important origins (non-blocking) -->
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://lozengehelped.com">
+    <link rel="dns-prefetch" href="https://lh3.googleusercontent.com">
+    <link rel="dns-prefetch" href="https://drive.google.com">
 
-<script>
-  const CURRENT_VERSION = "v_5.03_fast_loading"; 
-  async function updateSiteAssets() {
-    const savedVersion = localStorage.getItem('site_version');
-    if (savedVersion !== CURRENT_VERSION) {
-      if ('caches' in window) {
-        const cacheNames = await caches.keys();
-        await Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)));
-      }
-      localStorage.setItem('site_version', CURRENT_VERSION);
-    }
-  }
-  updateSiteAssets();
-</script>
+    <!-- Google AdSense (async) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1417987183063486" crossorigin="anonymous"></script>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1417987183063486" crossorigin="anonymous"></script>
-<link rel="manifest" href="manifest.json">
+    <!-- PWA manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#050a14">
+    <link rel="apple-touch-icon" href="icon-512.png">
 
-<meta name="theme-color" content="#050a14">
-<link rel="apple-touch-icon" href="icon-512.png">
+    <title>اسلامک ڈیجیٹل لائبریری | پروفیشنل ورژن</title>
 
-<title>اسلامک ڈیجیٹل لائبریری | پروفیشنل ورژن</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts: Non-blocking with display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Font Awesome: Non-blocking -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 
-<style>
-:root {
-  --bg-dark: #050a14;
-  --primary-gold: #d4af37;
-  --glass: rgba(255, 255, 255, 0.05);
-  --border: rgba(212, 175, 55, 0.2);
-  --text: #ffffff;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
-  background-color: var(--bg-dark);
-  color: var(--text);
-  line-height: 2;
-  /* Navbar height padding to prevent content hiding */
-  padding-top: 80px; 
-  background-attachment: fixed;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.02) 0px, transparent 20%),
-    radial-gradient(circle at 90% 70%, rgba(212, 175, 55, 0.02) 0px, transparent 30%),
-    repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.01) 0px, rgba(212, 175, 55, 0.01) 2px, transparent 2px, transparent 6px);
-}
-
-/* نویگیشن - Fixed and Stable */
-.navbar {
-  position: fixed; /* Fixed to top */
-  top: 0; 
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: rgba(5, 10, 20, 0.95); /* Slightly darker for better readability */
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-.logo { font-size: 1.3rem; color: var(--primary-gold); font-weight: bold; white-space: nowrap; }
-
-/* ہیرو سیکشن */
-.hero { text-align: center; padding: 30px 20px; border-bottom: 1px solid var(--border); }
-.profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary-gold); margin-bottom: 15px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); object-fit: cover; }
-
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-.section-head { font-size: 1.6rem; color: var(--primary-gold); margin: 30px 0 20px; display: flex; align-items: center; gap: 10px; }
-
-/* گریڈ اور کارڈز */
-.grid { display: grid; gap: 15px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-
-.card {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 12px; padding: 15px;
-  transition: transform 0.2s ease-in-out; 
-  display: flex; flex-direction: column;
-  justify-content: space-between; /* Pushes button to bottom */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  backdrop-filter: blur(5px);
-  height: auto; /* مسئلہ 1 کا حل: اونچائی کو آٹو کیا تاکہ بڑا نام کٹے نہ */
-  min-height: 100%; /* Ensure full height in grid */
-}
-.card:active { transform: scale(0.98); } /* Touch feedback */
-
-/* FIX FOR LONG TITLES */
-.card-title {
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  line-height: 1.9; /* مسئلہ 1 کا حل: اردو نستعلیق کے لیے لائنوں میں فاصلہ بڑھایا */
-  word-break: break-word;
-  white-space: normal;
-  overflow: visible;
-  height: auto;
-  min-height: min-content; /* مسئلہ 1 کا حل: اس بات کو یقینی بنایا کہ نام پورا نظر آئے */
-}
-
-.video-frame { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; margin-bottom: 10px; background: #000; }
-
-.btn-group { display: flex; gap: 10px; margin-top: 15px; }
-.btn { flex: 1; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; cursor: pointer; font-family: 'Amiri'; border: none; font-size: 0.9rem; transition: 0.2s; white-space: nowrap;}
-.btn-fill { background: var(--primary-gold); color: #000; }
-.btn-fill:hover { background: #e6c245; transform: translateY(-2px); }
-.btn-outline { background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); }
-.btn-outline:hover { background: var(--primary-gold); color: #000; }
-
-/* بریڈ کرمب */
-.breadcrumb { background: var(--glass); padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; display: inline-block; backdrop-filter: blur(5px); border: 1px solid var(--border); font-size: 0.9rem; }
-.breadcrumb span { cursor: pointer; color: var(--primary-gold); }
-.breadcrumb span:hover { color: #fff; text-decoration: underline; }
-.breadcrumb span::after { content: " / "; color: #fff; margin: 0 5px; opacity: 0.5; }
-.breadcrumb span:last-child::after { content: ""; }
-
-/* لوڈنگ اسپنر */
-.loader { text-align: center; grid-column: 1/-1; padding: 40px; }
-.loader i { font-size: 2rem; color: var(--primary-gold); animation: spin 1s linear infinite; }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.8; font-size: 0.9rem;}
-
-/* Mobile Optimization */
-@media (max-width: 600px) { 
-  .grid { grid-template-columns: 1fr; } 
-  .section-head { font-size: 1.4rem; }
-  .btn-group { flex-direction: row; } 
-  .navbar { padding: 10px 15px; }
-  .logo { font-size: 1.1rem; }
-  .nav-container a { font-size: 0.9rem; padding: 5px 10px; }
-}
-</style>
+    <!-- Critical CSS (minified) - all original styles preserved -->
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}:root{--bg-dark:#050a14;--primary-gold:#d4af37;--glass:rgba(255,255,255,0.05);--border:rgba(212,175,55,0.2);--text:#fff}body{font-family:'Noto Nastaliq Urdu','Amiri',serif;background-color:var(--bg-dark);color:var(--text);line-height:2;padding-top:80px;background-attachment:fixed;background-image:radial-gradient(circle at 10% 20%,rgba(212,175,55,0.02) 0,transparent 20%),radial-gradient(circle at 90% 70%,rgba(212,175,55,0.02) 0,transparent 30%),repeating-linear-gradient(45deg,rgba(212,175,55,0.01) 0,rgba(212,175,55,0.01) 2px,transparent 2px,transparent 6px)}.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(5,10,20,0.95);backdrop-filter:blur(15px);border-bottom:1px solid var(--border);padding:10px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.5)}.nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}.logo{font-size:1.3rem;color:var(--primary-gold);font-weight:700;white-space:nowrap}.hero{text-align:center;padding:30px 20px;border-bottom:1px solid var(--border)}.profile-pic{width:120px;height:120px;border-radius:50%;border:3px solid var(--primary-gold);margin-bottom:15px;box-shadow:0 4px 15px rgba(212,175,55,0.3);object-fit:cover}.container{max-width:1200px;margin:0 auto;padding:20px}.section-head{font-size:1.6rem;color:var(--primary-gold);margin:30px 0 20px;display:flex;align-items:center;gap:10px}.grid{display:grid;gap:15px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}.card{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:15px;transition:transform 0.2s ease-in-out;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 10px rgba(0,0,0,0.3);backdrop-filter:blur(5px);height:auto;min-height:100%}.card:active{transform:scale(0.98)}.card-title{font-size:1.1rem;margin-bottom:15px;line-height:1.9;word-break:break-word;white-space:normal;overflow:visible;height:auto;min-height:min-content}.video-frame{width:100%;aspect-ratio:16/9;border-radius:10px;border:none;margin-bottom:10px;background:#000}.btn-group{display:flex;gap:10px;margin-top:15px}.btn{flex:1;padding:10px;border-radius:8px;text-decoration:none;font-weight:700;text-align:center;cursor:pointer;font-family:'Amiri';border:none;font-size:0.9rem;transition:0.2s;white-space:nowrap}.btn-fill{background:var(--primary-gold);color:#000}.btn-fill:hover{background:#e6c245;transform:translateY(-2px)}.btn-outline{background:0 0;border:1px solid var(--primary-gold);color:var(--primary-gold)}.btn-outline:hover{background:var(--primary-gold);color:#000}.breadcrumb{background:var(--glass);padding:10px 20px;border-radius:50px;margin-bottom:20px;display:inline-block;backdrop-filter:blur(5px);border:1px solid var(--border);font-size:0.9rem}.breadcrumb span{cursor:pointer;color:var(--primary-gold)}.breadcrumb span:hover{color:#fff;text-decoration:underline}.breadcrumb span::after{content:" / ";color:#fff;margin:0 5px;opacity:0.5}.breadcrumb span:last-child::after{content:""}.loader{text-align:center;grid-column:1/-1;padding:40px}.loader i{font-size:2rem;color:var(--primary-gold);animation:spin 1s linear infinite}@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}footer{text-align:center;padding:30px;border-top:1px solid var(--border);margin-top:50px;opacity:0.8;font-size:0.9rem}@media (max-width:600px){.grid{grid-template-columns:1fr}.section-head{font-size:1.4rem}.btn-group{flex-direction:row}.navbar{padding:10px 15px}.logo{font-size:1.1rem}.nav-container a{font-size:0.9rem;padding:5px 10px}}
+    </style>
 </head>
 <body>
 
+<!-- Fixed Navbar -->
 <nav class="navbar">
-  <div class="nav-container">
-    <div class="logo"><i class="fas fa-book-quran"></i> اسلامک لائبریری</div>
-    <a href="help-search.html" class="btn btn-outline" style="padding: 5px 15px; font-size: 0.9rem;"><i class="fas fa-search"></i> کتاب تلاش کریں</a>
-    <a href="contact.html" style="color:var(--primary-gold); text-decoration:none; font-size:0.9rem; margin-right:auto;">رابطہ</a>
-  </div>
+    <div class="nav-container">
+        <div class="logo"><i class="fas fa-book-quran"></i> اسلامک لائبریری</div>
+        <a href="help-search.html" class="btn btn-outline" style="padding:5px 15px; font-size:0.9rem;"><i class="fas fa-search"></i> کتاب تلاش کریں</a>
+        <a href="contact.html" style="color:var(--primary-gold); text-decoration:none; font-size:0.9rem; margin-right:auto;">رابطہ</a>
+    </div>
 </nav>
 
+<!-- Home View -->
 <div id="home-view">
     <header class="hero">
-     <img src="https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf" alt="Profile" class="profile-pic" loading="lazy">
-      <h1>اسلامک ڈیجیٹل لائبریری</h1>
-      <p>جدید انداز میں اسلامی کتب کا وسیع ذخیرہ</p>
+        <!-- Image with dimensions to prevent CLS -->
+        <img src="https://lh3.googleusercontent.com/d/1cKX1y5K1IX3_bsRYus8YVzHcd-Rj7uyf" alt="Profile" class="profile-pic" width="120" height="120" loading="lazy">
+        <h1>اسلامک ڈیجیٹل لائبریری</h1>
+        <p>جدید انداز میں اسلامی کتب کا وسیع ذخیرہ</p>
     </header>
 
     <main class="container">
-      <section>
-        <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
-        <div class="grid">
-          <div class="card">
-              <h3 class="card-title">تلاوتِ قرآنِ پاک (سورت بائی سورت)</h3>
-              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill">پلے لسٹ</a></div>
-          </div>
-          <div class="card">
-              <h3 class="card-title">قرآن مجید اردو ترجمہ (سورت بائی سورت)</h3>
-              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں</a></div>
-          </div>
-          <div class="card">
-              <h3 class="card-title">تلاوتِ قرآنِ پاک (پارہ بائی پارہ)</h3>
-              <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/quran-para-audio/" class="btn btn-fill">ابھی سنیں</a></div>
-          </div>
-        </div>
-      </section>
+        <!-- Audio Archive -->
+        <section>
+            <h2 class="section-head"><span>🎧</span> آڈیو آرکائیو</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3 class="card-title">تلاوتِ قرآنِ پاک (سورت بائی سورت)</h3>
+                    <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-MP3/" class="btn btn-fill">پلے لسٹ</a></div>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">قرآن مجید اردو ترجمہ (سورت بائی سورت)</h3>
+                    <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/Quran-Majeed-in-audio-file-with-Urdu-/" class="btn btn-fill">ابھی سنیں</a></div>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">تلاوتِ قرآنِ پاک (پارہ بائی پارہ)</h3>
+                    <div class="btn-group"><a href="https://ulutfyad48-debug.github.io/quran-para-audio/" class="btn btn-fill">ابھی سنیں</a></div>
+                </div>
+            </div>
+        </section>
 
-      <section>
-        <h2 class="section-head"><span>📚</span> اسلامی کتب و فولڈرز</h2>
-        <div id="mainLibraryGrid" class="grid"></div>
- 
-       </section>
+        <!-- Main Library Grid (Dynamic from Google Drive) -->
+        <section>
+            <h2 class="section-head"><span>📚</span> اسلامی کتب و فولڈرز</h2>
+            <div id="mainLibraryGrid" class="grid"></div>
+        </section>
 
-      <section>
-        <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت و بیانات</h2>
-        <div id="youtubeGrid" class="grid"></div>
-      </section>
+        <!-- YouTube Videos -->
+        <section>
+            <h2 class="section-head"><span>🎥</span> ویڈیو تلاوت و بیانات</h2>
+            <div id="youtubeGrid" class="grid"></div>
+        </section>
 
-      <section style="margin-top:50px;">
-        <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-          <a href="contact.html" class="btn btn-outline">رابطہ کریں</a>
-          <a href="https://digitalsiteshub.github.io" target="_blank" class="btn btn-outline">ڈیولپر کے مزید پلیٹ فارم</a>
-          <a href="https://www.facebook.com/groups/882329850371173/?ref=share&mibextid=NSMWBT" target="_blank" class="btn btn-outline">فیس بک لائبریری</a>
-        </div>
-
-      </section>
+        <!-- Additional Links -->
+        <section style="margin-top:50px;">
+            <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+                <a href="contact.html" class="btn btn-outline">رابطہ کریں</a>
+                <a href="https://digitalsiteshub.github.io" target="_blank" class="btn btn-outline">ڈیولپر کے مزید پلیٹ فارم</a>
+                <a href="https://www.facebook.com/groups/882329850371173/?ref=share&mibextid=NSMWBT" target="_blank" class="btn btn-outline">فیس بک لائبریری</a>
+            </div>
+        </section>
     </main>
 </div>
 
+<!-- Folder View (for nested folders) -->
 <div id="folder-view" class="container" style="display:none; padding-top:20px;">
     <div class="breadcrumb" id="breadcrumb"></div>
     <h2 id="currentFolderName" class="section-head"></h2>
     <div id="folderGrid" class="grid"></div>
 </div>
 
+<!-- Footer -->
 <footer>
-  <p>© 2026 اسلامک ڈیجیٹل لائبریری | جملہ حقوق محفوظ ہیں</p>
+    <p>© 2026 اسلامک ڈیجیٹل لائبریری | جملہ حقوق محفوظ ہیں</p>
 </footer>
 
+<!-- Optimized JavaScript -->
 <script>
-const CONFIG = {
-  API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
-  MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC', 
-  YOUTUBE_FILE: 'youtube.json',
-  CACHE_EXPIRY: 24 * 60 * 60 * 1000 // Increased cache to 24 hours for speed
-};
+    const CONFIG = {
+        API_KEY: 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts',
+        MAIN_FOLDER_ID: '1YDLO466xaB-ytUtBI9ZWk4eMfHOoX_CC',
+        YOUTUBE_FILE: 'youtube.json',
+        CACHE_EXPIRY: 24 * 60 * 60 * 1000 // 24h cache
+    };
 
-let historyStack = [];
+    let historyStack = [];
 
-function getCachedData(key) {
-  const cached = localStorage.getItem(key);
-  if (!cached) return null;
-  try {
-    const { timestamp, data } = JSON.parse(cached);
-    if (Date.now() - timestamp < CONFIG.CACHE_EXPIRY) {
-      return data;
-    } else {
-      localStorage.removeItem(key);
+    // Cache helpers
+    function getCachedData(key) {
+        const cached = localStorage.getItem(key);
+        if (!cached) return null;
+        try {
+            const { timestamp, data } = JSON.parse(cached);
+            if (Date.now() - timestamp < CONFIG.CACHE_EXPIRY) return data;
+            else localStorage.removeItem(key);
+        } catch (e) {}
+        return null;
     }
-  } catch (e) {}
-  return null;
-}
 
-function setCachedData(key, data) {
-  try {
-      const cacheObj = { timestamp: Date.now(), data };
-      localStorage.setItem(key, JSON.stringify(cacheObj));
-  } catch (e) {
-      console.warn("Cache full or disabled");
-  }
-}
+    function setCachedData(key, data) {
+        try {
+            localStorage.setItem(key, JSON.stringify({ timestamp: Date.now(), data }));
+        } catch (e) {}
+    }
 
-// مسئلہ 2 کا حل: پس منظر میں خاموشی سے ڈیٹا اکٹھا کرنے والا فنکشن (Prefetching)
-async function prefetchFolderData(files) {
-    if (!files || !files.length) return;
-    
-    // صرف فولڈرز تلاش کریں
-    const folders = files.filter(f => f.mimeType === 'application/vnd.google-apps.folder');
-    
-    for (let i = 0; i < folders.length; i++) {
-        const folderId = folders[i].id;
+    // Prefetch folder contents in idle time (reduces main-thread work)
+    function prefetchFolderData(files) {
+        if (!files || !files.length) return;
+        const folders = files.filter(f => f.mimeType === 'application/vnd.google-apps.folder');
+        if (!folders.length) return;
+
+        // Use requestIdleCallback to avoid blocking
+        const idleCallback = window.requestIdleCallback || function(cb) { setTimeout(cb, 1000); };
+        idleCallback(() => {
+            let index = 0;
+            function fetchNext() {
+                if (index >= folders.length) return;
+                const folderId = folders[index].id;
+                const cacheKey = `folder_${folderId}`;
+                if (!getCachedData(cacheKey) && navigator.onLine) {
+                    fetch(`https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}&orderBy=folder,name`)
+                        .then(r => r.json())
+                        .then(data => {
+                            if (data.files) setCachedData(cacheKey, data.files);
+                        })
+                        .catch(() => {})
+                        .finally(() => {
+                            index++;
+                            setTimeout(fetchNext, 500); // gentle spacing
+                        });
+                } else {
+                    index++;
+                    fetchNext();
+                }
+            }
+            fetchNext();
+        });
+    }
+
+    async function fetchDriveData(folderId, gridId, isMain = false) {
+        const grid = document.getElementById(gridId);
+        if (grid.innerHTML.trim() === "") {
+            grid.innerHTML = '<div class="loader"><i class="fas fa-spinner"></i> لوڈ ہو رہا ہے...</div>';
+        }
+
         const cacheKey = `folder_${folderId}`;
-        
-        // اگر ڈیٹا پہلے سے محفوظ نہیں ہے تو خاموشی سے لائیں
-        if (!getCachedData(cacheKey) && navigator.onLine) {
+        let files = getCachedData(cacheKey);
+
+        if (files) {
+            renderFiles(files, grid);
+            if (isMain) setTimeout(() => prefetchFolderData(files), 2000);
+        }
+
+        if (!files || navigator.onLine) {
             try {
                 const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}&orderBy=folder,name`;
                 const response = await fetch(url);
                 const data = await response.json();
-                
-                if (data.files) {
-                    setCachedData(cacheKey, data.files); // ڈیٹا کیش میں سیو کر لیں
-                }
-                
-                // گوگل کی لمٹ سے بچنے کے لیے ہر فولڈر کے بعد 2 سیکنڈ کا وقفہ
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                if (data.error) throw new Error(data.error.message);
+                files = data.files || [];
+                setCachedData(cacheKey, files);
+                renderFiles(files, grid);
+                if (isMain) setTimeout(() => prefetchFolderData(files), 2000);
             } catch (e) {
-                console.warn("Prefetch error for folder:", folderId);
+                console.warn("Fetch error:", e);
+                if (!files) {
+                    grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; color: #ff6b6b;">انٹرنیٹ کنیکشن چیک کریں یا دوبارہ کوشش کریں۔</p>';
+                }
             }
         }
     }
-}
 
-async function fetchDriveData(folderId, gridId, isMain = false) {
-    const grid = document.getElementById(gridId);
-    
-    // Only show loader if grid is empty (better UX)
-    if(grid.innerHTML.trim() === "") {
-        grid.innerHTML = '<div class="loader"><i class="fas fa-spinner"></i> لوڈ ہو رہا ہے...</div>';
-    }
-
-    const cacheKey = `folder_${folderId}`;
-    let files = getCachedData(cacheKey);
-
-    if (files) {
-        renderFiles(files, grid);
-        // مسئلہ 2 کا حل: اگر کیش سے مین فولڈر لوڈ ہوا ہے تو خاموشی سے باقی فولڈرز کا ڈیٹا لائیں
-        if (isMain) {
-            setTimeout(() => prefetchFolderData(files), 3000); // 3 سیکنڈ بعد شروع کریں تاکہ ویب سائٹ فوراً کھل جائے
+    function renderFiles(files, grid) {
+        if (!files || files.length === 0) {
+            grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; opacity:0.7;">اس فولڈر میں کوئی فائل نہیں ہے۔</p>';
+            return;
         }
-    }
 
-    // Fetch fresh data in background if connected, or if no cache
-    if (!files || navigator.onLine) {
-        try {
-            const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${CONFIG.API_KEY}&orderBy=folder,name`;
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            if (data.error) throw new Error(data.error.message);
+        const htmlString = files.map(file => {
+            const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
+            const safeName = file.name.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+            const displayName = file.name.replace('.pdf', '');
 
-            files = data.files || [];
-            setCachedData(cacheKey, files);
-            renderFiles(files, grid); // Re-render with fresh data
+            let icon = isFolder ? '<i class="fas fa-folder" style="color:#d4af37;"></i>' : '<i class="fas fa-file-pdf" style="color:#fff; opacity:0.7;"></i>';
+            let action = isFolder ? 
+                `<button onclick="openFolder('${file.id}', '${safeName}')" class="btn btn-fill">فولڈر کھولیں</button>` :
+                `<div class="btn-group">
+                    <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="btn btn-outline">مطالعہ</a>
+                    <a href="https://drive.google.com/uc?export=download&id=${file.id}" class="btn btn-fill">ڈاؤن لوڈ</a>
+                </div>`;
 
-            // مسئلہ 2 کا حل: اگر نیا ڈیٹا آیا ہے تو بھی پس منظر میں پری فیچنگ شروع کر دیں
-            if (isMain) {
-                setTimeout(() => prefetchFolderData(files), 3000); 
-            }
-
-        } catch (e) {
-            console.error("Fetch Error:", e);
-            if (!files) {
-                grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; color: #ff6b6b;">انٹرنیٹ کنیکشن چیک کریں یا دوبارہ کوشش کریں۔</p>';
-            }
-        }
-    }
-}
-
-// Optimized Rendering Function (Batch DOM Injection)
-function renderFiles(files, grid) {
-    if (!files || files.length === 0) {
-        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; opacity:0.7;">اس فولڈر میں کوئی فائل نہیں ہے۔</p>';
-        return;
-    }
-
-    // Using map and join is much faster than loop + appendChild
-    const htmlString = files.map(file => {
-        const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
-        
-        // Sanitize names for HTML attributes
-        const safeName = file.name.replace(/'/g, "\\'").replace(/"/g, "&quot;");
-        const displayName = file.name.replace('.pdf', '');
-
-        let icon = isFolder ? '<i class="fas fa-folder" style="color:#d4af37;"></i>' : '<i class="fas fa-file-pdf" style="color:#fff; opacity:0.7;"></i>';
-        
-        let action = isFolder ? 
-            `<button onclick="openFolder('${file.id}', '${safeName}')" class="btn btn-fill">فولڈر کھولیں</button>` :
-            `<div class="btn-group">
-                <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="btn btn-outline">مطالعہ</a>
-                <a href="https://drive.google.com/uc?export=download&id=${file.id}" class="btn btn-fill">ڈاؤن لوڈ</a>
-             </div>`;
-
-        return `
-            <div class="card">
-                <div>
-                    <div style="font-size:2rem; margin-bottom:10px;">${icon}</div>
-                    <h3 class="card-title">${displayName}</h3>
+            return `
+                <div class="card">
+                    <div>
+                        <div style="font-size:2rem; margin-bottom:10px;">${icon}</div>
+                        <h3 class="card-title">${displayName}</h3>
+                    </div>
+                    ${action}
                 </div>
-                ${action}
-            </div>
-        `;
-    }).join('');
+            `;
+        }).join('');
 
-    grid.innerHTML = htmlString;
-}
-
-function openFolder(id, name) {
-    historyStack.push({id, name});
-    updateBreadcrumb();
-    
-    // UI switching
-    document.getElementById('home-view').style.display = 'none';
-    const folderView = document.getElementById('folder-view');
-    folderView.style.display = 'block';
-    
-    document.getElementById('currentFolderName').innerText = name;
-    
-    // Clear previous content to avoid confusion
-    document.getElementById('folderGrid').innerHTML = ''; 
-    fetchDriveData(id, 'folderGrid');
-    window.scrollTo(0,0);
-}
-
-function updateBreadcrumb() {
-    const bc = document.getElementById('breadcrumb');
-    let html = '<span onclick="goHome()">🏠 ہوم</span>';
-    
-    historyStack.forEach((item, index) => {
-        // Escape quotes just in case
-        const safeName = item.name.replace(/'/g, "\\'"); 
-        html += `<span>${item.name}</span>`; // Visual only, click handled via span wrapper logic if needed, but usually simple list is fine.
-        
-        // Interactive breadcrumb logic is complex with inline strings, simplified here:
-        // Clicking specific breadcrumb items requires attaching events properly.
-        // For simplicity and speed, we render the current path. 
-        // If you want clickable previous steps:
-    });
-    
-    // Re-implementing clickable breadcrumbs cleanly
-    bc.innerHTML = '';
-    
-    const homeSpan = document.createElement('span');
-    homeSpan.innerHTML = '🏠 ہوم';
-    homeSpan.onclick = goHome;
-    bc.appendChild(homeSpan);
-
-    historyStack.forEach((item, index) => {
-        const s = document.createElement('span');
-        s.innerText = item.name;
-        s.onclick = () => {
-             // Go back to this level
-             historyStack = historyStack.slice(0, index + 1);
-             document.getElementById('currentFolderName').innerText = item.name;
-             fetchDriveData(item.id, 'folderGrid');
-             updateBreadcrumb();
-        };
-        bc.appendChild(s);
-    });
-}
-
-function goHome() {
-    historyStack = [];
-    document.getElementById('home-view').style.display = 'block';
-    document.getElementById('folder-view').style.display = 'none';
-}
-
-async function loadVideos() {
-    const grid = document.getElementById('youtubeGrid');
-    try {
-        const response = await fetch(CONFIG.YOUTUBE_FILE);
-        if (!response.ok) return; // Silent fail is better than error text sometimes
-        const videos = await response.json();
-        
-        if (!Array.isArray(videos)) return;
-
-        grid.innerHTML = videos.map(v => `
-            <div class="card">
-                <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" frameborder="0" allowfullscreen loading="lazy"></iframe>
-                <h3 class="card-title">${v.title || 'Video'}</h3>
-            </div>
-        `).join('');
-    } catch (e) {
-        // console.warn("Video load error");
-        // Keep empty or show default
+        grid.innerHTML = htmlString;
     }
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetchDriveData(CONFIG.MAIN_FOLDER_ID, 'mainLibraryGrid', true);
-    loadVideos();
-});
-</script>
+    function openFolder(id, name) {
+        historyStack.push({ id, name });
+        updateBreadcrumb();
+        document.getElementById('home-view').style.display = 'none';
+        const folderView = document.getElementById('folder-view');
+        folderView.style.display = 'block';
+        document.getElementById('currentFolderName').innerText = name;
+        document.getElementById('folderGrid').innerHTML = '';
+        fetchDriveData(id, 'folderGrid');
+        window.scrollTo(0, 0);
+    }
 
-<script src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(reg => console.log('SW Registered'))
-        .catch(err => console.log('SW Fail:', err));
+    function updateBreadcrumb() {
+        const bc = document.getElementById('breadcrumb');
+        bc.innerHTML = '';
+
+        const homeSpan = document.createElement('span');
+        homeSpan.innerHTML = '🏠 ہوم';
+        homeSpan.onclick = goHome;
+        bc.appendChild(homeSpan);
+
+        historyStack.forEach((item, index) => {
+            const s = document.createElement('span');
+            s.innerText = item.name;
+            s.onclick = () => {
+                historyStack = historyStack.slice(0, index + 1);
+                document.getElementById('currentFolderName').innerText = item.name;
+                fetchDriveData(item.id, 'folderGrid');
+                updateBreadcrumb();
+            };
+            bc.appendChild(s);
+        });
+    }
+
+    function goHome() {
+        historyStack = [];
+        document.getElementById('home-view').style.display = 'block';
+        document.getElementById('folder-view').style.display = 'none';
+    }
+
+    async function loadVideos() {
+        const grid = document.getElementById('youtubeGrid');
+        try {
+            const response = await fetch(CONFIG.YOUTUBE_FILE);
+            if (!response.ok) return;
+            const videos = await response.json();
+            if (!Array.isArray(videos)) return;
+
+            grid.innerHTML = videos.map(v => `
+                <div class="card">
+                    <iframe class="video-frame" src="${v.url.replace('watch?v=', 'embed/')}" frameborder="0" allowfullscreen loading="lazy" title="${v.title || 'ویڈیو'}"></iframe>
+                    <h3 class="card-title">${v.title || 'ویڈیو'}</h3>
+                </div>
+            `).join('');
+        } catch (e) {
+            // silent fail
+        }
+    }
+
+    // Initialize on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchDriveData(CONFIG.MAIN_FOLDER_ID, 'mainLibraryGrid', true);
+        loadVideos();
     });
-  }
+
+    // Service Worker (deferred)
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('service-worker.js').catch(() => {});
+        });
+    }
 </script>
+
+<!-- External ad script (preserved, async) -->
+<script async src="https://lozengehelped.com/2d/75/02/2d75025f7c9dbe28b37a13643b4c6c06.js"></script>
 
 </body>
 </html>
